@@ -1,0 +1,30 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="f_update_progress_label">
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="f_update_state_label">
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    
+    <style name="c_navigation_bar">
+        <item name="android:background">@drawable/navigation_blue_bg</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:minHeight">@dimen/c_navigation_bar_height</item>
+        <item name="android:maxHeight">@dimen/c_navigation_bar_height</item>
+    </style>
+    <style name="c_navigation_container">
+        <item name="android:background">@android:color/white</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
+    
+    
+    <style name="c_bottom_menu_animstyle">
+        <item name="android:windowEnterAnimation">@anim/c_bottom_menu_slide_up</item>
+        <item name="android:windowExitAnimation">@anim/c_bottom_menu_slide_down</item>
+    </style>
+</resources>

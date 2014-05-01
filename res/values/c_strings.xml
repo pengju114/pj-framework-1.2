@@ -1,0 +1,22 @@
+<resources>
+    <string name="c_label_dialog_title">信息</string>
+    <string name="c_label_dialog_btn_ok">确定</string>
+    <string name="c_empty"></string>
+    <string name="c_label_dialog_btn_cancel">取消</string>
+    
+    <string name="c_msg_network_not_available">当前网络已断开连接</string>
+    <string name="c_msg_http_request_fail">网络请求失败,请检查网络连接是否可用</string>
+    <string name="c_msg_http_preparing">正在准备</string>
+    <string name="c_msg_http_download_finish">下载完成</string>
+    <string name="c_msg_http_download_start">开始下载</string>
+    <string name="c_msg_http_downloading">正在下载</string>
+    
+    <string name="c_msg_http_request_error">网络请求错误</string>
+    <string name="c_msg_http_illegal_data_format">不正确的数据格式，无法转换成 %s</string>
+    <string name="c_msg_http_conn_timeout">请求超时</string>
+    
+    <string name="c_msg_n_start_download_update">开始下载更新</string>
+    <string name="c_msg_n_download_update_error">下载更新时发生错误: %s</string>
+    <string name="c_msg_n_download_finish">更新下载完成</string>
+
+</resources>

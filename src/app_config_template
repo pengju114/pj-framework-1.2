@@ -1,0 +1,40 @@
+#application configuration file
+
+#app_dir is the application's root folder name
+app_dir=dir_name
+
+#app_cache_dir is the application's cache folder name
+#this folder is locate in folder--app_dir
+app_cache_dir=tmp
+
+#app_cache_duration indicate the duration time that the cache files(images etc) in million seconds
+#default 12h
+app_cache_duration=43200000
+
+#dir for download files
+app_downloads_dir=downloads
+
+#log_enable indicate that should the logging message shown in the logcat
+#this should be false when you build a release version
+log_enable=true
+
+#http_conn_timeout indicate the http connect timeout
+#this default to 15000(15s)
+http_conn_timeout=15000
+
+#http_so_timeout indicate the socket timeout
+#default to 15000(15s)
+http_so_timeout=15000
+
+#should the application exit when all activities destroyed (default:true)
+exit_app_on_all_activities_destroyed=true
+
+#should the application stop all service when exit(default:false)
+stop_all_service_on_exit_app=false
+
+#task size ,default 3
+task_size=3
+#default true
+save_state_when_taskmanager_exit=true
+
+#here you can define more settings and access via AppConfig

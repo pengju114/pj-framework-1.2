@@ -1,0 +1,3745 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mimes>
+    <mime-mapping>
+        <init-param name="extension">123</init-param>
+        <init-param name="mimeType">application/vnd.lotus-1-2-3</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">3dml</init-param>
+        <init-param name="mimeType">text/vnd.in3d.3dml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">3g2</init-param>
+        <init-param name="mimeType">video/3gpp2</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">3gp</init-param>
+        <init-param name="mimeType">video/3gpp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">7z</init-param>
+        <init-param name="mimeType">application/x-7z-compressed</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">aab</init-param>
+        <init-param name="mimeType">application/x-authorware-bin</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">aac</init-param>
+        <init-param name="mimeType">audio/x-aac</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">aam</init-param>
+        <init-param name="mimeType">application/x-authorware-map</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">aas</init-param>
+        <init-param name="mimeType">application/x-authorware-seg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">abs</init-param>
+        <init-param name="mimeType">audio/x-mpeg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">abw</init-param>
+        <init-param name="mimeType">application/x-abiword</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ac</init-param>
+        <init-param name="mimeType">application/pkix-attr-cert</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">acc</init-param>
+        <init-param name="mimeType">application/vnd.americandynamics.acc</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ace</init-param>
+        <init-param name="mimeType">application/x-ace-compressed</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">acu</init-param>
+        <init-param name="mimeType">application/vnd.acucobol</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">acutc</init-param>
+        <init-param name="mimeType">application/vnd.acucorp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">adp</init-param>
+        <init-param name="mimeType">audio/adpcm</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">aep</init-param>
+        <init-param name="mimeType">application/vnd.audiograph</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">afm</init-param>
+        <init-param name="mimeType">application/x-font-type1</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">afp</init-param>
+        <init-param name="mimeType">application/vnd.ibm.modcap</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ahead</init-param>
+        <init-param name="mimeType">application/vnd.ahead.space</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ai</init-param>
+        <init-param name="mimeType">application/postscript</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">aif</init-param>
+        <init-param name="mimeType">audio/x-aiff</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">aifc</init-param>
+        <init-param name="mimeType">audio/x-aiff</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">aiff</init-param>
+        <init-param name="mimeType">audio/x-aiff</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">aim</init-param>
+        <init-param name="mimeType">application/x-aim</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">air</init-param>
+        <init-param name="mimeType">application/vnd.adobe.air-application-installer-package+zip</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ait</init-param>
+        <init-param name="mimeType">application/vnd.dvb.ait</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ami</init-param>
+        <init-param name="mimeType">application/vnd.amiga.ami</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">anx</init-param>
+        <init-param name="mimeType">application/annodex</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">apk</init-param>
+        <init-param name="mimeType">application/vnd.android.package-archive</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">application</init-param>
+        <init-param name="mimeType">application/x-ms-application</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">apr</init-param>
+        <init-param name="mimeType">application/vnd.lotus-approach</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">art</init-param>
+        <init-param name="mimeType">image/x-jg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">asc</init-param>
+        <init-param name="mimeType">application/pgp-signature</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">asf</init-param>
+        <init-param name="mimeType">video/x-ms-asf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">asm</init-param>
+        <init-param name="mimeType">text/x-asm</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">aso</init-param>
+        <init-param name="mimeType">application/vnd.accpac.simply.aso</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">asx</init-param>
+        <init-param name="mimeType">video/x-ms-asf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">atc</init-param>
+        <init-param name="mimeType">application/vnd.acucorp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">atom</init-param>
+        <init-param name="mimeType">application/atom+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">atomcat</init-param>
+        <init-param name="mimeType">application/atomcat+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">atomsvc</init-param>
+        <init-param name="mimeType">application/atomsvc+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">atx</init-param>
+        <init-param name="mimeType">application/vnd.antix.game-component</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">au</init-param>
+        <init-param name="mimeType">audio/basic</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">avi</init-param>
+        <init-param name="mimeType">video/x-msvideo</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">avx</init-param>
+        <init-param name="mimeType">video/x-rad-screenplay</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">aw</init-param>
+        <init-param name="mimeType">application/applixware</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">axa</init-param>
+        <init-param name="mimeType">audio/annodex</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">axv</init-param>
+        <init-param name="mimeType">video/annodex</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">azf</init-param>
+        <init-param name="mimeType">application/vnd.airzip.filesecure.azf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">azs</init-param>
+        <init-param name="mimeType">application/vnd.airzip.filesecure.azs</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">azw</init-param>
+        <init-param name="mimeType">application/vnd.amazon.ebook</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">bat</init-param>
+        <init-param name="mimeType">application/x-msdownload</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">bcpio</init-param>
+        <init-param name="mimeType">application/x-bcpio</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">bdf</init-param>
+        <init-param name="mimeType">application/x-font-bdf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">bdm</init-param>
+        <init-param name="mimeType">application/vnd.syncml.dm+wbxml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">bed</init-param>
+        <init-param name="mimeType">application/vnd.realvnc.bed</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">bh2</init-param>
+        <init-param name="mimeType">application/vnd.fujitsu.oasysprs</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">bin</init-param>
+        <init-param name="mimeType">application/octet-stream</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">bmi</init-param>
+        <init-param name="mimeType">application/vnd.bmi</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">bmp</init-param>
+        <init-param name="mimeType">image/bmp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">body</init-param>
+        <init-param name="mimeType">text/html</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">book</init-param>
+        <init-param name="mimeType">application/vnd.framemaker</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">box</init-param>
+        <init-param name="mimeType">application/vnd.previewsystems.box</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">boz</init-param>
+        <init-param name="mimeType">application/x-bzip2</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">bpk</init-param>
+        <init-param name="mimeType">application/octet-stream</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">btif</init-param>
+        <init-param name="mimeType">image/prs.btif</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">bz</init-param>
+        <init-param name="mimeType">application/x-bzip</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">bz2</init-param>
+        <init-param name="mimeType">application/x-bzip2</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">c</init-param>
+        <init-param name="mimeType">text/x-c</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">c11amc</init-param>
+        <init-param name="mimeType">application/vnd.cluetrust.cartomobile-config</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">c11amz</init-param>
+        <init-param name="mimeType">application/vnd.cluetrust.cartomobile-config-pkg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">c4d</init-param>
+        <init-param name="mimeType">application/vnd.clonk.c4group</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">c4f</init-param>
+        <init-param name="mimeType">application/vnd.clonk.c4group</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">c4g</init-param>
+        <init-param name="mimeType">application/vnd.clonk.c4group</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">c4p</init-param>
+        <init-param name="mimeType">application/vnd.clonk.c4group</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">c4u</init-param>
+        <init-param name="mimeType">application/vnd.clonk.c4group</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cab</init-param>
+        <init-param name="mimeType">application/vnd.ms-cab-compressed</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cap</init-param>
+        <init-param name="mimeType">application/vnd.tcpdump.pcap</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">car</init-param>
+        <init-param name="mimeType">application/vnd.curl.car</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cat</init-param>
+        <init-param name="mimeType">application/vnd.ms-pki.seccat</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cc</init-param>
+        <init-param name="mimeType">text/x-c</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cct</init-param>
+        <init-param name="mimeType">application/x-director</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ccxml</init-param>
+        <init-param name="mimeType">application/ccxml+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cdbcmsg</init-param>
+        <init-param name="mimeType">application/vnd.contact.cmsg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cdf</init-param>
+        <init-param name="mimeType">application/x-cdf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cdkey</init-param>
+        <init-param name="mimeType">application/vnd.mediastation.cdkey</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cdmia</init-param>
+        <init-param name="mimeType">application/cdmi-capability</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cdmic</init-param>
+        <init-param name="mimeType">application/cdmi-container</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cdmid</init-param>
+        <init-param name="mimeType">application/cdmi-domain</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cdmio</init-param>
+        <init-param name="mimeType">application/cdmi-object</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cdmiq</init-param>
+        <init-param name="mimeType">application/cdmi-queue</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cdx</init-param>
+        <init-param name="mimeType">chemical/x-cdx</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cdxml</init-param>
+        <init-param name="mimeType">application/vnd.chemdraw+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cdy</init-param>
+        <init-param name="mimeType">application/vnd.cinderella</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cer</init-param>
+        <init-param name="mimeType">application/pkix-cert</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cgm</init-param>
+        <init-param name="mimeType">image/cgm</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">chat</init-param>
+        <init-param name="mimeType">application/x-chat</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">chm</init-param>
+        <init-param name="mimeType">application/vnd.ms-htmlhelp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">chrt</init-param>
+        <init-param name="mimeType">application/vnd.kde.kchart</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cif</init-param>
+        <init-param name="mimeType">chemical/x-cif</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cii</init-param>
+        <init-param name="mimeType">application/vnd.anser-web-certificate-issue-initiation</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cil</init-param>
+        <init-param name="mimeType">application/vnd.ms-artgalry</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cla</init-param>
+        <init-param name="mimeType">application/vnd.claymore</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">class</init-param>
+        <init-param name="mimeType">application/java</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">clkk</init-param>
+        <init-param name="mimeType">application/vnd.crick.clicker.keyboard</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">clkp</init-param>
+        <init-param name="mimeType">application/vnd.crick.clicker.palette</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">clkt</init-param>
+        <init-param name="mimeType">application/vnd.crick.clicker.template</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">clkw</init-param>
+        <init-param name="mimeType">application/vnd.crick.clicker.wordbank</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">clkx</init-param>
+        <init-param name="mimeType">application/vnd.crick.clicker</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">clp</init-param>
+        <init-param name="mimeType">application/x-msclip</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cmc</init-param>
+        <init-param name="mimeType">application/vnd.cosmocaller</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cmdf</init-param>
+        <init-param name="mimeType">chemical/x-cmdf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cml</init-param>
+        <init-param name="mimeType">chemical/x-cml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cmp</init-param>
+        <init-param name="mimeType">application/vnd.yellowriver-custom-menu</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cmx</init-param>
+        <init-param name="mimeType">image/x-cmx</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cod</init-param>
+        <init-param name="mimeType">application/vnd.rim.cod</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">com</init-param>
+        <init-param name="mimeType">application/x-msdownload</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">conf</init-param>
+        <init-param name="mimeType">text/plain</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cpio</init-param>
+        <init-param name="mimeType">application/x-cpio</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cpp</init-param>
+        <init-param name="mimeType">text/x-c</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cpt</init-param>
+        <init-param name="mimeType">application/mac-compactpro</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">crd</init-param>
+        <init-param name="mimeType">application/x-mscardfile</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">crl</init-param>
+        <init-param name="mimeType">application/pkix-crl</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">crt</init-param>
+        <init-param name="mimeType">application/x-x509-ca-cert</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cryptonote</init-param>
+        <init-param name="mimeType">application/vnd.rig.cryptonote</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">csh</init-param>
+        <init-param name="mimeType">application/x-csh</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">csml</init-param>
+        <init-param name="mimeType">chemical/x-csml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">csp</init-param>
+        <init-param name="mimeType">application/vnd.commonspace</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">css</init-param>
+        <init-param name="mimeType">text/css</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cst</init-param>
+        <init-param name="mimeType">application/x-director</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">csv</init-param>
+        <init-param name="mimeType">text/csv</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cu</init-param>
+        <init-param name="mimeType">application/cu-seeme</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">curl</init-param>
+        <init-param name="mimeType">text/vnd.curl</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cww</init-param>
+        <init-param name="mimeType">application/prs.cww</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cxt</init-param>
+        <init-param name="mimeType">application/x-director</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">cxx</init-param>
+        <init-param name="mimeType">text/x-c</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dae</init-param>
+        <init-param name="mimeType">model/vnd.collada+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">daf</init-param>
+        <init-param name="mimeType">application/vnd.mobius.daf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dataless</init-param>
+        <init-param name="mimeType">application/vnd.fdsn.seed</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">davmount</init-param>
+        <init-param name="mimeType">application/davmount+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dcr</init-param>
+        <init-param name="mimeType">application/x-director</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dcurl</init-param>
+        <init-param name="mimeType">text/vnd.curl.dcurl</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dd2</init-param>
+        <init-param name="mimeType">application/vnd.oma.dd2+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ddd</init-param>
+        <init-param name="mimeType">application/vnd.fujixerox.ddd</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">deb</init-param>
+        <init-param name="mimeType">application/x-debian-package</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">def</init-param>
+        <init-param name="mimeType">text/plain</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">deploy</init-param>
+        <init-param name="mimeType">application/octet-stream</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">der</init-param>
+        <init-param name="mimeType">application/x-x509-ca-cert</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dfac</init-param>
+        <init-param name="mimeType">application/vnd.dreamfactory</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dib</init-param>
+        <init-param name="mimeType">image/bmp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dic</init-param>
+        <init-param name="mimeType">text/x-c</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dir</init-param>
+        <init-param name="mimeType">application/x-director</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dis</init-param>
+        <init-param name="mimeType">application/vnd.mobius.dis</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dist</init-param>
+        <init-param name="mimeType">application/octet-stream</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">distz</init-param>
+        <init-param name="mimeType">application/octet-stream</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">djv</init-param>
+        <init-param name="mimeType">image/vnd.djvu</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">djvu</init-param>
+        <init-param name="mimeType">image/vnd.djvu</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dll</init-param>
+        <init-param name="mimeType">application/x-msdownload</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dmg</init-param>
+        <init-param name="mimeType">application/octet-stream</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dmp</init-param>
+        <init-param name="mimeType">application/vnd.tcpdump.pcap</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dms</init-param>
+        <init-param name="mimeType">application/octet-stream</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dna</init-param>
+        <init-param name="mimeType">application/vnd.dna</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">doc</init-param>
+        <init-param name="mimeType">application/msword</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">docm</init-param>
+        <init-param name="mimeType">application/vnd.ms-word.document.macroenabled.12</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">docx</init-param>
+        <init-param name="mimeType">application/vnd.openxmlformats-officedocument.wordprocessingml.document</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dot</init-param>
+        <init-param name="mimeType">application/msword</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dotm</init-param>
+        <init-param name="mimeType">application/vnd.ms-word.template.macroenabled.12</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dotx</init-param>
+        <init-param name="mimeType">application/vnd.openxmlformats-officedocument.wordprocessingml.template</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dp</init-param>
+        <init-param name="mimeType">application/vnd.osgi.dp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dpg</init-param>
+        <init-param name="mimeType">application/vnd.dpgraph</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dra</init-param>
+        <init-param name="mimeType">audio/vnd.dra</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dsc</init-param>
+        <init-param name="mimeType">text/prs.lines.tag</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dssc</init-param>
+        <init-param name="mimeType">application/dssc+der</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dtb</init-param>
+        <init-param name="mimeType">application/x-dtbook+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dtd</init-param>
+        <init-param name="mimeType">application/xml-dtd</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dts</init-param>
+        <init-param name="mimeType">audio/vnd.dts</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dtshd</init-param>
+        <init-param name="mimeType">audio/vnd.dts.hd</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dump</init-param>
+        <init-param name="mimeType">application/octet-stream</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dv</init-param>
+        <init-param name="mimeType">video/x-dv</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dvb</init-param>
+        <init-param name="mimeType">video/vnd.dvb.file</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dvi</init-param>
+        <init-param name="mimeType">application/x-dvi</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dwf</init-param>
+        <init-param name="mimeType">model/vnd.dwf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dwg</init-param>
+        <init-param name="mimeType">image/vnd.dwg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dxf</init-param>
+        <init-param name="mimeType">image/vnd.dxf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dxp</init-param>
+        <init-param name="mimeType">application/vnd.spotfire.dxp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">dxr</init-param>
+        <init-param name="mimeType">application/x-director</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ecelp4800</init-param>
+        <init-param name="mimeType">audio/vnd.nuera.ecelp4800</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ecelp7470</init-param>
+        <init-param name="mimeType">audio/vnd.nuera.ecelp7470</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ecelp9600</init-param>
+        <init-param name="mimeType">audio/vnd.nuera.ecelp9600</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ecma</init-param>
+        <init-param name="mimeType">application/ecmascript</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">edm</init-param>
+        <init-param name="mimeType">application/vnd.novadigm.edm</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">edx</init-param>
+        <init-param name="mimeType">application/vnd.novadigm.edx</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">efif</init-param>
+        <init-param name="mimeType">application/vnd.picsel</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ei6</init-param>
+        <init-param name="mimeType">application/vnd.pg.osasli</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">elc</init-param>
+        <init-param name="mimeType">application/octet-stream</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">eml</init-param>
+        <init-param name="mimeType">message/rfc822</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">emma</init-param>
+        <init-param name="mimeType">application/emma+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">eol</init-param>
+        <init-param name="mimeType">audio/vnd.digital-winds</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">eot</init-param>
+        <init-param name="mimeType">application/vnd.ms-fontobject</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">eps</init-param>
+        <init-param name="mimeType">application/postscript</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">epub</init-param>
+        <init-param name="mimeType">application/epub+zip</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">es3</init-param>
+        <init-param name="mimeType">application/vnd.eszigno3+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">esf</init-param>
+        <init-param name="mimeType">application/vnd.epson.esf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">et3</init-param>
+        <init-param name="mimeType">application/vnd.eszigno3+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">etx</init-param>
+        <init-param name="mimeType">text/x-setext</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">exe</init-param>
+        <init-param name="mimeType">application/octet-stream</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">exi</init-param>
+        <init-param name="mimeType">application/exi</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ext</init-param>
+        <init-param name="mimeType">application/vnd.novadigm.ext</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ez</init-param>
+        <init-param name="mimeType">application/andrew-inset</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ez2</init-param>
+        <init-param name="mimeType">application/vnd.ezpix-album</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ez3</init-param>
+        <init-param name="mimeType">application/vnd.ezpix-package</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">f</init-param>
+        <init-param name="mimeType">text/x-fortran</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">f4v</init-param>
+        <init-param name="mimeType">video/x-f4v</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">f77</init-param>
+        <init-param name="mimeType">text/x-fortran</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">f90</init-param>
+        <init-param name="mimeType">text/x-fortran</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fbs</init-param>
+        <init-param name="mimeType">image/vnd.fastbidsheet</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fcs</init-param>
+        <init-param name="mimeType">application/vnd.isac.fcs</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fdf</init-param>
+        <init-param name="mimeType">application/vnd.fdf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fe_launch</init-param>
+        <init-param name="mimeType">application/vnd.denovo.fcselayout-link</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fg5</init-param>
+        <init-param name="mimeType">application/vnd.fujitsu.oasysgp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fgd</init-param>
+        <init-param name="mimeType">application/x-director</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fh</init-param>
+        <init-param name="mimeType">image/x-freehand</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fh4</init-param>
+        <init-param name="mimeType">image/x-freehand</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fh5</init-param>
+        <init-param name="mimeType">image/x-freehand</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fh7</init-param>
+        <init-param name="mimeType">image/x-freehand</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fhc</init-param>
+        <init-param name="mimeType">image/x-freehand</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fig</init-param>
+        <init-param name="mimeType">application/x-xfig</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">flac</init-param>
+        <init-param name="mimeType">audio/flac</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fli</init-param>
+        <init-param name="mimeType">video/x-fli</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">flo</init-param>
+        <init-param name="mimeType">application/vnd.micrografx.flo</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">flv</init-param>
+        <init-param name="mimeType">video/x-flv</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">flw</init-param>
+        <init-param name="mimeType">application/vnd.kde.kivio</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">flx</init-param>
+        <init-param name="mimeType">text/vnd.fmi.flexstor</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fly</init-param>
+        <init-param name="mimeType">text/vnd.fly</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fm</init-param>
+        <init-param name="mimeType">application/vnd.framemaker</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fnc</init-param>
+        <init-param name="mimeType">application/vnd.frogans.fnc</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">for</init-param>
+        <init-param name="mimeType">text/x-fortran</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fpx</init-param>
+        <init-param name="mimeType">image/vnd.fpx</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">frame</init-param>
+        <init-param name="mimeType">application/vnd.framemaker</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fsc</init-param>
+        <init-param name="mimeType">application/vnd.fsc.weblaunch</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fst</init-param>
+        <init-param name="mimeType">image/vnd.fst</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ftc</init-param>
+        <init-param name="mimeType">application/vnd.fluxtime.clip</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fti</init-param>
+        <init-param name="mimeType">application/vnd.anser-web-funds-transfer-initiation</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fvt</init-param>
+        <init-param name="mimeType">video/vnd.fvt</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fxp</init-param>
+        <init-param name="mimeType">application/vnd.adobe.fxp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fxpl</init-param>
+        <init-param name="mimeType">application/vnd.adobe.fxp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">fzs</init-param>
+        <init-param name="mimeType">application/vnd.fuzzysheet</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">g2w</init-param>
+        <init-param name="mimeType">application/vnd.geoplan</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">g3</init-param>
+        <init-param name="mimeType">image/g3fax</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">g3w</init-param>
+        <init-param name="mimeType">application/vnd.geospace</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">gac</init-param>
+        <init-param name="mimeType">application/vnd.groove-account</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">gbr</init-param>
+        <init-param name="mimeType">application/rpki-ghostbusters</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">gdl</init-param>
+        <init-param name="mimeType">model/vnd.gdl</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">geo</init-param>
+        <init-param name="mimeType">application/vnd.dynageo</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">gex</init-param>
+        <init-param name="mimeType">application/vnd.geometry-explorer</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ggb</init-param>
+        <init-param name="mimeType">application/vnd.geogebra.file</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ggt</init-param>
+        <init-param name="mimeType">application/vnd.geogebra.tool</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ghf</init-param>
+        <init-param name="mimeType">application/vnd.groove-help</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">gif</init-param>
+        <init-param name="mimeType">image/gif</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">gim</init-param>
+        <init-param name="mimeType">application/vnd.groove-identity-message</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">gmx</init-param>
+        <init-param name="mimeType">application/vnd.gmx</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">gnumeric</init-param>
+        <init-param name="mimeType">application/x-gnumeric</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">gph</init-param>
+        <init-param name="mimeType">application/vnd.flographit</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">gqf</init-param>
+        <init-param name="mimeType">application/vnd.grafeq</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">gqs</init-param>
+        <init-param name="mimeType">application/vnd.grafeq</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">gram</init-param>
+        <init-param name="mimeType">application/srgs</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">gre</init-param>
+        <init-param name="mimeType">application/vnd.geometry-explorer</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">grv</init-param>
+        <init-param name="mimeType">application/vnd.groove-injector</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">grxml</init-param>
+        <init-param name="mimeType">application/srgs+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">gsf</init-param>
+        <init-param name="mimeType">application/x-font-ghostscript</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">gtar</init-param>
+        <init-param name="mimeType">application/x-gtar</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">gtm</init-param>
+        <init-param name="mimeType">application/vnd.groove-tool-message</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">gtw</init-param>
+        <init-param name="mimeType">model/vnd.gtw</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">gv</init-param>
+        <init-param name="mimeType">text/vnd.graphviz</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">gxt</init-param>
+        <init-param name="mimeType">application/vnd.geonext</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">gz</init-param>
+        <init-param name="mimeType">application/x-gzip</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">h</init-param>
+        <init-param name="mimeType">text/x-c</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">h261</init-param>
+        <init-param name="mimeType">video/h261</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">h263</init-param>
+        <init-param name="mimeType">video/h263</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">h264</init-param>
+        <init-param name="mimeType">video/h264</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">hal</init-param>
+        <init-param name="mimeType">application/vnd.hal+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">hbci</init-param>
+        <init-param name="mimeType">application/vnd.hbci</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">hdf</init-param>
+        <init-param name="mimeType">application/x-hdf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">hh</init-param>
+        <init-param name="mimeType">text/x-c</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">hlp</init-param>
+        <init-param name="mimeType">application/winhlp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">hpgl</init-param>
+        <init-param name="mimeType">application/vnd.hp-hpgl</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">hpid</init-param>
+        <init-param name="mimeType">application/vnd.hp-hpid</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">hps</init-param>
+        <init-param name="mimeType">application/vnd.hp-hps</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">hqx</init-param>
+        <init-param name="mimeType">application/mac-binhex40</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">htc</init-param>
+        <init-param name="mimeType">text/x-component</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">htke</init-param>
+        <init-param name="mimeType">application/vnd.kenameaapp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">htm</init-param>
+        <init-param name="mimeType">text/html</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">html</init-param>
+        <init-param name="mimeType">text/html</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">hvd</init-param>
+        <init-param name="mimeType">application/vnd.yamaha.hv-dic</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">hvp</init-param>
+        <init-param name="mimeType">application/vnd.yamaha.hv-voice</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">hvs</init-param>
+        <init-param name="mimeType">application/vnd.yamaha.hv-script</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">i2g</init-param>
+        <init-param name="mimeType">application/vnd.intergeo</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">icc</init-param>
+        <init-param name="mimeType">application/vnd.iccprofile</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ice</init-param>
+        <init-param name="mimeType">x-conference/x-cooltalk</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">icm</init-param>
+        <init-param name="mimeType">application/vnd.iccprofile</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ico</init-param>
+        <init-param name="mimeType">image/x-icon</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ics</init-param>
+        <init-param name="mimeType">text/calendar</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ief</init-param>
+        <init-param name="mimeType">image/ief</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ifb</init-param>
+        <init-param name="mimeType">text/calendar</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ifm</init-param>
+        <init-param name="mimeType">application/vnd.shana.informed.formdata</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">iges</init-param>
+        <init-param name="mimeType">model/iges</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">igl</init-param>
+        <init-param name="mimeType">application/vnd.igloader</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">igm</init-param>
+        <init-param name="mimeType">application/vnd.insors.igm</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">igs</init-param>
+        <init-param name="mimeType">model/iges</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">igx</init-param>
+        <init-param name="mimeType">application/vnd.micrografx.igx</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">iif</init-param>
+        <init-param name="mimeType">application/vnd.shana.informed.interchange</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">imp</init-param>
+        <init-param name="mimeType">application/vnd.accpac.simply.imp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ims</init-param>
+        <init-param name="mimeType">application/vnd.ms-ims</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">in</init-param>
+        <init-param name="mimeType">text/plain</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ink</init-param>
+        <init-param name="mimeType">application/inkml+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">inkml</init-param>
+        <init-param name="mimeType">application/inkml+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">iota</init-param>
+        <init-param name="mimeType">application/vnd.astraea-software.iota</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ipfix</init-param>
+        <init-param name="mimeType">application/ipfix</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ipk</init-param>
+        <init-param name="mimeType">application/vnd.shana.informed.package</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">irm</init-param>
+        <init-param name="mimeType">application/vnd.ibm.rights-management</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">irp</init-param>
+        <init-param name="mimeType">application/vnd.irepository.package+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">iso</init-param>
+        <init-param name="mimeType">application/octet-stream</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">itp</init-param>
+        <init-param name="mimeType">application/vnd.shana.informed.formtemplate</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ivp</init-param>
+        <init-param name="mimeType">application/vnd.immervision-ivp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ivu</init-param>
+        <init-param name="mimeType">application/vnd.immervision-ivu</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">jad</init-param>
+        <init-param name="mimeType">text/vnd.sun.j2me.app-descriptor</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">jam</init-param>
+        <init-param name="mimeType">application/vnd.jam</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">jar</init-param>
+        <init-param name="mimeType">application/java-archive</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">java</init-param>
+        <init-param name="mimeType">text/x-java-source</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">jisp</init-param>
+        <init-param name="mimeType">application/vnd.jisp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">jlt</init-param>
+        <init-param name="mimeType">application/vnd.hp-jlyt</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">jnlp</init-param>
+        <init-param name="mimeType">application/x-java-jnlp-file</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">joda</init-param>
+        <init-param name="mimeType">application/vnd.joost.joda-archive</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">jpe</init-param>
+        <init-param name="mimeType">image/jpeg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">jpeg</init-param>
+        <init-param name="mimeType">image/jpeg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">jpg</init-param>
+        <init-param name="mimeType">image/jpeg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">jpgm</init-param>
+        <init-param name="mimeType">video/jpm</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">jpgv</init-param>
+        <init-param name="mimeType">video/jpeg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">jpm</init-param>
+        <init-param name="mimeType">video/jpm</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">js</init-param>
+        <init-param name="mimeType">application/javascript</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">jsf</init-param>
+        <init-param name="mimeType">text/plain</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">json</init-param>
+        <init-param name="mimeType">application/json</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">jspf</init-param>
+        <init-param name="mimeType">text/plain</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">kar</init-param>
+        <init-param name="mimeType">audio/midi</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">karbon</init-param>
+        <init-param name="mimeType">application/vnd.kde.karbon</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">kfo</init-param>
+        <init-param name="mimeType">application/vnd.kde.kformula</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">kia</init-param>
+        <init-param name="mimeType">application/vnd.kidspiration</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">kml</init-param>
+        <init-param name="mimeType">application/vnd.google-earth.kml+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">kmz</init-param>
+        <init-param name="mimeType">application/vnd.google-earth.kmz</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">kne</init-param>
+        <init-param name="mimeType">application/vnd.kinar</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">knp</init-param>
+        <init-param name="mimeType">application/vnd.kinar</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">kon</init-param>
+        <init-param name="mimeType">application/vnd.kde.kontour</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">kpr</init-param>
+        <init-param name="mimeType">application/vnd.kde.kpresenter</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">kpt</init-param>
+        <init-param name="mimeType">application/vnd.kde.kpresenter</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ksp</init-param>
+        <init-param name="mimeType">application/vnd.kde.kspread</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ktr</init-param>
+        <init-param name="mimeType">application/vnd.kahootz</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ktx</init-param>
+        <init-param name="mimeType">image/ktx</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ktz</init-param>
+        <init-param name="mimeType">application/vnd.kahootz</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">kwd</init-param>
+        <init-param name="mimeType">application/vnd.kde.kword</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">kwt</init-param>
+        <init-param name="mimeType">application/vnd.kde.kword</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">lasxml</init-param>
+        <init-param name="mimeType">application/vnd.las.las+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">latex</init-param>
+        <init-param name="mimeType">application/x-latex</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">lbd</init-param>
+        <init-param name="mimeType">application/vnd.llamagraphics.life-balance.desktop</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">lbe</init-param>
+        <init-param name="mimeType">application/vnd.llamagraphics.life-balance.exchange+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">les</init-param>
+        <init-param name="mimeType">application/vnd.hhe.lesson-player</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">lha</init-param>
+        <init-param name="mimeType">application/octet-stream</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">link66</init-param>
+        <init-param name="mimeType">application/vnd.route66.link66+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">list</init-param>
+        <init-param name="mimeType">text/plain</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">list3820</init-param>
+        <init-param name="mimeType">application/vnd.ibm.modcap</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">listafp</init-param>
+        <init-param name="mimeType">application/vnd.ibm.modcap</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">log</init-param>
+        <init-param name="mimeType">text/plain</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">lostxml</init-param>
+        <init-param name="mimeType">application/lost+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">lrf</init-param>
+        <init-param name="mimeType">application/octet-stream</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">lrm</init-param>
+        <init-param name="mimeType">application/vnd.ms-lrm</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ltf</init-param>
+        <init-param name="mimeType">application/vnd.frogans.ltf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">lvp</init-param>
+        <init-param name="mimeType">audio/vnd.lucent.voice</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">lwp</init-param>
+        <init-param name="mimeType">application/vnd.lotus-wordpro</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">lzh</init-param>
+        <init-param name="mimeType">application/octet-stream</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">m13</init-param>
+        <init-param name="mimeType">application/x-msmediaview</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">m14</init-param>
+        <init-param name="mimeType">application/x-msmediaview</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">m1v</init-param>
+        <init-param name="mimeType">video/mpeg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">m21</init-param>
+        <init-param name="mimeType">application/mp21</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">m2a</init-param>
+        <init-param name="mimeType">audio/mpeg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">m2v</init-param>
+        <init-param name="mimeType">video/mpeg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">m3a</init-param>
+        <init-param name="mimeType">audio/mpeg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">m3u</init-param>
+        <init-param name="mimeType">audio/x-mpegurl</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">m3u8</init-param>
+        <init-param name="mimeType">application/vnd.apple.mpegurl</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">m4a</init-param>
+        <init-param name="mimeType">audio/mp4</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">m4b</init-param>
+        <init-param name="mimeType">audio/mp4</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">m4r</init-param>
+        <init-param name="mimeType">audio/mp4</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">m4u</init-param>
+        <init-param name="mimeType">video/vnd.mpegurl</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">m4v</init-param>
+        <init-param name="mimeType">video/mp4</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ma</init-param>
+        <init-param name="mimeType">application/mathematica</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mac</init-param>
+        <init-param name="mimeType">image/x-macpaint</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mads</init-param>
+        <init-param name="mimeType">application/mads+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mag</init-param>
+        <init-param name="mimeType">application/vnd.ecowin.chart</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">maker</init-param>
+        <init-param name="mimeType">application/vnd.framemaker</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">man</init-param>
+        <init-param name="mimeType">text/troff</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mathml</init-param>
+        <init-param name="mimeType">application/mathml+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mb</init-param>
+        <init-param name="mimeType">application/mathematica</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mbk</init-param>
+        <init-param name="mimeType">application/vnd.mobius.mbk</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mbox</init-param>
+        <init-param name="mimeType">application/mbox</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mc1</init-param>
+        <init-param name="mimeType">application/vnd.medcalcdata</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mcd</init-param>
+        <init-param name="mimeType">application/vnd.mcd</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mcurl</init-param>
+        <init-param name="mimeType">text/vnd.curl.mcurl</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mdb</init-param>
+        <init-param name="mimeType">application/x-msaccess</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mdi</init-param>
+        <init-param name="mimeType">image/vnd.ms-modi</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">me</init-param>
+        <init-param name="mimeType">text/troff</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mesh</init-param>
+        <init-param name="mimeType">model/mesh</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">meta4</init-param>
+        <init-param name="mimeType">application/metalink4+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mets</init-param>
+        <init-param name="mimeType">application/mets+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mfm</init-param>
+        <init-param name="mimeType">application/vnd.mfmp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mft</init-param>
+        <init-param name="mimeType">application/rpki-manifest</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mgp</init-param>
+        <init-param name="mimeType">application/vnd.osgeo.mapguide.package</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mgz</init-param>
+        <init-param name="mimeType">application/vnd.proteus.magazine</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mid</init-param>
+        <init-param name="mimeType">audio/midi</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">midi</init-param>
+        <init-param name="mimeType">audio/midi</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mif</init-param>
+        <init-param name="mimeType">application/x-mif</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mime</init-param>
+        <init-param name="mimeType">message/rfc822</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mj2</init-param>
+        <init-param name="mimeType">video/mj2</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mjp2</init-param>
+        <init-param name="mimeType">video/mj2</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mlp</init-param>
+        <init-param name="mimeType">application/vnd.dolby.mlp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mmd</init-param>
+        <init-param name="mimeType">application/vnd.chipnuts.karaoke-mmd</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mmf</init-param>
+        <init-param name="mimeType">application/vnd.smaf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mmr</init-param>
+        <init-param name="mimeType">image/vnd.fujixerox.edmics-mmr</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mny</init-param>
+        <init-param name="mimeType">application/x-msmoney</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mobi</init-param>
+        <init-param name="mimeType">application/x-mobipocket-ebook</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mods</init-param>
+        <init-param name="mimeType">application/mods+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mov</init-param>
+        <init-param name="mimeType">video/quicktime</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">movie</init-param>
+        <init-param name="mimeType">video/x-sgi-movie</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mp1</init-param>
+        <init-param name="mimeType">audio/mpeg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mp2</init-param>
+        <init-param name="mimeType">audio/mpeg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mp21</init-param>
+        <init-param name="mimeType">application/mp21</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mp2a</init-param>
+        <init-param name="mimeType">audio/mpeg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mp3</init-param>
+        <init-param name="mimeType">audio/mpeg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mp4</init-param>
+        <init-param name="mimeType">video/mp4</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mp4a</init-param>
+        <init-param name="mimeType">audio/mp4</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mp4s</init-param>
+        <init-param name="mimeType">application/mp4</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mp4v</init-param>
+        <init-param name="mimeType">video/mp4</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mpa</init-param>
+        <init-param name="mimeType">audio/mpeg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mpc</init-param>
+        <init-param name="mimeType">application/vnd.mophun.certificate</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mpe</init-param>
+        <init-param name="mimeType">video/mpeg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mpeg</init-param>
+        <init-param name="mimeType">video/mpeg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mpega</init-param>
+        <init-param name="mimeType">audio/x-mpeg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mpg</init-param>
+        <init-param name="mimeType">video/mpeg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mpg4</init-param>
+        <init-param name="mimeType">video/mp4</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mpga</init-param>
+        <init-param name="mimeType">audio/mpeg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mpkg</init-param>
+        <init-param name="mimeType">application/vnd.apple.installer+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mpm</init-param>
+        <init-param name="mimeType">application/vnd.blueice.multipass</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mpn</init-param>
+        <init-param name="mimeType">application/vnd.mophun.application</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mpp</init-param>
+        <init-param name="mimeType">application/vnd.ms-project</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mpt</init-param>
+        <init-param name="mimeType">application/vnd.ms-project</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mpv2</init-param>
+        <init-param name="mimeType">video/mpeg2</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mpy</init-param>
+        <init-param name="mimeType">application/vnd.ibm.minipay</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mqy</init-param>
+        <init-param name="mimeType">application/vnd.mobius.mqy</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mrc</init-param>
+        <init-param name="mimeType">application/marc</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mrcx</init-param>
+        <init-param name="mimeType">application/marcxml+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ms</init-param>
+        <init-param name="mimeType">text/troff</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mscml</init-param>
+        <init-param name="mimeType">application/mediaservercontrol+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mseed</init-param>
+        <init-param name="mimeType">application/vnd.fdsn.mseed</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mseq</init-param>
+        <init-param name="mimeType">application/vnd.mseq</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">msf</init-param>
+        <init-param name="mimeType">application/vnd.epson.msf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">msh</init-param>
+        <init-param name="mimeType">model/mesh</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">msi</init-param>
+        <init-param name="mimeType">application/x-msdownload</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">msl</init-param>
+        <init-param name="mimeType">application/vnd.mobius.msl</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">msty</init-param>
+        <init-param name="mimeType">application/vnd.muvee.style</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mts</init-param>
+        <init-param name="mimeType">model/vnd.mts</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mus</init-param>
+        <init-param name="mimeType">application/vnd.musician</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">musicxml</init-param>
+        <init-param name="mimeType">application/vnd.recordare.musicxml+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mvb</init-param>
+        <init-param name="mimeType">application/x-msmediaview</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mwf</init-param>
+        <init-param name="mimeType">application/vnd.mfer</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mxf</init-param>
+        <init-param name="mimeType">application/mxf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mxl</init-param>
+        <init-param name="mimeType">application/vnd.recordare.musicxml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mxml</init-param>
+        <init-param name="mimeType">application/xv+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mxs</init-param>
+        <init-param name="mimeType">application/vnd.triscape.mxs</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">mxu</init-param>
+        <init-param name="mimeType">video/vnd.mpegurl</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">n-gage</init-param>
+        <init-param name="mimeType">application/vnd.nokia.n-gage.symbian.install</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">n3</init-param>
+        <init-param name="mimeType">text/n3</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">nb</init-param>
+        <init-param name="mimeType">application/mathematica</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">nbp</init-param>
+        <init-param name="mimeType">application/vnd.wolfram.player</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">nc</init-param>
+        <init-param name="mimeType">application/x-netcdf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ncx</init-param>
+        <init-param name="mimeType">application/x-dtbncx+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ngdat</init-param>
+        <init-param name="mimeType">application/vnd.nokia.n-gage.data</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">nlu</init-param>
+        <init-param name="mimeType">application/vnd.neurolanguage.nlu</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">nml</init-param>
+        <init-param name="mimeType">application/vnd.enliven</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">nnd</init-param>
+        <init-param name="mimeType">application/vnd.noblenet-directory</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">nns</init-param>
+        <init-param name="mimeType">application/vnd.noblenet-sealer</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">nnw</init-param>
+        <init-param name="mimeType">application/vnd.noblenet-web</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">npx</init-param>
+        <init-param name="mimeType">image/vnd.net-fpx</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">nsf</init-param>
+        <init-param name="mimeType">application/vnd.lotus-notes</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">oa2</init-param>
+        <init-param name="mimeType">application/vnd.fujitsu.oasys2</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">oa3</init-param>
+        <init-param name="mimeType">application/vnd.fujitsu.oasys3</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">oas</init-param>
+        <init-param name="mimeType">application/vnd.fujitsu.oasys</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">obd</init-param>
+        <init-param name="mimeType">application/x-msbinder</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">oda</init-param>
+        <init-param name="mimeType">application/oda</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <!-- OpenDocument Database -->
+        <init-param name="extension">odb</init-param>
+        <init-param name="mimeType">application/vnd.oasis.opendocument.database</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <!-- OpenDocument Chart -->
+        <init-param name="extension">odc</init-param>
+        <init-param name="mimeType">application/vnd.oasis.opendocument.chart</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <!-- OpenDocument Formula -->
+        <init-param name="extension">odf</init-param>
+        <init-param name="mimeType">application/vnd.oasis.opendocument.formula</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">odft</init-param>
+        <init-param name="mimeType">application/vnd.oasis.opendocument.formula-template</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <!-- OpenDocument Drawing -->
+        <init-param name="extension">odg</init-param>
+        <init-param name="mimeType">application/vnd.oasis.opendocument.graphics</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <!-- OpenDocument Image -->
+        <init-param name="extension">odi</init-param>
+        <init-param name="mimeType">application/vnd.oasis.opendocument.image</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <!-- OpenDocument Master Document -->
+        <init-param name="extension">odm</init-param>
+        <init-param name="mimeType">application/vnd.oasis.opendocument.text-master</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <!-- OpenDocument Presentation -->
+        <init-param name="extension">odp</init-param>
+        <init-param name="mimeType">application/vnd.oasis.opendocument.presentation</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <!-- OpenDocument Spreadsheet -->
+        <init-param name="extension">ods</init-param>
+        <init-param name="mimeType">application/vnd.oasis.opendocument.spreadsheet</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <!-- OpenDocument Text -->
+        <init-param name="extension">odt</init-param>
+        <init-param name="mimeType">application/vnd.oasis.opendocument.text</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">oga</init-param>
+        <init-param name="mimeType">audio/ogg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ogg</init-param>
+        <init-param name="mimeType">audio/ogg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ogv</init-param>
+        <init-param name="mimeType">video/ogg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <!-- xiph mime types -->
+        <init-param name="extension">ogx</init-param>
+        <init-param name="mimeType">application/ogg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">onepkg</init-param>
+        <init-param name="mimeType">application/onenote</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">onetmp</init-param>
+        <init-param name="mimeType">application/onenote</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">onetoc</init-param>
+        <init-param name="mimeType">application/onenote</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">onetoc2</init-param>
+        <init-param name="mimeType">application/onenote</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">opf</init-param>
+        <init-param name="mimeType">application/oebps-package+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">oprc</init-param>
+        <init-param name="mimeType">application/vnd.palm</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">org</init-param>
+        <init-param name="mimeType">application/vnd.lotus-organizer</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">osf</init-param>
+        <init-param name="mimeType">application/vnd.yamaha.openscoreformat</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">osfpvg</init-param>
+        <init-param name="mimeType">application/vnd.yamaha.openscoreformat.osfpvg+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">otc</init-param>
+        <init-param name="mimeType">application/vnd.oasis.opendocument.chart-template</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">otf</init-param>
+        <init-param name="mimeType">application/x-font-otf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <!-- OpenDocument Drawing Template -->
+        <init-param name="extension">otg</init-param>
+        <init-param name="mimeType">application/vnd.oasis.opendocument.graphics-template</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <!-- HTML Document Template -->
+        <init-param name="extension">oth</init-param>
+        <init-param name="mimeType">application/vnd.oasis.opendocument.text-web</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">oti</init-param>
+        <init-param name="mimeType">application/vnd.oasis.opendocument.image-template</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <!-- OpenDocument Presentation Template -->
+        <init-param name="extension">otp</init-param>
+        <init-param name="mimeType">application/vnd.oasis.opendocument.presentation-template</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <!-- OpenDocument Spreadsheet Template -->
+        <init-param name="extension">ots</init-param>
+        <init-param name="mimeType">application/vnd.oasis.opendocument.spreadsheet-template</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <!-- OpenDocument Text Template -->
+        <init-param name="extension">ott</init-param>
+        <init-param name="mimeType">application/vnd.oasis.opendocument.text-template</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">oxps</init-param>
+        <init-param name="mimeType">application/oxps</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">oxt</init-param>
+        <init-param name="mimeType">application/vnd.openofficeorg.extension</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">p</init-param>
+        <init-param name="mimeType">text/x-pascal</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">p10</init-param>
+        <init-param name="mimeType">application/pkcs10</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">p12</init-param>
+        <init-param name="mimeType">application/x-pkcs12</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">p7b</init-param>
+        <init-param name="mimeType">application/x-pkcs7-certificates</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">p7c</init-param>
+        <init-param name="mimeType">application/pkcs7-mime</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">p7m</init-param>
+        <init-param name="mimeType">application/pkcs7-mime</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">p7r</init-param>
+        <init-param name="mimeType">application/x-pkcs7-certreqresp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">p7s</init-param>
+        <init-param name="mimeType">application/pkcs7-signature</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">p8</init-param>
+        <init-param name="mimeType">application/pkcs8</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pas</init-param>
+        <init-param name="mimeType">text/x-pascal</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">paw</init-param>
+        <init-param name="mimeType">application/vnd.pawaafile</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pbd</init-param>
+        <init-param name="mimeType">application/vnd.powerbuilder6</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pbm</init-param>
+        <init-param name="mimeType">image/x-portable-bitmap</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pcap</init-param>
+        <init-param name="mimeType">application/vnd.tcpdump.pcap</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pcf</init-param>
+        <init-param name="mimeType">application/x-font-pcf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pcl</init-param>
+        <init-param name="mimeType">application/vnd.hp-pcl</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pclxl</init-param>
+        <init-param name="mimeType">application/vnd.hp-pclxl</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pct</init-param>
+        <init-param name="mimeType">image/pict</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pcurl</init-param>
+        <init-param name="mimeType">application/vnd.curl.pcurl</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pcx</init-param>
+        <init-param name="mimeType">image/x-pcx</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pdb</init-param>
+        <init-param name="mimeType">application/vnd.palm</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pdf</init-param>
+        <init-param name="mimeType">application/pdf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pfa</init-param>
+        <init-param name="mimeType">application/x-font-type1</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pfb</init-param>
+        <init-param name="mimeType">application/x-font-type1</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pfm</init-param>
+        <init-param name="mimeType">application/x-font-type1</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pfr</init-param>
+        <init-param name="mimeType">application/font-tdpfr</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pfx</init-param>
+        <init-param name="mimeType">application/x-pkcs12</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pgm</init-param>
+        <init-param name="mimeType">image/x-portable-graymap</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pgn</init-param>
+        <init-param name="mimeType">application/x-chess-pgn</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pgp</init-param>
+        <init-param name="mimeType">application/pgp-encrypted</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pic</init-param>
+        <init-param name="mimeType">image/pict</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pict</init-param>
+        <init-param name="mimeType">image/pict</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pkg</init-param>
+        <init-param name="mimeType">application/octet-stream</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pki</init-param>
+        <init-param name="mimeType">application/pkixcmp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pkipath</init-param>
+        <init-param name="mimeType">application/pkix-pkipath</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">plb</init-param>
+        <init-param name="mimeType">application/vnd.3gpp.pic-bw-large</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">plc</init-param>
+        <init-param name="mimeType">application/vnd.mobius.plc</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">plf</init-param>
+        <init-param name="mimeType">application/vnd.pocketlearn</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pls</init-param>
+        <init-param name="mimeType">audio/x-scpls</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pml</init-param>
+        <init-param name="mimeType">application/vnd.ctc-posml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">png</init-param>
+        <init-param name="mimeType">image/png</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pnm</init-param>
+        <init-param name="mimeType">image/x-portable-anymap</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pnt</init-param>
+        <init-param name="mimeType">image/x-macpaint</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">portpkg</init-param>
+        <init-param name="mimeType">application/vnd.macports.portpkg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pot</init-param>
+        <init-param name="mimeType">application/vnd.ms-powerpoint</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">potm</init-param>
+        <init-param name="mimeType">application/vnd.ms-powerpoint.template.macroenabled.12</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">potx</init-param>
+        <init-param name="mimeType">application/vnd.openxmlformats-officedocument.presentationml.template</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ppam</init-param>
+        <init-param name="mimeType">application/vnd.ms-powerpoint.addin.macroenabled.12</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ppd</init-param>
+        <init-param name="mimeType">application/vnd.cups-ppd</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ppm</init-param>
+        <init-param name="mimeType">image/x-portable-pixmap</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pps</init-param>
+        <init-param name="mimeType">application/vnd.ms-powerpoint</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ppsm</init-param>
+        <init-param name="mimeType">application/vnd.ms-powerpoint.slideshow.macroenabled.12</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ppsx</init-param>
+        <init-param name="mimeType">application/vnd.openxmlformats-officedocument.presentationml.slideshow</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ppt</init-param>
+        <init-param name="mimeType">application/vnd.ms-powerpoint</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pptm</init-param>
+        <init-param name="mimeType">application/vnd.ms-powerpoint.presentation.macroenabled.12</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pptx</init-param>
+        <init-param name="mimeType">application/vnd.openxmlformats-officedocument.presentationml.presentation</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pqa</init-param>
+        <init-param name="mimeType">application/vnd.palm</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">prc</init-param>
+        <init-param name="mimeType">application/x-mobipocket-ebook</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pre</init-param>
+        <init-param name="mimeType">application/vnd.lotus-freelance</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">prf</init-param>
+        <init-param name="mimeType">application/pics-rules</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ps</init-param>
+        <init-param name="mimeType">application/postscript</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">psb</init-param>
+        <init-param name="mimeType">application/vnd.3gpp.pic-bw-small</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">psd</init-param>
+        <init-param name="mimeType">image/vnd.adobe.photoshop</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">psf</init-param>
+        <init-param name="mimeType">application/x-font-linux-psf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pskcxml</init-param>
+        <init-param name="mimeType">application/pskc+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ptid</init-param>
+        <init-param name="mimeType">application/vnd.pvi.ptid1</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pub</init-param>
+        <init-param name="mimeType">application/x-mspublisher</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pvb</init-param>
+        <init-param name="mimeType">application/vnd.3gpp.pic-bw-var</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pwn</init-param>
+        <init-param name="mimeType">application/vnd.3m.post-it-notes</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pya</init-param>
+        <init-param name="mimeType">audio/vnd.ms-playready.media.pya</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">pyv</init-param>
+        <init-param name="mimeType">video/vnd.ms-playready.media.pyv</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">qam</init-param>
+        <init-param name="mimeType">application/vnd.epson.quickanime</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">qbo</init-param>
+        <init-param name="mimeType">application/vnd.intu.qbo</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">qfx</init-param>
+        <init-param name="mimeType">application/vnd.intu.qfx</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">qps</init-param>
+        <init-param name="mimeType">application/vnd.publishare-delta-tree</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">qt</init-param>
+        <init-param name="mimeType">video/quicktime</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">qti</init-param>
+        <init-param name="mimeType">image/x-quicktime</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">qtif</init-param>
+        <init-param name="mimeType">image/x-quicktime</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">qwd</init-param>
+        <init-param name="mimeType">application/vnd.quark.quarkxpress</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">qwt</init-param>
+        <init-param name="mimeType">application/vnd.quark.quarkxpress</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">qxb</init-param>
+        <init-param name="mimeType">application/vnd.quark.quarkxpress</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">qxd</init-param>
+        <init-param name="mimeType">application/vnd.quark.quarkxpress</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">qxl</init-param>
+        <init-param name="mimeType">application/vnd.quark.quarkxpress</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">qxt</init-param>
+        <init-param name="mimeType">application/vnd.quark.quarkxpress</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ra</init-param>
+        <init-param name="mimeType">audio/x-pn-realaudio</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ram</init-param>
+        <init-param name="mimeType">audio/x-pn-realaudio</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rar</init-param>
+        <init-param name="mimeType">application/x-rar-compressed</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ras</init-param>
+        <init-param name="mimeType">image/x-cmu-raster</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rcprofile</init-param>
+        <init-param name="mimeType">application/vnd.ipunplugged.rcprofile</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rdf</init-param>
+        <init-param name="mimeType">application/rdf+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rdz</init-param>
+        <init-param name="mimeType">application/vnd.data-vision.rdz</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rep</init-param>
+        <init-param name="mimeType">application/vnd.businessobjects</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">res</init-param>
+        <init-param name="mimeType">application/x-dtbresource+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rgb</init-param>
+        <init-param name="mimeType">image/x-rgb</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rif</init-param>
+        <init-param name="mimeType">application/reginfo+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rip</init-param>
+        <init-param name="mimeType">audio/vnd.rip</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rl</init-param>
+        <init-param name="mimeType">application/resource-lists+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rlc</init-param>
+        <init-param name="mimeType">image/vnd.fujixerox.edmics-rlc</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rld</init-param>
+        <init-param name="mimeType">application/resource-lists-diff+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rm</init-param>
+        <init-param name="mimeType">application/vnd.rn-realmedia</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rmi</init-param>
+        <init-param name="mimeType">audio/midi</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rmp</init-param>
+        <init-param name="mimeType">audio/x-pn-realaudio-plugin</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rms</init-param>
+        <init-param name="mimeType">application/vnd.jcp.javame.midlet-rms</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rnc</init-param>
+        <init-param name="mimeType">application/relax-ng-compact-syntax</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">roa</init-param>
+        <init-param name="mimeType">application/rpki-roa</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">roff</init-param>
+        <init-param name="mimeType">text/troff</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rp9</init-param>
+        <init-param name="mimeType">application/vnd.cloanto.rp9</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rpss</init-param>
+        <init-param name="mimeType">application/vnd.nokia.radio-presets</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rpst</init-param>
+        <init-param name="mimeType">application/vnd.nokia.radio-preset</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rq</init-param>
+        <init-param name="mimeType">application/sparql-query</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rs</init-param>
+        <init-param name="mimeType">application/rls-services+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rsd</init-param>
+        <init-param name="mimeType">application/rsd+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rss</init-param>
+        <init-param name="mimeType">application/rss+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rtf</init-param>
+        <init-param name="mimeType">application/rtf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">rtx</init-param>
+        <init-param name="mimeType">text/richtext</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">s</init-param>
+        <init-param name="mimeType">text/x-asm</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">saf</init-param>
+        <init-param name="mimeType">application/vnd.yamaha.smaf-audio</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sbml</init-param>
+        <init-param name="mimeType">application/sbml+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sc</init-param>
+        <init-param name="mimeType">application/vnd.ibm.secure-container</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">scd</init-param>
+        <init-param name="mimeType">application/x-msschedule</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">scm</init-param>
+        <init-param name="mimeType">application/vnd.lotus-screencam</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">scq</init-param>
+        <init-param name="mimeType">application/scvp-cv-request</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">scs</init-param>
+        <init-param name="mimeType">application/scvp-cv-response</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">scurl</init-param>
+        <init-param name="mimeType">text/vnd.curl.scurl</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sda</init-param>
+        <init-param name="mimeType">application/vnd.stardivision.draw</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sdc</init-param>
+        <init-param name="mimeType">application/vnd.stardivision.calc</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sdd</init-param>
+        <init-param name="mimeType">application/vnd.stardivision.impress</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sdkd</init-param>
+        <init-param name="mimeType">application/vnd.solent.sdkm+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sdkm</init-param>
+        <init-param name="mimeType">application/vnd.solent.sdkm+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sdp</init-param>
+        <init-param name="mimeType">application/sdp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sdw</init-param>
+        <init-param name="mimeType">application/vnd.stardivision.writer</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">see</init-param>
+        <init-param name="mimeType">application/vnd.seemail</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">seed</init-param>
+        <init-param name="mimeType">application/vnd.fdsn.seed</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sema</init-param>
+        <init-param name="mimeType">application/vnd.sema</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">semd</init-param>
+        <init-param name="mimeType">application/vnd.semd</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">semf</init-param>
+        <init-param name="mimeType">application/vnd.semf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ser</init-param>
+        <init-param name="mimeType">application/java-serialized-object</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">setpay</init-param>
+        <init-param name="mimeType">application/set-payment-initiation</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">setreg</init-param>
+        <init-param name="mimeType">application/set-registration-initiation</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sfd-hdstx</init-param>
+        <init-param name="mimeType">application/vnd.hydrostatix.sof-data</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sfs</init-param>
+        <init-param name="mimeType">application/vnd.spotfire.sfs</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sgl</init-param>
+        <init-param name="mimeType">application/vnd.stardivision.writer-global</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sgm</init-param>
+        <init-param name="mimeType">text/sgml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sgml</init-param>
+        <init-param name="mimeType">text/sgml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sh</init-param>
+        <init-param name="mimeType">application/x-sh</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">shar</init-param>
+        <init-param name="mimeType">application/x-shar</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">shf</init-param>
+        <init-param name="mimeType">application/shf+xml</init-param>
+    </mime-mapping>
+    <!--
+    <mime-mapping>
+        <init-param name="extension">shtml</init-param>
+        <init-param name="mimeType">text/x-server-parsed-html</init-param>
+    </mime-mapping>
+    -->
+    <mime-mapping>
+        <init-param name="extension">sig</init-param>
+        <init-param name="mimeType">application/pgp-signature</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">silo</init-param>
+        <init-param name="mimeType">model/mesh</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sis</init-param>
+        <init-param name="mimeType">application/vnd.symbian.install</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sisx</init-param>
+        <init-param name="mimeType">application/vnd.symbian.install</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sit</init-param>
+        <init-param name="mimeType">application/x-stuffit</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sitx</init-param>
+        <init-param name="mimeType">application/x-stuffitx</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">skd</init-param>
+        <init-param name="mimeType">application/vnd.koan</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">skm</init-param>
+        <init-param name="mimeType">application/vnd.koan</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">skp</init-param>
+        <init-param name="mimeType">application/vnd.koan</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">skt</init-param>
+        <init-param name="mimeType">application/vnd.koan</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sldm</init-param>
+        <init-param name="mimeType">application/vnd.ms-powerpoint.slide.macroenabled.12</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sldx</init-param>
+        <init-param name="mimeType">application/vnd.openxmlformats-officedocument.presentationml.slide</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">slt</init-param>
+        <init-param name="mimeType">application/vnd.epson.salt</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sm</init-param>
+        <init-param name="mimeType">application/vnd.stepmania.stepchart</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">smf</init-param>
+        <init-param name="mimeType">application/vnd.stardivision.math</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">smi</init-param>
+        <init-param name="mimeType">application/smil+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">smil</init-param>
+        <init-param name="mimeType">application/smil+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">smzip</init-param>
+        <init-param name="mimeType">application/vnd.stepmania.package</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">snd</init-param>
+        <init-param name="mimeType">audio/basic</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">snf</init-param>
+        <init-param name="mimeType">application/x-font-snf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">so</init-param>
+        <init-param name="mimeType">application/octet-stream</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">spc</init-param>
+        <init-param name="mimeType">application/x-pkcs7-certificates</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">spf</init-param>
+        <init-param name="mimeType">application/vnd.yamaha.smaf-phrase</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">spl</init-param>
+        <init-param name="mimeType">application/x-futuresplash</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">spot</init-param>
+        <init-param name="mimeType">text/vnd.in3d.spot</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">spp</init-param>
+        <init-param name="mimeType">application/scvp-vp-response</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">spq</init-param>
+        <init-param name="mimeType">application/scvp-vp-request</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">spx</init-param>
+        <init-param name="mimeType">audio/ogg</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">src</init-param>
+        <init-param name="mimeType">application/x-wais-source</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sru</init-param>
+        <init-param name="mimeType">application/sru+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">srx</init-param>
+        <init-param name="mimeType">application/sparql-results+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sse</init-param>
+        <init-param name="mimeType">application/vnd.kodak-descriptor</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ssf</init-param>
+        <init-param name="mimeType">application/vnd.epson.ssf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ssml</init-param>
+        <init-param name="mimeType">application/ssml+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">st</init-param>
+        <init-param name="mimeType">application/vnd.sailingtracker.track</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">stc</init-param>
+        <init-param name="mimeType">application/vnd.sun.xml.calc.template</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">std</init-param>
+        <init-param name="mimeType">application/vnd.sun.xml.draw.template</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">stf</init-param>
+        <init-param name="mimeType">application/vnd.wt.stf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sti</init-param>
+        <init-param name="mimeType">application/vnd.sun.xml.impress.template</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">stk</init-param>
+        <init-param name="mimeType">application/hyperstudio</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">stl</init-param>
+        <init-param name="mimeType">application/vnd.ms-pki.stl</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">str</init-param>
+        <init-param name="mimeType">application/vnd.pg.format</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">stw</init-param>
+        <init-param name="mimeType">application/vnd.sun.xml.writer.template</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sub</init-param>
+        <init-param name="mimeType">text/vnd.dvb.subtitle</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sus</init-param>
+        <init-param name="mimeType">application/vnd.sus-calendar</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">susp</init-param>
+        <init-param name="mimeType">application/vnd.sus-calendar</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sv4cpio</init-param>
+        <init-param name="mimeType">application/x-sv4cpio</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sv4crc</init-param>
+        <init-param name="mimeType">application/x-sv4crc</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">svc</init-param>
+        <init-param name="mimeType">application/vnd.dvb.service</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">svd</init-param>
+        <init-param name="mimeType">application/vnd.svd</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">svg</init-param>
+        <init-param name="mimeType">image/svg+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">svgz</init-param>
+        <init-param name="mimeType">image/svg+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">swa</init-param>
+        <init-param name="mimeType">application/x-director</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">swf</init-param>
+        <init-param name="mimeType">application/x-shockwave-flash</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">swi</init-param>
+        <init-param name="mimeType">application/vnd.aristanetworks.swi</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sxc</init-param>
+        <init-param name="mimeType">application/vnd.sun.xml.calc</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sxd</init-param>
+        <init-param name="mimeType">application/vnd.sun.xml.draw</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sxg</init-param>
+        <init-param name="mimeType">application/vnd.sun.xml.writer.global</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sxi</init-param>
+        <init-param name="mimeType">application/vnd.sun.xml.impress</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sxm</init-param>
+        <init-param name="mimeType">application/vnd.sun.xml.math</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">sxw</init-param>
+        <init-param name="mimeType">application/vnd.sun.xml.writer</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">t</init-param>
+        <init-param name="mimeType">text/troff</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">taglet</init-param>
+        <init-param name="mimeType">application/vnd.mynfc</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">tao</init-param>
+        <init-param name="mimeType">application/vnd.tao.intent-module-archive</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">tar</init-param>
+        <init-param name="mimeType">application/x-tar</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">tcap</init-param>
+        <init-param name="mimeType">application/vnd.3gpp2.tcap</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">tcl</init-param>
+        <init-param name="mimeType">application/x-tcl</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">teacher</init-param>
+        <init-param name="mimeType">application/vnd.smart.teacher</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">tei</init-param>
+        <init-param name="mimeType">application/tei+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">teicorpus</init-param>
+        <init-param name="mimeType">application/tei+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">tex</init-param>
+        <init-param name="mimeType">application/x-tex</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">texi</init-param>
+        <init-param name="mimeType">application/x-texinfo</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">texinfo</init-param>
+        <init-param name="mimeType">application/x-texinfo</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">text</init-param>
+        <init-param name="mimeType">text/plain</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">tfi</init-param>
+        <init-param name="mimeType">application/thraud+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">tfm</init-param>
+        <init-param name="mimeType">application/x-tex-tfm</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">thmx</init-param>
+        <init-param name="mimeType">application/vnd.ms-officetheme</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">tif</init-param>
+        <init-param name="mimeType">image/tiff</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">tiff</init-param>
+        <init-param name="mimeType">image/tiff</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">tmo</init-param>
+        <init-param name="mimeType">application/vnd.tmobile-livetv</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">torrent</init-param>
+        <init-param name="mimeType">application/x-bittorrent</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">tpl</init-param>
+        <init-param name="mimeType">application/vnd.groove-tool-template</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">tpt</init-param>
+        <init-param name="mimeType">application/vnd.trid.tpt</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">tr</init-param>
+        <init-param name="mimeType">text/troff</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">tra</init-param>
+        <init-param name="mimeType">application/vnd.trueapp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">trm</init-param>
+        <init-param name="mimeType">application/x-msterminal</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">tsd</init-param>
+        <init-param name="mimeType">application/timestamped-data</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">tsv</init-param>
+        <init-param name="mimeType">text/tab-separated-values</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ttc</init-param>
+        <init-param name="mimeType">application/x-font-ttf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ttf</init-param>
+        <init-param name="mimeType">application/x-font-ttf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ttl</init-param>
+        <init-param name="mimeType">text/turtle</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">twd</init-param>
+        <init-param name="mimeType">application/vnd.simtech-mindmapper</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">twds</init-param>
+        <init-param name="mimeType">application/vnd.simtech-mindmapper</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">txd</init-param>
+        <init-param name="mimeType">application/vnd.genomatix.tuxedo</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">txf</init-param>
+        <init-param name="mimeType">application/vnd.mobius.txf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">txt</init-param>
+        <init-param name="mimeType">text/plain</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">u32</init-param>
+        <init-param name="mimeType">application/x-authorware-bin</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">udeb</init-param>
+        <init-param name="mimeType">application/x-debian-package</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ufd</init-param>
+        <init-param name="mimeType">application/vnd.ufdl</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ufdl</init-param>
+        <init-param name="mimeType">application/vnd.ufdl</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ulw</init-param>
+        <init-param name="mimeType">audio/basic</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">umj</init-param>
+        <init-param name="mimeType">application/vnd.umajin</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">unityweb</init-param>
+        <init-param name="mimeType">application/vnd.unity</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uoml</init-param>
+        <init-param name="mimeType">application/vnd.uoml+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uri</init-param>
+        <init-param name="mimeType">text/uri-list</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uris</init-param>
+        <init-param name="mimeType">text/uri-list</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">urls</init-param>
+        <init-param name="mimeType">text/uri-list</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">ustar</init-param>
+        <init-param name="mimeType">application/x-ustar</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">utz</init-param>
+        <init-param name="mimeType">application/vnd.uiq.theme</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uu</init-param>
+        <init-param name="mimeType">text/x-uuencode</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uva</init-param>
+        <init-param name="mimeType">audio/vnd.dece.audio</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvd</init-param>
+        <init-param name="mimeType">application/vnd.dece.data</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvf</init-param>
+        <init-param name="mimeType">application/vnd.dece.data</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvg</init-param>
+        <init-param name="mimeType">image/vnd.dece.graphic</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvh</init-param>
+        <init-param name="mimeType">video/vnd.dece.hd</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvi</init-param>
+        <init-param name="mimeType">image/vnd.dece.graphic</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvm</init-param>
+        <init-param name="mimeType">video/vnd.dece.mobile</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvp</init-param>
+        <init-param name="mimeType">video/vnd.dece.pd</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvs</init-param>
+        <init-param name="mimeType">video/vnd.dece.sd</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvt</init-param>
+        <init-param name="mimeType">application/vnd.dece.ttml+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvu</init-param>
+        <init-param name="mimeType">video/vnd.uvvu.mp4</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvv</init-param>
+        <init-param name="mimeType">video/vnd.dece.video</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvva</init-param>
+        <init-param name="mimeType">audio/vnd.dece.audio</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvvd</init-param>
+        <init-param name="mimeType">application/vnd.dece.data</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvvf</init-param>
+        <init-param name="mimeType">application/vnd.dece.data</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvvg</init-param>
+        <init-param name="mimeType">image/vnd.dece.graphic</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvvh</init-param>
+        <init-param name="mimeType">video/vnd.dece.hd</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvvi</init-param>
+        <init-param name="mimeType">image/vnd.dece.graphic</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvvm</init-param>
+        <init-param name="mimeType">video/vnd.dece.mobile</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvvp</init-param>
+        <init-param name="mimeType">video/vnd.dece.pd</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvvs</init-param>
+        <init-param name="mimeType">video/vnd.dece.sd</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvvt</init-param>
+        <init-param name="mimeType">application/vnd.dece.ttml+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvvu</init-param>
+        <init-param name="mimeType">video/vnd.uvvu.mp4</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvvv</init-param>
+        <init-param name="mimeType">video/vnd.dece.video</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvvx</init-param>
+        <init-param name="mimeType">application/vnd.dece.unspecified</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvvz</init-param>
+        <init-param name="mimeType">application/vnd.dece.zip</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvx</init-param>
+        <init-param name="mimeType">application/vnd.dece.unspecified</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">uvz</init-param>
+        <init-param name="mimeType">application/vnd.dece.zip</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">vcard</init-param>
+        <init-param name="mimeType">text/vcard</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">vcd</init-param>
+        <init-param name="mimeType">application/x-cdlink</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">vcf</init-param>
+        <init-param name="mimeType">text/x-vcard</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">vcg</init-param>
+        <init-param name="mimeType">application/vnd.groove-vcard</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">vcs</init-param>
+        <init-param name="mimeType">text/x-vcalendar</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">vcx</init-param>
+        <init-param name="mimeType">application/vnd.vcx</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">vis</init-param>
+        <init-param name="mimeType">application/vnd.visionary</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">viv</init-param>
+        <init-param name="mimeType">video/vnd.vivo</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">vor</init-param>
+        <init-param name="mimeType">application/vnd.stardivision.writer</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">vox</init-param>
+        <init-param name="mimeType">application/x-authorware-bin</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">vrml</init-param>
+        <init-param name="mimeType">model/vrml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">vsd</init-param>
+        <init-param name="mimeType">application/vnd.visio</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">vsf</init-param>
+        <init-param name="mimeType">application/vnd.vsf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">vss</init-param>
+        <init-param name="mimeType">application/vnd.visio</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">vst</init-param>
+        <init-param name="mimeType">application/vnd.visio</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">vsw</init-param>
+        <init-param name="mimeType">application/vnd.visio</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">vtu</init-param>
+        <init-param name="mimeType">model/vnd.vtu</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">vxml</init-param>
+        <init-param name="mimeType">application/voicexml+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">w3d</init-param>
+        <init-param name="mimeType">application/x-director</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wad</init-param>
+        <init-param name="mimeType">application/x-doom</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wav</init-param>
+        <init-param name="mimeType">audio/x-wav</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wax</init-param>
+        <init-param name="mimeType">audio/x-ms-wax</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <!-- Wireless Bitmap -->
+        <init-param name="extension">wbmp</init-param>
+        <init-param name="mimeType">image/vnd.wap.wbmp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wbs</init-param>
+        <init-param name="mimeType">application/vnd.criticaltools.wbs+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wbxml</init-param>
+        <init-param name="mimeType">application/vnd.wap.wbxml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wcm</init-param>
+        <init-param name="mimeType">application/vnd.ms-works</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wdb</init-param>
+        <init-param name="mimeType">application/vnd.ms-works</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">weba</init-param>
+        <init-param name="mimeType">audio/webm</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">webm</init-param>
+        <init-param name="mimeType">video/webm</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">webp</init-param>
+        <init-param name="mimeType">image/webp</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wg</init-param>
+        <init-param name="mimeType">application/vnd.pmi.widget</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wgt</init-param>
+        <init-param name="mimeType">application/widget</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wks</init-param>
+        <init-param name="mimeType">application/vnd.ms-works</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wm</init-param>
+        <init-param name="mimeType">video/x-ms-wm</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wma</init-param>
+        <init-param name="mimeType">audio/x-ms-wma</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wmd</init-param>
+        <init-param name="mimeType">application/x-ms-wmd</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wmf</init-param>
+        <init-param name="mimeType">application/x-msmetafile</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <!-- WML Source -->
+        <init-param name="extension">wml</init-param>
+        <init-param name="mimeType">text/vnd.wap.wml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <!-- Compiled WML -->
+        <init-param name="extension">wmlc</init-param>
+        <init-param name="mimeType">application/vnd.wap.wmlc</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <!-- WML Script Source -->
+        <init-param name="extension">wmls</init-param>
+        <init-param name="mimeType">text/vnd.wap.wmlscript</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <!-- Compiled WML Script -->
+        <init-param name="extension">wmlsc</init-param>
+        <init-param name="mimeType">application/vnd.wap.wmlscriptc</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wmv</init-param>
+        <init-param name="mimeType">video/x-ms-wmv</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wmx</init-param>
+        <init-param name="mimeType">video/x-ms-wmx</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wmz</init-param>
+        <init-param name="mimeType">application/x-ms-wmz</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">woff</init-param>
+        <init-param name="mimeType">application/x-font-woff</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wpd</init-param>
+        <init-param name="mimeType">application/vnd.wordperfect</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wpl</init-param>
+        <init-param name="mimeType">application/vnd.ms-wpl</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wps</init-param>
+        <init-param name="mimeType">application/vnd.ms-works</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wqd</init-param>
+        <init-param name="mimeType">application/vnd.wqd</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wri</init-param>
+        <init-param name="mimeType">application/x-mswrite</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wrl</init-param>
+        <init-param name="mimeType">model/vrml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wsdl</init-param>
+        <init-param name="mimeType">application/wsdl+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wspolicy</init-param>
+        <init-param name="mimeType">application/wspolicy+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wtb</init-param>
+        <init-param name="mimeType">application/vnd.webturbo</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">wvx</init-param>
+        <init-param name="mimeType">video/x-ms-wvx</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">x32</init-param>
+        <init-param name="mimeType">application/x-authorware-bin</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">x3d</init-param>
+        <init-param name="mimeType">application/vnd.hzn-3d-crossword</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xap</init-param>
+        <init-param name="mimeType">application/x-silverlight-app</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xar</init-param>
+        <init-param name="mimeType">application/vnd.xara</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xbap</init-param>
+        <init-param name="mimeType">application/x-ms-xbap</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xbd</init-param>
+        <init-param name="mimeType">application/vnd.fujixerox.docuworks.binder</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xbm</init-param>
+        <init-param name="mimeType">image/x-xbitmap</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xdf</init-param>
+        <init-param name="mimeType">application/xcap-diff+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xdm</init-param>
+        <init-param name="mimeType">application/vnd.syncml.dm+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xdp</init-param>
+        <init-param name="mimeType">application/vnd.adobe.xdp+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xdssc</init-param>
+        <init-param name="mimeType">application/dssc+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xdw</init-param>
+        <init-param name="mimeType">application/vnd.fujixerox.docuworks</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xenc</init-param>
+        <init-param name="mimeType">application/xenc+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xer</init-param>
+        <init-param name="mimeType">application/patch-ops-error+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xfdf</init-param>
+        <init-param name="mimeType">application/vnd.adobe.xfdf</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xfdl</init-param>
+        <init-param name="mimeType">application/vnd.xfdl</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xht</init-param>
+        <init-param name="mimeType">application/xhtml+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xhtml</init-param>
+        <init-param name="mimeType">application/xhtml+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xhvml</init-param>
+        <init-param name="mimeType">application/xv+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xif</init-param>
+        <init-param name="mimeType">image/vnd.xiff</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xla</init-param>
+        <init-param name="mimeType">application/vnd.ms-excel</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xlam</init-param>
+        <init-param name="mimeType">application/vnd.ms-excel.addin.macroenabled.12</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xlc</init-param>
+        <init-param name="mimeType">application/vnd.ms-excel</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xlm</init-param>
+        <init-param name="mimeType">application/vnd.ms-excel</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xls</init-param>
+        <init-param name="mimeType">application/vnd.ms-excel</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xlsb</init-param>
+        <init-param name="mimeType">application/vnd.ms-excel.sheet.binary.macroenabled.12</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xlsm</init-param>
+        <init-param name="mimeType">application/vnd.ms-excel.sheet.macroenabled.12</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xlsx</init-param>
+        <init-param name="mimeType">application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xlt</init-param>
+        <init-param name="mimeType">application/vnd.ms-excel</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xltm</init-param>
+        <init-param name="mimeType">application/vnd.ms-excel.template.macroenabled.12</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xltx</init-param>
+        <init-param name="mimeType">application/vnd.openxmlformats-officedocument.spreadsheetml.template</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xlw</init-param>
+        <init-param name="mimeType">application/vnd.ms-excel</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xml</init-param>
+        <init-param name="mimeType">application/xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xo</init-param>
+        <init-param name="mimeType">application/vnd.olpc-sugar</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xop</init-param>
+        <init-param name="mimeType">application/xop+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xpi</init-param>
+        <init-param name="mimeType">application/x-xpinstall</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xpm</init-param>
+        <init-param name="mimeType">image/x-xpixmap</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xpr</init-param>
+        <init-param name="mimeType">application/vnd.is-xpr</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xps</init-param>
+        <init-param name="mimeType">application/vnd.ms-xpsdocument</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xpw</init-param>
+        <init-param name="mimeType">application/vnd.intercon.formnet</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xpx</init-param>
+        <init-param name="mimeType">application/vnd.intercon.formnet</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xsl</init-param>
+        <init-param name="mimeType">application/xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xslt</init-param>
+        <init-param name="mimeType">application/xslt+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xsm</init-param>
+        <init-param name="mimeType">application/vnd.syncml+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xspf</init-param>
+        <init-param name="mimeType">application/xspf+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xul</init-param>
+        <init-param name="mimeType">application/vnd.mozilla.xul+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xvm</init-param>
+        <init-param name="mimeType">application/xv+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xvml</init-param>
+        <init-param name="mimeType">application/xv+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xwd</init-param>
+        <init-param name="mimeType">image/x-xwindowdump</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">xyz</init-param>
+        <init-param name="mimeType">chemical/x-xyz</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">yang</init-param>
+        <init-param name="mimeType">application/yang</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">yin</init-param>
+        <init-param name="mimeType">application/yin+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">z</init-param>
+        <init-param name="mimeType">application/x-compress</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">Z</init-param>
+        <init-param name="mimeType">application/x-compress</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">zaz</init-param>
+        <init-param name="mimeType">application/vnd.zzazz.deck+xml</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">zip</init-param>
+        <init-param name="mimeType">application/zip</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">zir</init-param>
+        <init-param name="mimeType">application/vnd.zul</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">zirz</init-param>
+        <init-param name="mimeType">application/vnd.zul</init-param>
+    </mime-mapping>
+    <mime-mapping>
+        <init-param name="extension">zmm</init-param>
+        <init-param name="mimeType">application/vnd.handheld-entertainment+xml</init-param>
+    </mime-mapping>
+</mimes>

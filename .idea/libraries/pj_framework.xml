@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="pj-framework">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/bin/pj-framework.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
