@@ -2,12 +2,15 @@ package com.pj.core.dialog;
 
 import com.pj.core.R;
 import com.pj.core.viewholders.ViewHolder;
+
 import android.annotation.SuppressLint;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 @SuppressLint("ViewConstructor")
+@SuppressWarnings("deprecation")
 public class HolderPopupWindow extends PopupWindow implements PopupWindow.OnDismissListener{
+	
 	
 	public static final int FILL_PARENT=WindowManager.LayoutParams.FILL_PARENT;
 	public static final int WRAP_CONTENT=WindowManager.LayoutParams.WRAP_CONTENT;

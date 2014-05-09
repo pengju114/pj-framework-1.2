@@ -31,6 +31,7 @@ public class HolderDialog extends BaseDialog {
 	@Override
 	protected void onDialogClose(int trigger) {
 		// TODO Auto-generated method stub
+		root.removeChild(targetHolder);
 		root.onViewDetached();
 		super.onDialogClose(trigger);
 		targetHolder.attachedDialog=null;

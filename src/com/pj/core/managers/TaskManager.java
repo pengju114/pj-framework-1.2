@@ -129,14 +129,15 @@ public class TaskManager {
 			// TODO Auto-generated method stub
 			stateChange(TASK_START, getTarget(), null);
 			try {
-				asyncTask.onTaskStart(asyncTask);
+				asyncTask.onStart();
 				try {
 					asyncTask.execute();
 				} catch (Exception e) {
 					// TODO: handle exception
+					asyncTask.onError(e);
 					throw e;
 				}finally{
-					asyncTask.onFinish(asyncTask);
+					asyncTask.onFinish();
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -301,17 +302,17 @@ public class TaskManager {
 		/**
 		 * 任务执行结束。线程中调用，不管是否发生错误。
 		 */
-		public void onFinish(AsyncTask task);
+		public void onFinish();
 		/**
 		 * 任务开始，线程中调用
 		 */
-		public void onTaskStart(AsyncTask task);
+		public void onStart();
 		/**
 		 * 任务发生错误，线程中调用
 		 * @param task
 		 * @param e
 		 */
-		public void onTaskError(AsyncTask task,Exception e);
+		public void onError(Exception e);
 	}
 	
 	/**

@@ -396,7 +396,7 @@ public class HttpDownloader extends Parameter{
 		urlConnection.setRequestProperty("Referer", getUrl());
 		urlConnection.setRequestProperty("Charset", CHARSET);
 		urlConnection.setRequestProperty("Accept-Encoding", "gzip, deflate");
-		urlConnection.setRequestProperty("User-Agent", "pengju httpdownloader Version/1.0");
+		urlConnection.setRequestProperty("User-Agent", "Android pengju httpdownloader Version/1.0");
 		if (HttpRequest.METHOD_POST.equals(getMethod())) {
 			urlConnection.setRequestProperty("Content-type", "application/x-www-form-urlencoded");
 		}
