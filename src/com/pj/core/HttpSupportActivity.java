@@ -112,6 +112,7 @@ public class HttpSupportActivity extends BaseActivity implements HttpRequestList
 	@Override
 	protected void onStop() {
 		// TODO Auto-generated method stub
+		stopAllAsyncRequest();
 		super.onStop();
 	}
 	
