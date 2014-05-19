@@ -230,7 +230,11 @@ public class BaseActivity extends Activity implements MessageListener{
 		
 		if (state==NOTIFICATION_ACTIVITY_CREATE) {
 			rootViewHolder.dispathAttached(rootViewHolder);
+			rootViewHolder.dispathWillAppear(rootViewHolder, false);
+			rootViewHolder.dispathDidAppear(rootViewHolder, false);
 		}else if (state==NOTIFICATION_ACTIVITY_DESTROY) {
+			rootViewHolder.dispathWillDisappear(rootViewHolder, false);
+			rootViewHolder.dispathDidDisappear(rootViewHolder, false);
 			rootViewHolder.dispathDettached(rootViewHolder);
 		}
 	}
@@ -728,7 +732,7 @@ public class BaseActivity extends Activity implements MessageListener{
 		@Override
 		protected void onApplyView(View view) {
 			// TODO Auto-generated method stub
-			view.setBackgroundColor(Color.BLACK);
+			view.setBackgroundColor(Color.TRANSPARENT);
 			view.setFocusable(true);
 			enhanceAnimation(null, view);
 			view.setDrawingCacheBackgroundColor(Color.TRANSPARENT);
