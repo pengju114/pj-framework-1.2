@@ -63,16 +63,16 @@ public abstract class ViewHolder implements MessageListener{
 	
 	private static final int     MSG_DISMISS_MENU=BaseActivity.nextUniqueInt();
 	
-	static final int ACTIVITY_CREATE			=BaseActivity.NOTIFICATION_ACTIVITY_CREATE;
-	static final int ACTIVITY_RESTORE_STATE		=BaseActivity.NOTIFICATION_ACTIVITY_RESTORE_STATE;
-	static final int ACTIVITY_START				=BaseActivity.NOTIFICATION_ACTIVITY_START;
-	static final int ACTIVITY_RESUME			=BaseActivity.NOTIFICATION_ACTIVITY_RESUME;
-	static final int ACTIVITY_SAVE_STATE		=BaseActivity.NOTIFICATION_ACTIVITY_SAVE_STATE;
-	static final int ACTIVITY_PAUSE				=BaseActivity.NOTIFICATION_ACTIVITY_PAUSE;
-	static final int ACTIVITY_STOP				=BaseActivity.NOTIFICATION_ACTIVITY_STOP;
-	static final int ACTIVITY_RESTART			=BaseActivity.NOTIFICATION_ACTIVITY_RESTART;
-	static final int ACTIVITY_DESTROY			=BaseActivity.NOTIFICATION_ACTIVITY_DESTROY;
-	static final int ACTIVITY_RESULT			=BaseActivity.NOTIFICATION_ACTIVITY_RESULT;
+	public static final int ACTIVITY_CREATE			=BaseActivity.NOTIFICATION_ACTIVITY_CREATE;
+	public static final int ACTIVITY_RESTORE_STATE	=BaseActivity.NOTIFICATION_ACTIVITY_RESTORE_STATE;
+	public static final int ACTIVITY_START			=BaseActivity.NOTIFICATION_ACTIVITY_START;
+	public static final int ACTIVITY_RESUME			=BaseActivity.NOTIFICATION_ACTIVITY_RESUME;
+	public static final int ACTIVITY_SAVE_STATE		=BaseActivity.NOTIFICATION_ACTIVITY_SAVE_STATE;
+	public static final int ACTIVITY_PAUSE			=BaseActivity.NOTIFICATION_ACTIVITY_PAUSE;
+	public static final int ACTIVITY_STOP			=BaseActivity.NOTIFICATION_ACTIVITY_STOP;
+	public static final int ACTIVITY_RESTART		=BaseActivity.NOTIFICATION_ACTIVITY_RESTART;
+	public static final int ACTIVITY_DESTROY		=BaseActivity.NOTIFICATION_ACTIVITY_DESTROY;
+	public static final int ACTIVITY_RESULT			=BaseActivity.NOTIFICATION_ACTIVITY_RESULT;
 	
 	/**
 	 * 网络状态变化通知，发送者将会是 {@link BaseApplication},附带的数据是网络类型(-1表示连接不可用)
@@ -94,8 +94,8 @@ public abstract class ViewHolder implements MessageListener{
 		}
 	};
 	
-	private boolean duplicateParentState;
-	private HashSet<ViewHolderStateListener> stateListeners;
+	private boolean 								 duplicateParentState;
+	private HashSet<ViewHolderStateListener> 		 stateListeners;
 	
 	private SparseArray<HolderViewAnimationListener> animatingArray;//只保留最新的一个动画
 	private int startedAnimationCount;
@@ -114,10 +114,9 @@ public abstract class ViewHolder implements MessageListener{
 	private NavigationBar navigationBar;
 	NavigationViewHolder  navigationViewHolder;
 	
-	public BaseDialog attachedDialog;
-	public PopupWindow attachedPopupWindow;
-	
-	private boolean    viewDidAppeared;
+	public BaseDialog 	  attachedDialog;
+	public PopupWindow 	  attachedPopupWindow;
+	private boolean    	  viewDidAppeared;
 	
 	
 	/**
@@ -147,17 +146,17 @@ public abstract class ViewHolder implements MessageListener{
 	}
 	
 	private void privateInitialize(BaseActivity activity,View root){
-		this.activity=activity;
-		notifyHolders=new HashSet<ViewHolder>();
-		childrenHolders=new ArrayList<ViewHolder>(6);
-		animatingArray=new SparseArray<ViewHolder.HolderViewAnimationListener>();
-		startedAnimationCount=0;
-		finishedAnimationCount=0;
-		animationDuration=400;
-		mode=MODE_PLAIN_VIEW;
-		duplicateParentState=true;
-		viewDidAppeared  = false;
-		stateListeners  = new HashSet<ViewHolder.ViewHolderStateListener>(3);
+		this.activity			= activity;
+		notifyHolders			= new HashSet<ViewHolder>();
+		childrenHolders			= new ArrayList<ViewHolder>(6);
+		animatingArray			= new SparseArray<ViewHolder.HolderViewAnimationListener>();
+		startedAnimationCount	= 0;
+		finishedAnimationCount	= 0;
+		animationDuration		= 400;
+		mode					= MODE_PLAIN_VIEW;
+		duplicateParentState	= true;
+		viewDidAppeared  		= false;
+		stateListeners  		= new HashSet<ViewHolder.ViewHolderStateListener>(3);
 		//在所有东西都设置好的时候才调用子类的初始化函数
 		initialize(activity,root);
 		setView(root);
@@ -584,7 +583,7 @@ public abstract class ViewHolder implements MessageListener{
 	 * 2013-5-13 上午11:32:39
 	 */
 	public void onSelected() {
-		LogManager.log(getClass().getSimpleName(),"onSelected");
+		LogManager.i(getClass().getSimpleName(),"onSelected");
 	}
 	/**
 	 * 该视图被取消选中时触发
@@ -592,7 +591,7 @@ public abstract class ViewHolder implements MessageListener{
 	 * 2013-5-13 上午11:32:39
 	 */
 	public void onDeselected() {
-		LogManager.log(getClass().getSimpleName(),"onDeselected");
+		LogManager.i(getClass().getSimpleName(),"onDeselected");
 	}
 
 	/**
@@ -742,10 +741,10 @@ public abstract class ViewHolder implements MessageListener{
 	 * @param state
 	 */
 	protected void onActivityStateChange(int state,Bundle bundle){
-		LogManager.log(getClass().getSimpleName(),"onActivityStateChange state=%d",state);
+		LogManager.i(getClass().getSimpleName(),"onActivityStateChange state=%d",state);
 	}
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		LogManager.log(getClass().getSimpleName(),"onActivityResult requestCode=%d resultCode=%d data=%s",requestCode,resultCode,data);
+		LogManager.i(getClass().getSimpleName(),"onActivityResult requestCode=%d resultCode=%d data=%s",requestCode,resultCode,data);
 	}
 	
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -844,7 +843,7 @@ public abstract class ViewHolder implements MessageListener{
 		if (!holder.viewDidAppeared) {
 			//第一次显示
 			holder.viewDidAppeared = true;
-			holder.onViewDidAppearAtFirstTime();
+			holder.onViewDidAppearAtFirstTime(anim);
 		}
 		
 		holder.onViewDidAppear(anim);
@@ -912,7 +911,7 @@ public abstract class ViewHolder implements MessageListener{
 	 * @param animated 是否动画显示
 	 */
 	public void onViewWillAppear(boolean animated){
-		LogManager.log(getClass().getSimpleName(),"onViewWillAppear(%s)",String.valueOf(animated));
+		LogManager.i(getClass().getSimpleName(),"onViewWillAppear(%s)",String.valueOf(animated));
 	}
 	
 	/**
@@ -921,7 +920,7 @@ public abstract class ViewHolder implements MessageListener{
 	 */
 	public void onViewWillDisappear(boolean animated){
 		
-		LogManager.log(getClass().getSimpleName(),"onViewWillDisappear(%s)",String.valueOf(animated));
+		LogManager.i(getClass().getSimpleName(),"onViewWillDisappear(%s)",String.valueOf(animated));
 	}
 	/**
 	 * 视图完成显示
@@ -929,26 +928,26 @@ public abstract class ViewHolder implements MessageListener{
 	 */
 	public void onViewDidAppear(boolean animated){
 		
-		LogManager.log(getClass().getSimpleName(),"onViewDidAppear(%s)",String.valueOf(animated));
+		LogManager.i(getClass().getSimpleName(),"onViewDidAppear(%s)",String.valueOf(animated));
 	}
 	/**
 	 * 视图完成隐藏
 	 * @param animated
 	 */
 	public void onViewDidDisappear(boolean animated){
-		LogManager.log(getClass().getSimpleName(),"onViewDidDisappear(%s)",String.valueOf(animated));
+		LogManager.i(getClass().getSimpleName(),"onViewDidDisappear(%s)",String.valueOf(animated));
 	}
 	/**
 	 * 视图添加到其他视图上
 	 */
 	public void onViewAttached(){
-		LogManager.log(getClass().getSimpleName(),"onViewAttached");
+		LogManager.i(getClass().getSimpleName(),"onViewAttached");
 	}
 	/**
 	 * 视图从其他视图脱离
 	 */
 	public void onViewDetached(){
-		LogManager.log(getClass().getSimpleName(),"onViewDetached");
+		LogManager.i(getClass().getSimpleName(),"onViewDetached");
 	}
 	
 	public void clearFocus() {
@@ -980,6 +979,9 @@ public abstract class ViewHolder implements MessageListener{
 	
 	
 	public void showAsModuleView(boolean animate) {
+		if (getActivity().getState()==ACTIVITY_DESTROY) {
+			return;
+		}
 		if (!animate) {
 			showAsModuleView((Animation)null);
 		}else {
@@ -990,6 +992,9 @@ public abstract class ViewHolder implements MessageListener{
 	}
 	
 	public void closeModuleView(boolean animate) {
+		if (getActivity().getState()==ACTIVITY_DESTROY) {
+			return;
+		}
 		if (!animate) {
 			closeModuleView((Animation)null);
 		}else {
@@ -1009,6 +1014,10 @@ public abstract class ViewHolder implements MessageListener{
 	
 	
 	public void showAsModuleViewByFlipping(){
+		if (getActivity().getState()==ACTIVITY_DESTROY) {
+			return;
+		}
+		
 		if ((getMode()&MODE_MODULE_VIEW)==MODE_MODULE_VIEW) {//已经在显示了
 			return;
 		}
@@ -1071,6 +1080,10 @@ public abstract class ViewHolder implements MessageListener{
 	}
 	
 	public void closeModuleViewByFlipping(){
+		if (getActivity().getState()==ACTIVITY_DESTROY) {
+			return;
+		}
+		
 		if ((getMode()&MODE_MODULE_VIEW)==MODE_MODULE_VIEW) {//在显示
 			setMode(MODE_PLAIN_VIEW);
 			
@@ -1137,6 +1150,10 @@ public abstract class ViewHolder implements MessageListener{
 	}
 	
 	public void showAsModuleView(Animation animation) {
+		if (getActivity().getState()==ACTIVITY_DESTROY) {
+			return;
+		}
+		
 		if ((getMode()&MODE_MODULE_VIEW)==MODE_MODULE_VIEW) {//已经在显示了
 			return;
 		}
@@ -1174,6 +1191,10 @@ public abstract class ViewHolder implements MessageListener{
 	}
 	
 	public void closeModuleView(Animation animation) {
+		if (getActivity().getState()==ACTIVITY_DESTROY) {
+			return;
+		}
+		
 		if ((getMode()&MODE_MODULE_VIEW)==MODE_MODULE_VIEW) {//在显示
 			setMode(MODE_PLAIN_VIEW);
 			
@@ -1538,8 +1559,16 @@ public abstract class ViewHolder implements MessageListener{
 	}
 	
 	
-	
+	/**
+	 * 
+	 * lzw
+	 * 2014年5月28日 下午11:08:50
+	 * @return 显示的对话框，当活动已销毁则返回null
+	 */
 	public BaseDialog showInDialog() {
+		if (getActivity().getState()==ACTIVITY_DESTROY) {
+			return null;
+		}
 		HolderDialog dialog=new HolderDialog(this);
 		dialog.show();
 		return dialog;
@@ -1551,7 +1580,22 @@ public abstract class ViewHolder implements MessageListener{
 		}
 	}
 	
+	public void cancelDialog(){
+		if (attachedDialog!=null) {
+			attachedDialog.cancel();
+		}
+	}
+	
+	/**
+	 * 
+	 * lzw
+	 * 2014年5月28日 下午11:09:37
+	 * @return 显示的视图，当活动已销毁则返回null
+	 */
 	public PopupWindow showAsBottomMenu() {
+		if (getActivity().getState()==ACTIVITY_DESTROY) {
+			return null;
+		}
 		HolderPopupWindow popupWindow=new HolderPopupWindow(this);
 		popupWindow.setAnimationStyle(R.style.c_bottom_menu_animstyle);
 		popupWindow.showAtLocation(getActivity().getRootViewHolder().getView(), Gravity.BOTTOM, 0, 0);
@@ -1598,8 +1642,8 @@ public abstract class ViewHolder implements MessageListener{
 	 * lzw
 	 * 2014年3月23日 下午10:38:27
 	 */
-	protected void onViewDidAppearAtFirstTime(){
-		LogManager.log(getClass().getSimpleName(),"onViewDidAppearAtFirstTime");
+	protected void onViewDidAppearAtFirstTime(boolean animated){
+		LogManager.i(getClass().getSimpleName(),"onViewDidAppearAtFirstTime");
 	}
 	
 	public static interface ViewHolderStateListener{

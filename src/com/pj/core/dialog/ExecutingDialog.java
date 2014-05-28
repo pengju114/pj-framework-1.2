@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class ExecutingDialog extends BaseDialog implements CacheableDialog, DialogInterface.OnDismissListener{
+public class ExecutingDialog extends BaseDialog implements CacheableDialog{
 	private TextView statusTextView;
 
 	public ExecutingDialog(Context context) {
@@ -41,7 +41,6 @@ public class ExecutingDialog extends BaseDialog implements CacheableDialog, Dial
 		ColorDrawable drawable=new ColorDrawable(Color.TRANSPARENT);
 		window.setBackgroundDrawable(drawable);
 		
-		setOnDismissListener(this);
 	}
 	
 	private View getContentView(){
@@ -92,5 +91,6 @@ public class ExecutingDialog extends BaseDialog implements CacheableDialog, Dial
 	public void onDismiss(DialogInterface dialog) {
 		// TODO Auto-generated method stub
 		onCancel(dialog);
+		super.onDismiss(dialog);
 	}
 }

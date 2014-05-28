@@ -575,11 +575,11 @@ public class NavigationViewHolder extends ViewHolder{
 	
 	private void onTransitionStart(){
 		animating=true;
-		LogManager.log(getClass().getSimpleName(), "onTransitionStart");
+		LogManager.i(getClass().getSimpleName(), "onTransitionStart");
 	}
 	
 	private void onTransitionEnd(){
-		LogManager.log(getClass().getSimpleName(), dirtySet);
+		LogManager.i(getClass().getSimpleName(), dirtySet);
 		for (View view : dirtySet) {
 			if (view!=null) {
 				view.clearAnimation();
@@ -592,7 +592,7 @@ public class NavigationViewHolder extends ViewHolder{
 		if (pageHolders.size()==1) {
 			getCurrentTopHolder().setDuplicateParentState(true);
 		}
-		LogManager.log(getClass().getSimpleName(), "onTransitionEnd");
+		LogManager.i(getClass().getSimpleName(), "onTransitionEnd");
 	}
 	
 	

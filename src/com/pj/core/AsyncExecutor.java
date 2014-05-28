@@ -10,7 +10,7 @@ package com.pj.core;
 public interface AsyncExecutor<T> {
 	
 	/**
-	 * 在调用 {@link #asyncExecute()}之前调用
+	 * 在调用 {@link #execute()}之前调用
 	 * 属于UI线程
 	 * PENGJU
 	 * 2014年3月17日 下午10:04:50
@@ -22,7 +22,7 @@ public interface AsyncExecutor<T> {
 	 * 2013-1-20 上午10:12:58
 	 * @return 结果
 	 */
-	public T asyncExecute();
+	public T execute();
 	/**
 	 * 异步线程调用结束后调用
 	 * 属于UI线程

@@ -65,7 +65,7 @@ public class TaskManager {
 	public void addTask(AsyncTask task) {
 		synchronized (taskStack) {
 			taskStack.add(task);
-			LogManager.log(getClass().getSimpleName(),"收到任务[%s]",task);
+			LogManager.i(getClass().getSimpleName(),"收到任务[%s]",task);
 			stateChange(TASK_RECIEVE, task, null);
 			loop();
 		}
@@ -73,7 +73,7 @@ public class TaskManager {
 
 	private void loop() {
 		// TODO Auto-generated method stub
-		LogManager.log(getClass().getSimpleName()," before loop -> running:%d ; waiting:%d", runningTask.size(),taskStack.size());
+		LogManager.i(getClass().getSimpleName()," before loop -> running:%d ; waiting:%d", runningTask.size(),taskStack.size());
 		while (runningTask.size()<threadSize) {
 			AsyncTask newTask=nextTask();
 			if (newTask==null) {
@@ -85,20 +85,20 @@ public class TaskManager {
 				executorService.execute(watcher);
 			}
 		}
-		LogManager.log(getClass().getSimpleName()," after loop -> running:%d ; waiting:%d", runningTask.size(),taskStack.size());
+		LogManager.i(getClass().getSimpleName()," after loop -> running:%d ; waiting:%d", runningTask.size(),taskStack.size());
 	}
 	
 	protected void onTaskFinish(AsyncTask task) {
 		synchronized (runningTask) {
 			runningTask.remove(task);
 			stateChange(TASK_FINISH, task, null);
-			LogManager.log(getClass().getSimpleName(),"任务[%s]执行完毕",task);
+			LogManager.i(getClass().getSimpleName(),"任务[%s]执行完毕",task);
 		}
 		
 		
 		if (getRunningCount()<=0 && getWaitingCount()<=0) {
 			//所有任务完成
-			LogManager.log(getClass().getSimpleName(),"所有任务完成");
+			LogManager.i(getClass().getSimpleName(),"所有任务完成");
 			stateChange(TASK_FINISH_ALL, null, null);
 		}
 		loop();
@@ -154,7 +154,7 @@ public class TaskManager {
 	}
 	
 	public void stop(boolean save) {
-		LogManager.log(getClass().getName(),"停止所有任务[保存状态%s]",save);
+		LogManager.i(getClass().getName(),"停止所有任务[保存状态%s]",save);
 		stateChange(TASK_CANCEL_ALL, null, null);
 		
 		if (taskStack.size()>0) {

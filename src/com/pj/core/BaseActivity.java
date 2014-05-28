@@ -37,7 +37,7 @@ import android.widget.Toast;
  */
 public class BaseActivity extends Activity implements MessageListener{
 	
-	private static int UNIQUE_INT=100;
+	private static int      UNIQUE_INT								=100;
 	
 	public static final int NOTIFICATION_ACTIVITY_CREATE			=1;
 	public static final int NOTIFICATION_ACTIVITY_RESTORE_STATE		=2;
@@ -72,9 +72,10 @@ public class BaseActivity extends Activity implements MessageListener{
 	protected CacheableDialog progressDialog;
 	protected CacheableDialog inputDialog;
 
-	protected LayoutInflater inflater;
-	protected Resources resources;
-	private   ViewHolder rootViewHolder;
+	protected LayoutInflater  inflater;
+	protected Resources 	  resources;
+	private   ViewHolder 	  rootViewHolder;
+	private   int             state;
 	
 
 	/***********************活动生命周期**********************/
@@ -226,6 +227,8 @@ public class BaseActivity extends Activity implements MessageListener{
 	 * @param state
 	 */
 	protected void activityStateChange(int state,Bundle bundle){
+		this.state = state;
+		
 		BaseApplication.getInstance().sendNotification(this, state, bundle);
 		
 		if (state==NOTIFICATION_ACTIVITY_CREATE) {
@@ -237,6 +240,10 @@ public class BaseActivity extends Activity implements MessageListener{
 			rootViewHolder.dispathDidDisappear(rootViewHolder, false);
 			rootViewHolder.dispathDettached(rootViewHolder);
 		}
+	}
+	
+	public int getState() {
+		return state;
 	}
 	
 	@Override
@@ -306,25 +313,37 @@ public class BaseActivity extends Activity implements MessageListener{
 		if (messageId==MSG_DLG_TIP) {
 			callShowTip(String.valueOf(data));
 		}else if (messageId==MSG_DLG_MESSAGE) {
-			DataWrapper wrapper=(DataWrapper)data;
-			getMessageDialog(wrapper).show();
+			if (getState()!=NOTIFICATION_ACTIVITY_DESTROY) {
+				DataWrapper wrapper=(DataWrapper)data;
+				getMessageDialog(wrapper).show();
+			}
 		}else if (messageId==MSG_DLG_CONFIRM) {
-			DataWrapper wrapper=(DataWrapper)data;
-			getConfirmDialog(wrapper).show();
+			if (getState()!=NOTIFICATION_ACTIVITY_DESTROY){
+				DataWrapper wrapper=(DataWrapper)data;
+				getConfirmDialog(wrapper).show();
+			}
 		}else if (messageId==MSG_DLG_EXECUTING) {
-			DataWrapper wrapper=(DataWrapper)data;
-			getExecutingDialog(wrapper).show();
+			if (getState()!=NOTIFICATION_ACTIVITY_DESTROY){
+				DataWrapper wrapper=(DataWrapper)data;
+				getExecutingDialog(wrapper).show();
+			}
 		}else if (messageId==MSG_DLG_PROGRESS) {
-			DataWrapper wrapper=(DataWrapper)data;
-			getProgressDialog(wrapper).show();
+			if (getState()!=NOTIFICATION_ACTIVITY_DESTROY){
+				DataWrapper wrapper=(DataWrapper)data;
+				getProgressDialog(wrapper).show();
+			}
 		}else if (messageId==MSG_DLG_INPUT) {
-			DataWrapper wrapper=(DataWrapper) data;
-			getInputDialog(wrapper).show();
+			if (getState()!=NOTIFICATION_ACTIVITY_DESTROY){
+				DataWrapper wrapper=(DataWrapper) data;
+				getInputDialog(wrapper).show();
+			}
 		}
 	}
 
 	
 	/**********************消息结束*********************/
+	
+	
 	
 	/**********************线程执行*********************/
 	
@@ -342,11 +361,14 @@ public class BaseActivity extends Activity implements MessageListener{
 		BaseApplication.getInstance().asyncExecute(executor, delay);
 	}
 	
-	public void cancelAsyncExecutor(AsyncExecutor<?> executor){
-		BaseApplication.getInstance().cancelAsyncExecutor(executor);
+	public void cancelAsyncExecute(AsyncExecutor<?> executor){
+		BaseApplication.getInstance().cancelAsyncExecute(executor);
 	}
 	
 	/**********************线程执行结束******************/
+	
+	
+	
 	
 	/************************显示信息************************/
 	
@@ -419,7 +441,9 @@ public class BaseActivity extends Activity implements MessageListener{
 	 * @param listener 回调监听器，可为null
 	 */
 	public void showProgressDialog(int requestCode,String msg,DialogListener listener) {
-		showProgressDialog(requestCode,msg,null,listener);
+		if (getState()!=NOTIFICATION_ACTIVITY_DESTROY){
+			showProgressDialog(requestCode,msg,null,listener);
+		}
 	}
 	/**
 	 * 显示状态对话框,可在线程中调用
@@ -430,12 +454,14 @@ public class BaseActivity extends Activity implements MessageListener{
 	 * @param listener 回调监听器，可为null
 	 */
 	public void showProgressDialog(int requestCode,String msg,Object cacheData,DialogListener listener) {
-		DataWrapper wrapper=new DataWrapper();
-		wrapper.setObject(CacheableDialog.KEY_MESSAGE, msg);
-		wrapper.setObject(CacheableDialog.KEY_DATA, cacheData);
-		wrapper.setObject(CacheableDialog.KEY_LISTENER, listener);
-		wrapper.setObject(CacheableDialog.KEY_REQUEST_ID, requestCode);
-		postMessage(MSG_DLG_PROGRESS, wrapper);
+		if (getState()!=NOTIFICATION_ACTIVITY_DESTROY){
+			DataWrapper wrapper=new DataWrapper();
+			wrapper.setObject(CacheableDialog.KEY_MESSAGE, msg);
+			wrapper.setObject(CacheableDialog.KEY_DATA, cacheData);
+			wrapper.setObject(CacheableDialog.KEY_LISTENER, listener);
+			wrapper.setObject(CacheableDialog.KEY_REQUEST_ID, requestCode);
+			postMessage(MSG_DLG_PROGRESS, wrapper);
+		}
 	}
 	
 	/**
@@ -449,26 +475,6 @@ public class BaseActivity extends Activity implements MessageListener{
 		}
 	}
 	
-	
-	/**
-	 * 前世确认对话框，默认是 确定 和 取消 按钮
-	 * lzw
-	 * 2014年3月22日 下午3:53:57
-	 * @param requestCode
-	 * @param optionTitle
-	 * @param msg
-	 * @param listener
-	 */
-	public void showConfirmDialog(int requestCode,String optionTitle,String msg,DialogListener listener) {
-		showConfirmDialog(requestCode,optionTitle,msg,getString(R.string.c_label_dialog_btn_ok),getString(R.string.c_label_dialog_btn_cancel),null,listener);
-	}
-	
-	/**
-	 * 前世确认对话框，默认是 确定 和 取消 按钮
-	 */
-	public void showConfirmDialog(int requestCode,String optionTitle,String msg,Object cacheData,DialogListener listener) {
-		showConfirmDialog(requestCode, optionTitle, msg, getString(R.string.c_label_dialog_btn_ok),getString(R.string.c_label_dialog_btn_cancel), cacheData, listener);
-	}
 	
 	/**
 	 * 显示确认对话框
@@ -498,15 +504,17 @@ public class BaseActivity extends Activity implements MessageListener{
 	 * @param listener
 	 */
 	public void showConfirmDialog(int requestCode,String optionTitle,String msg,String positiveBtnText,String negtiveBtnText,Object cacheData,DialogListener listener) {
-		DataWrapper wrapper=new DataWrapper();
-		wrapper.setObject(CacheableDialog.KEY_TITLE, optionTitle);
-		wrapper.setObject(CacheableDialog.KEY_MESSAGE, msg);
-		wrapper.setObject(CacheableDialog.KEY_DATA, cacheData);
-		wrapper.setObject(CacheableDialog.KEY_LISTENER, listener);
-		wrapper.setObject(CacheableDialog.KEY_POSITIVE_BUTTON_TEXT, positiveBtnText);
-		wrapper.setObject(CacheableDialog.KEY_NEGATIVE_BUTTON_TEXT, negtiveBtnText);
-		wrapper.setObject(CacheableDialog.KEY_REQUEST_ID, requestCode);
-		postMessage(MSG_DLG_CONFIRM, wrapper);
+		if (getState()!=NOTIFICATION_ACTIVITY_DESTROY){
+			DataWrapper wrapper=new DataWrapper();
+			wrapper.setObject(CacheableDialog.KEY_TITLE, optionTitle);
+			wrapper.setObject(CacheableDialog.KEY_MESSAGE, msg);
+			wrapper.setObject(CacheableDialog.KEY_DATA, cacheData);
+			wrapper.setObject(CacheableDialog.KEY_LISTENER, listener);
+			wrapper.setObject(CacheableDialog.KEY_POSITIVE_BUTTON_TEXT, positiveBtnText);
+			wrapper.setObject(CacheableDialog.KEY_NEGATIVE_BUTTON_TEXT, negtiveBtnText);
+			wrapper.setObject(CacheableDialog.KEY_REQUEST_ID, requestCode);
+			postMessage(MSG_DLG_CONFIRM, wrapper);
+		}
 	}
 		
 	/**
@@ -528,11 +536,13 @@ public class BaseActivity extends Activity implements MessageListener{
 	 * @param listener
 	 */
 	public void showExecutingDialog(int requestCode,Object cacheData,DialogListener listener) {
-		DataWrapper wrapper=new DataWrapper();
-		wrapper.setObject(CacheableDialog.KEY_DATA, cacheData);
-		wrapper.setObject(CacheableDialog.KEY_LISTENER, listener);
-		wrapper.setObject(CacheableDialog.KEY_REQUEST_ID, requestCode);
-		postMessage(MSG_DLG_EXECUTING, wrapper);
+		if (getState()!=NOTIFICATION_ACTIVITY_DESTROY){
+			DataWrapper wrapper=new DataWrapper();
+			wrapper.setObject(CacheableDialog.KEY_DATA, cacheData);
+			wrapper.setObject(CacheableDialog.KEY_LISTENER, listener);
+			wrapper.setObject(CacheableDialog.KEY_REQUEST_ID, requestCode);
+			postMessage(MSG_DLG_EXECUTING, wrapper);
+		}
 	}
 	
 	/**
@@ -544,20 +554,6 @@ public class BaseActivity extends Activity implements MessageListener{
 		if (executingDialog!=null && executingDialog.isShowing()) {
 			executingDialog.cancel();
 		}
-	}
-	
-	
-	/**
-	 * 显示信息提示框,默认提供确定按钮
-	 */
-	public void showMessageDialog(int requestCode,String title,String msg,DialogListener listener) {
-		showMessageDialog(requestCode,title,msg,getString(R.string.c_label_dialog_btn_ok),null,listener);
-	}
-	/**
-	 * 显示信息提示框,默认提供确定按钮
-	 */
-	public void showMessageDialog(int requestCode,String optionTitle,String msg,Object cacheData,DialogListener listener) {
-		showMessageDialog(requestCode, optionTitle, msg, getString(R.string.c_label_dialog_btn_ok), cacheData, listener);
 	}
 	
 	/**
@@ -575,79 +571,59 @@ public class BaseActivity extends Activity implements MessageListener{
 	}
 	
 	public void showMessageDialog(int requestCode,String title,String msg,String positiveBtnText,Object cacheData,DialogListener listener) {
-		DataWrapper wrapper=new DataWrapper();
-		wrapper.setObject(CacheableDialog.KEY_TITLE, title);
-		wrapper.setObject(CacheableDialog.KEY_MESSAGE, msg);
-		wrapper.setObject(CacheableDialog.KEY_DATA, cacheData);
-		wrapper.setObject(CacheableDialog.KEY_LISTENER, listener);
-		wrapper.setObject(CacheableDialog.KEY_POSITIVE_BUTTON_TEXT, positiveBtnText);
-		wrapper.setObject(CacheableDialog.KEY_REQUEST_ID, requestCode);
-		
-		postMessage(MSG_DLG_MESSAGE, wrapper);
+		if (getState()!=NOTIFICATION_ACTIVITY_DESTROY){
+			DataWrapper wrapper=new DataWrapper();
+			wrapper.setObject(CacheableDialog.KEY_TITLE, title);
+			wrapper.setObject(CacheableDialog.KEY_MESSAGE, msg);
+			wrapper.setObject(CacheableDialog.KEY_DATA, cacheData);
+			wrapper.setObject(CacheableDialog.KEY_LISTENER, listener);
+			wrapper.setObject(CacheableDialog.KEY_POSITIVE_BUTTON_TEXT, positiveBtnText);
+			wrapper.setObject(CacheableDialog.KEY_REQUEST_ID, requestCode);
+			
+			postMessage(MSG_DLG_MESSAGE, wrapper);
+		}
 	}
 	
 	/**
-	 * 显示输入框兑换框，默认提供 确定 和 取消 按钮
+	 * 输入框
 	 * lzw
-	 * 2014年3月22日 下午4:16:29
+	 * 2014年5月28日 下午10:49:07
 	 * @param requestCode
 	 * @param title
 	 * @param msg
+	 * @param positiveBtnText
+	 * @param negtiveBtnText
 	 * @param defaultText
 	 * @param hint
-	 * @param description
 	 * @param listener
 	 */
-	public void showInputDialog(int requestCode,String title,String msg,String defaultText,String hint,String description,DialogListener listener){
-		showInputDialog(requestCode,EditorInfo.TYPE_CLASS_TEXT,title, defaultText, hint, description, null, listener);
+	public void showInputDialog(int requestCode, String title,String msg,String positiveBtnText,String negtiveBtnText,String defaultText,String hint,DialogListener listener) {
+		showInputDialog(requestCode, EditorInfo.TYPE_CLASS_TEXT, title, msg, positiveBtnText,negtiveBtnText,defaultText, hint, null, listener);
 	}
 	
-	/**
-	 * 显示输入框兑换框，默认提供 确定 和 取消 按钮
-	 * lzw
-	 * 2014年3月22日 下午4:20:06
-	 * @param requestCode
-	 * @param inputType {@link android.view.inputmethod.EditorInfo}
-	 * @param title
-	 * @param msg
-	 * @param defaultText
-	 * @param hint
-	 * @param description
-	 * @param listener
-	 */
-	public void showInputDialog(int requestCode,int inputType,String title,String msg,String defaultText,String hint,String description,DialogListener listener){
-		showInputDialog(requestCode,inputType ,title, msg,getString(R.string.c_label_dialog_btn_ok),getString(R.string.c_label_dialog_btn_cancel), defaultText, hint, description, null, listener);
+	public void showInputDialog(int requestCode,int inputType, String title,String msg,String positiveBtnText,String negtiveBtnText,String defaultText,String hint,Object cacheData,DialogListener listener) {
+		if (getState()!=NOTIFICATION_ACTIVITY_DESTROY) {
+			DataWrapper wrapper=new DataWrapper();
+			wrapper.setObject(CacheableDialog.KEY_TITLE, title);
+			wrapper.setObject(CacheableDialog.KEY_MESSAGE, msg);
+			wrapper.setObject(CacheableDialog.KEY_DATA, cacheData);
+			wrapper.setObject(CacheableDialog.KEY_LISTENER, listener);
+			wrapper.setObject(CacheableDialog.KEY_POSITIVE_BUTTON_TEXT, positiveBtnText);
+			wrapper.setObject(CacheableDialog.KEY_NEGATIVE_BUTTON_TEXT, negtiveBtnText);
+			wrapper.setObject(CacheableDialog.KEY_REQUEST_ID, requestCode);
+			
+			wrapper.setObject(InputDialog.KEY_TEXT, defaultText);
+			wrapper.setObject(InputDialog.KEY_HINT, hint);
+			
+			wrapper.setObject(InputDialog.KEY_INPUT_TYPE, inputType);
+			postMessage(MSG_DLG_INPUT, wrapper);
+		}
 	}
 	
-	
-	public void showInputDialog(int requestCode,String title,String msg,String positiveBtnText,String negtiveBtnText ,String defaultText,String hint,String description,DialogListener listener){
-		showInputDialog(requestCode,title, msg,positiveBtnText,negtiveBtnText, defaultText, hint, description, null, listener);
-	}
-	
-	public void showInputDialog(int requestCode,int inputType,String title,String msg,String positiveBtnText,String negtiveBtnText ,String defaultText,String hint,String description,DialogListener listener){
-		showInputDialog(requestCode,title, msg,positiveBtnText,negtiveBtnText, defaultText, hint, description, null, listener);
-	}
-	
-	public void showInputDialog(int requestCode, String title,String msg,String positiveBtnText,String negtiveBtnText,String defaultText,String hint,String description,Object cacheData,DialogListener listener) {
-		showInputDialog(requestCode, EditorInfo.TYPE_CLASS_TEXT, title, msg, defaultText, hint, description, listener);
-	}
-	
-	public void showInputDialog(int requestCode,int inputType, String title,String msg,String positiveBtnText,String negtiveBtnText,String defaultText,String hint,String description,Object cacheData,DialogListener listener) {
-		DataWrapper wrapper=new DataWrapper();
-		wrapper.setObject(CacheableDialog.KEY_TITLE, title);
-		wrapper.setObject(CacheableDialog.KEY_MESSAGE, msg);
-		wrapper.setObject(CacheableDialog.KEY_DATA, cacheData);
-		wrapper.setObject(CacheableDialog.KEY_LISTENER, listener);
-		wrapper.setObject(CacheableDialog.KEY_POSITIVE_BUTTON_TEXT, positiveBtnText);
-		wrapper.setObject(CacheableDialog.KEY_NEGATIVE_BUTTON_TEXT, negtiveBtnText);
-		wrapper.setObject(CacheableDialog.KEY_REQUEST_ID, requestCode);
-		
-		wrapper.setObject(InputDialog.KEY_TEXT, defaultText);
-		wrapper.setObject(InputDialog.KEY_HINT, hint);
-		wrapper.setObject(InputDialog.KEY_DESCRIPTION, description);
-		
-		wrapper.setObject(InputDialog.KEY_INPUT_TYPE, inputType);
-		postMessage(MSG_DLG_INPUT, wrapper);
+	public void closeInputDialog(){
+		if (inputDialog!=null && inputDialog.isShowing()) {
+			inputDialog.cancel();
+		}
 	}
 
 	/************************显示信息结束********************/
@@ -759,6 +735,5 @@ public class BaseActivity extends Activity implements MessageListener{
 			// TODO Auto-generated method stub
 			
 		}
-		
 	}
 }

@@ -132,7 +132,7 @@ public class ImageUtility {
         do {
         	baos.reset();//重置baos即清空baos 
             bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中  
-            LogManager.log(ImageUtility.class.getSimpleName(), "compress image quality=%d and size=%d[orgn=%d]", options,baos.size(),rawBytes);
+            LogManager.i(ImageUtility.class.getSimpleName(), "compress image quality=%d and size=%d[orgn=%d]", options,baos.size(),rawBytes);
             options -= 10;//每次都减少10 
             if (options<0) {
 				break;

@@ -233,7 +233,7 @@ public class HttpDownloader extends Parameter{
 			httpState.setSkipBytes(getFile().length());
 			httpState.setTotalTransferBytes(httpState.getSkipBytes());
 			httpState.setTransferBytes(0);
-			LogManager.log(getClass().getName(),"下载文件[%s], 跳过%d字节,保存路径:%s",httpTransfer.getFrom(), httpState.getSkipBytes(),getFile().getAbsolutePath());
+			LogManager.i(getClass().getName(),"下载文件[%s], 跳过%d字节,保存路径:%s",httpTransfer.getFrom(), httpState.getSkipBytes(),getFile().getAbsolutePath());
 		}else {
 			throw new Exception(connection.getResponseMessage());
 		}
@@ -305,7 +305,7 @@ public class HttpDownloader extends Parameter{
 			//connection.setReadTimeout(READ_TIME);
 			connection.setDoInput(true);
 			
-			LogManager.log("Range:"+connection.getRequestProperty("Range"));
+			LogManager.i("Range:"+connection.getRequestProperty("Range"));
 			
 			if (connection.getResponseCode()==200 || connection.getResponseCode()==206) {
 				
@@ -331,7 +331,7 @@ public class HttpDownloader extends Parameter{
 					randomAccessFile.seek(httpState.getSkipBytes());
 				}
 				
-				LogManager.log(getClass().getName(),"开始读取网络字节,跳过%d字节,总长度:%d", httpState.getSkipBytes(),httpState.getLength());
+				LogManager.i(getClass().getName(),"开始读取网络字节,跳过%d字节,总长度:%d", httpState.getSkipBytes(),httpState.getLength());
 				httpState.setStatusText("正在下载");
 				while (!isAbort() && (readed=inputStream.read(buff))!=-1 ) {
 					randomAccessFile.write(buff, 0, readed);
@@ -343,11 +343,11 @@ public class HttpDownloader extends Parameter{
 					httpState.setTransferBytes(bytesReaded);
 					triggerState(HttpStateListener.STATE_RUNNING);
 				}
-				LogManager.log(getClass().getName(),"读取网络字节结束,总共读取%d字节,总长度%d", bytesReaded,httpState.getLength());
+				LogManager.i(getClass().getName(),"读取网络字节结束,总共读取%d字节,总长度%d", bytesReaded,httpState.getLength());
 			}else {
 				httpState.setStatusText(connection.getResponseMessage());
 				triggerState(HttpStateListener.STATE_ERROR);
-				LogManager.log(getClass().getName(),"HTTP 错误:%s",connection.getResponseMessage());
+				LogManager.e(getClass().getName(),null,"HTTP 错误:%s",connection.getResponseMessage());
 			}
 			
 		} catch (Exception e) {
@@ -389,7 +389,6 @@ public class HttpDownloader extends Parameter{
 	private void setPlainHeader(HttpURLConnection urlConnection) throws Exception{
 		urlConnection.setReadTimeout(READ_TIME);
 		urlConnection.setRequestMethod(getMethod());
-		LogManager.log(getMethod());
 		
 		urlConnection.setRequestProperty("Accept", "image/gif, image/jpeg, image/pjpeg, image/pjpeg, application/x-shockwave-flash, application/xaml+xml, application/vnd.ms-xpsdocument, application/x-ms-xbap, application/x-ms-application, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/msword, */*");
 		urlConnection.setRequestProperty("Accept-Language", "zh_CN, en-us");

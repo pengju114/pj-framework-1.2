@@ -59,7 +59,7 @@ public abstract class CoreDBService extends DBService {
 	protected void onCreate(SQLiteDatabase db) {
 		String[] sqls=getCreateSQLs();
 		for (String sql : sqls) {
-			LogManager.log("创建表",sql);
+			LogManager.i("创建表",sql);
 			db.execSQL(sql);
 		}
 	}
@@ -68,7 +68,7 @@ public abstract class CoreDBService extends DBService {
 		// TODO Auto-generated method stub
 		for (String tn : getAllTableNames()) {
 			String sql="drop table if exists "+tn;
-			LogManager.log("Upgrade DataBase",  sql);
+			LogManager.i("Upgrade DataBase",  sql);
 			db.execSQL(sql);
 		}
 		
@@ -103,7 +103,7 @@ public abstract class CoreDBService extends DBService {
 			return openHelper.getWritableDatabase();
 		} catch (Exception e) {
 			// TODO: handle exception
-			LogManager.log(e);
+			LogManager.trace(e);
 			return openHelper.getReadableDatabase();
 		}
 	}
@@ -152,7 +152,7 @@ public abstract class CoreDBService extends DBService {
     	long c=-1;
     	SQLiteDatabase database=getWritableDatabase();
     	try {
-    		LogManager.log(getClass().getSimpleName(), "insert values %s", values);
+    		LogManager.i(getClass().getSimpleName(), "insert values %s", values);
         	c=database.insertOrThrow(getTableName(), null, values);
 		} catch (Exception e) {
 			LogManager.trace(e);
@@ -197,7 +197,7 @@ public abstract class CoreDBService extends DBService {
     	SQLiteDatabase database=getWritableDatabase();
     	try {
     		if (LogManager.isLogEnable()) {
-				LogManager.log(getClass().getSimpleName(), "delete with condition:%s[%s]", condition,ArrayUtility.join(paramVals, ","));
+				LogManager.i(getClass().getSimpleName(), "delete with condition:%s[%s]", condition,ArrayUtility.join(paramVals, ","));
 			}
 			c=database.delete(getTableName(), condition, paramVals);
 		} catch (SQLException e) {
@@ -234,7 +234,7 @@ public abstract class CoreDBService extends DBService {
 		}
     	try {
     		if (LogManager.isLogEnable()) {
-				LogManager.log(getClass().getSimpleName(), "update with condition:%s[%s] set %s", condition,ArrayUtility.join(paramVals, ","),newValues);
+				LogManager.i(getClass().getSimpleName(), "update with condition:%s[%s] set %s", condition,ArrayUtility.join(paramVals, ","),newValues);
 			}
 			c=database.update(getTableName(), newValues, condition, paramVals);
 		} catch (SQLException e) {
@@ -278,7 +278,7 @@ public abstract class CoreDBService extends DBService {
     	List<DataWrapper> list=null;
     	try {
     		if (LogManager.isLogEnable()) {
-    			LogManager.log(getClass().getSimpleName(), "query:select %s from %s where %s[%s] group by(%s) having(%s) order by(%s)", columns==null?"*":ArrayUtility.join(columns, ","),getTableName(),selection,ArrayUtility.join(selectionArgs, ","),groupBy,having,orderBy);
+    			LogManager.i(getClass().getSimpleName(), "query:select %s from %s where %s[%s] group by(%s) having(%s) order by(%s)", columns==null?"*":ArrayUtility.join(columns, ","),getTableName(),selection,ArrayUtility.join(selectionArgs, ","),groupBy,having,orderBy);
 			}
     		
     		Cursor cursor=database.query(distinct,getTableName(), columns, selection, selectionArgs, groupBy, having, orderBy,null);
@@ -312,7 +312,7 @@ public abstract class CoreDBService extends DBService {
     	SQLiteDatabase database=getReadableDatabase();
     	try {
     		if (LogManager.isLogEnable()) {
-    			LogManager.log(getClass().getSimpleName(), "querySingle:select %s from %s where %s[%s] group by(%s) having(%s) order by(%s)", columns==null?"*":ArrayUtility.join(columns, ","),getTableName(),selection,ArrayUtility.join(selectionArgs, ","),groupBy,having,orderBy);
+    			LogManager.i(getClass().getSimpleName(), "querySingle:select %s from %s where %s[%s] group by(%s) having(%s) order by(%s)", columns==null?"*":ArrayUtility.join(columns, ","),getTableName(),selection,ArrayUtility.join(selectionArgs, ","),groupBy,having,orderBy);
 			}
     		Cursor cursor=database.query(getTableName(), columns, selection, selectionArgs, groupBy, having, orderBy);
     		if (cursor.moveToNext()) {

@@ -69,7 +69,7 @@ public class BaseApplication extends Application {
 		public void onReceive(Context context, Intent intent) {
 			// TODO Auto-generated method stub
 			if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
-				LogManager.log(application.getClass().getSimpleName(), "network state change,type=%d", AppUtility.getNetworkType());
+				LogManager.i(application.getClass().getSimpleName(), "network state change,type=%d", AppUtility.getNetworkType());
 				application.sendNotification(application, NOTIFICATION_NETWORK_STATE_CHANGE, AppUtility.getNetworkType());
 			}
 		}
@@ -111,7 +111,7 @@ public class BaseApplication extends Application {
 			}
 		}
 		@Override
-		public Boolean asyncExecute() {
+		public Boolean execute() {
 			// TODO Auto-generated method stub
 			if (activitiesMap.size()<1) {
 				//调用system.exit不会调用onTerminate,自动调用
@@ -449,10 +449,6 @@ public class BaseApplication extends Application {
 	 * @param executor
 	 */
 	public <T> void asyncExecute(AsyncExecutor<T> executor){
-//		AsyncExecuteAction<T> action=new AsyncExecuteAction<T>(executor);
-//		ASYNC_EXECUTOR_ARRAY.put(executor.hashCode(), action);
-//		ASYNC_THREAD_HANDLER.post(action);
-		
 		AsyncExecuteAction<T> action=new AsyncExecuteAction<T>(executor);
 		ASYNC_EXECUTOR_ARRAY.put(executor.hashCode(), action);
 		postMessage(MSG_HANDLE_ASYNC_PREPARE, null, action);
@@ -466,10 +462,6 @@ public class BaseApplication extends Application {
 	 * @param delay
 	 */
 	public <T> void asyncExecute(AsyncExecutor<T> executor,long delay){
-//		AsyncExecuteAction<T> action=new AsyncExecuteAction<T>(executor);
-//		ASYNC_EXECUTOR_ARRAY.put(executor.hashCode(), action);
-//		ASYNC_THREAD_HANDLER.postDelayed(action, delay);
-		
 		AsyncExecuteAction<T> action=new AsyncExecuteAction<T>(executor);
 		ASYNC_EXECUTOR_ARRAY.put(executor.hashCode(), action);
 		postMessage(MSG_HANDLE_ASYNC_PREPARE, null, delay, action);
@@ -481,7 +473,7 @@ public class BaseApplication extends Application {
 	 * 2014年3月17日 下午10:21:45
 	 * @param executor
 	 */
-	public void cancelAsyncExecutor(AsyncExecutor<?> executor){
+	public void cancelAsyncExecute(AsyncExecutor<?> executor){
 		removeMessages(MSG_HANDLE_ASYNC_PREPARE);
 		AsyncExecuteAction<?> action=ASYNC_EXECUTOR_ARRAY.get(executor.hashCode());
 		ASYNC_EXECUTOR_ARRAY.remove(executor.hashCode());
@@ -564,7 +556,7 @@ public class BaseApplication extends Application {
 			// TODO Auto-generated method stub
 			T v=null;
 			try {
-				v=executor.asyncExecute();
+				v=executor.execute();
 			} catch (Exception e) {
 				LogManager.trace(e);
 			} finally{

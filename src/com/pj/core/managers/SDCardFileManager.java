@@ -46,6 +46,7 @@ public class SDCardFileManager {
 	 * 2013-6-9 下午9:45:04
 	 * @return mb
 	 */
+	@SuppressWarnings("deprecation")
 	public static float getTotalMBSize(){
 		float all=-1;
 		if (isSDCardReady()) {
@@ -70,6 +71,7 @@ public class SDCardFileManager {
 	 * 2013-6-9 下午9:45:04
 	 * @return mb
 	 */
+	@SuppressWarnings("deprecation")
 	public static float getFreeMBSize(){
 		float all=-1;
 		if (isSDCardReady()) {

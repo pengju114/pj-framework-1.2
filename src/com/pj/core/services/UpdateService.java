@@ -51,6 +51,7 @@ public class UpdateService extends BaseService implements Runnable,HttpStateList
 		return null;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void onStart(Intent intent,int startId) {
 		super.onStart(intent, startId);
 		if (intent!=null) {
@@ -97,6 +98,7 @@ public class UpdateService extends BaseService implements Runnable,HttpStateList
 		return PendingIntent.getActivity(getApplicationContext(), NOTIFICATION_ID, new Intent(), PendingIntent.FLAG_UPDATE_CURRENT);
 	}
 	
+	@SuppressWarnings("deprecation")
 	protected Notification getNotification(HttpTransfer transfer) {
 		Notification n=new Notification(getIconResourceId(),getResources().getString(R.string.c_msg_n_start_download_update),System.currentTimeMillis());
 		remoteViews=getRemoteViews(transfer);

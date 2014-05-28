@@ -55,7 +55,9 @@ public class HolderPopupWindow extends PopupWindow implements PopupWindow.OnDism
 	@Override
 	public void onDismiss() {
 		// TODO Auto-generated method stub
-		rootHolder.removeChild(contentHolder);
+		contentHolder.dispathWillDisappear(contentHolder, false);
+		contentHolder.dispathDidDisappear(contentHolder, false);
+		rootHolder.dispathDettached(rootHolder);
 		contentHolder.attachedPopupWindow=null;
 	}
 }

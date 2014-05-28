@@ -9,9 +9,12 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Window;
 
-public abstract class BaseDialog extends Dialog implements CacheableDialog, DialogInterface.OnCancelListener{
+public abstract class BaseDialog extends Dialog implements CacheableDialog, DialogInterface.OnCancelListener,DialogInterface.OnDismissListener{
 	private DataWrapper dataWrapper;
 	private DialogListener    listener;
+	
+	private OnCancelListener outsideCancelListener;
+	private OnDismissListener outsideDismissListener;
 	
 	private int requestCode;
 
@@ -37,6 +40,7 @@ public abstract class BaseDialog extends Dialog implements CacheableDialog, Dial
 		setCanceledOnTouchOutside(false);
 		
 		setOnCancelListener(this);
+		setOnDismissListener(this);
 	}
 	
 	@Override
@@ -76,7 +80,6 @@ public abstract class BaseDialog extends Dialog implements CacheableDialog, Dial
 		if (listener!=null) {
 			listener.onDialogClose(requestCode, this, trigger, getObject(KEY_DATA));
 		}
-		reset();
 	}
 	
 	protected void reset() {
@@ -91,6 +94,24 @@ public abstract class BaseDialog extends Dialog implements CacheableDialog, Dial
 	public void onCancel(DialogInterface dialog) {
 		// TODO Auto-generated method stub
 		onDialogClose(DialogListener.BTN_UNKNOWN);
+		if (outsideCancelListener!=null) {
+			outsideCancelListener.onCancel(dialog);
+		}
 	}
 
+	public void setOutsideCancelListener(OnCancelListener outsideCancelListener) {
+		this.outsideCancelListener = outsideCancelListener;
+	}
+	
+	@Override
+	public void onDismiss(DialogInterface dialog) {
+		// TODO Auto-generated method stub
+		if (outsideDismissListener!=null) {
+			outsideDismissListener.onDismiss(dialog);
+		}
+	}
+	public void setOutsideDismissListener(
+			OnDismissListener outsideDismissListener) {
+		this.outsideDismissListener = outsideDismissListener;
+	}
 }

@@ -64,7 +64,7 @@ public class HttpImage {
 		clearCache(false);
 		s=Runtime.getRuntime().freeMemory()-s;
 		if (LogManager.isLogEnable()) {
-			LogManager.log(getClass().getSimpleName(), "清空缓存 %d KB",s/1024);
+			LogManager.i(getClass().getSimpleName(), "清空缓存 %d KB",s/1024);
 		}
 		SINGLE_INSTANCE=null;
 		super.finalize();
@@ -160,7 +160,7 @@ public class HttpImage {
 		
 		
 		private Bitmap getBitmap(String url) {
-			LogManager.log("获取图片", url);
+			LogManager.i("获取图片", url);
 			File f = fileCache.getFile(url);
 
 			// 先从文件缓存中查找是否有
@@ -303,7 +303,7 @@ public class HttpImage {
 					for (File f : tmpFiles) {
 						f.delete();
 					}
-					LogManager.log("FileCache","清空了%d个本地缓存图片",tmpFiles.length);
+					LogManager.i("FileCache","清空了%d个本地缓存图片",tmpFiles.length);
 				}
 			}
 		}
@@ -322,7 +322,7 @@ public class HttpImage {
 					for (File file : originalFiles) {
 						file.delete();
 					}
-					LogManager.log("FileCache","清空了%d个本地原始缓存图片",originalFiles.length);
+					LogManager.i("FileCache","清空了%d个本地原始缓存图片",originalFiles.length);
 				}
 			}
 		}
@@ -352,7 +352,7 @@ public class HttpImage {
 
 		public void setLimit(long new_limit) {
 			limit = new_limit;
-			LogManager.log(getClass().getSimpleName(), "内存缓冲区大小：%d 字节",limit);
+			LogManager.i(getClass().getSimpleName(), "内存缓冲区大小：%d 字节",limit);
 		}
 
 		public Bitmap get(String id) {
@@ -377,7 +377,7 @@ public class HttpImage {
 		 * 
 		 */
 		private void checkSize() {
-			LogManager.log(getClass().getSimpleName(), "cache size=%d bytes, length=%d", size , cache.size());
+			LogManager.i(getClass().getSimpleName(), "cache size=%d bytes, length=%d", size , cache.size());
 			if (size > limit) {
 				// 先遍历最近最少使用的元素
 				Iterator<Entry<String, Bitmap>> iter = cache.entrySet().iterator();
@@ -389,7 +389,7 @@ public class HttpImage {
 						break;
 					}
 				}
-				LogManager.log(getClass().getSimpleName(), "Clean cache. New size=%d bytes, length=%d", size , cache.size());
+				LogManager.i(getClass().getSimpleName(), "Clean cache. New size=%d bytes, length=%d", size , cache.size());
 			}
 		}
 
