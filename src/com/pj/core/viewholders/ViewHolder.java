@@ -29,6 +29,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pj.core.ApplicationNotificationListener;
+import com.pj.core.AsyncExecutor;
 import com.pj.core.BaseActivity;
 import com.pj.core.BaseApplication;
 import com.pj.core.MessageListener;
@@ -1680,4 +1681,86 @@ public abstract class ViewHolder implements MessageListener{
 			group.setPersistentDrawingCache(group.getPersistentDrawingCache()|ViewGroup.PERSISTENT_ANIMATION_CACHE);
 		}
 	}
+	
+	
+/**********************线程执行*********************/
+	
+	/**
+	 * 执行异步任务
+	 * 任务会放到任务列表等待执行，如果前面还有任务未完成则会继续等待
+	 * @author PENGJU
+	 * @param executor
+	 */
+	public <T> void asyncExecute(AsyncExecutor<T> executor){
+		BaseApplication.getInstance().asyncExecute(executor);
+	}
+	/**
+	 * 延迟delay毫秒后执行异步任务
+	 * 任务等待delay毫秒后会放到任务列表等待执行，如果前面还有任务未完成则会继续等待
+	 * PENGJU
+	 * @param executor
+	 * @param delay
+	 */
+	public <T> void asyncExecute(AsyncExecutor<T> executor,long delay){
+		BaseApplication.getInstance().asyncExecute(executor, delay);
+	}
+	
+	/**
+	 * 取消队列中一个正在等待执行的异步任务
+	 * PENGJU
+	 * @param executor
+	 */
+	public void cancelAsyncExecute(AsyncExecutor<?> executor){
+		BaseApplication.getInstance().cancelAsyncExecute(executor);
+	}
+	
+	/**
+	 * 在线程池中执行指定对象或类的方法
+	 * lzw
+	 * 2014年5月29日 下午11:06:59
+	 * @param target		指定对象或类
+	 * @param methodName	方法名
+	 * @param arguments		参数值，null为无参数
+	 */
+	public void executeMethodInBackground(Object target,String methodName,Object... arguments) {
+		executeMethodInBackground(0,target, methodName, arguments);
+	}
+	/**
+	 * 在线程池中执行指定对象或类的方法
+	 * lzw
+	 * 2014年5月29日 下午11:06:59
+	 * @param delay			等待delay毫秒后执行
+	 * @param target		指定对象或类
+	 * @param methodName	方法名
+	 * @param arguments		参数值，null为无参数
+	 */
+	public void executeMethodInBackground(long delay,Object target,String methodName,Object... arguments) {
+		getApplication().executeMethodInBackground(delay, target, methodName, arguments);
+	}
+	
+	/**
+	 * 在主线程中执行指定对象或类的方法
+	 * lzw
+	 * 2014年5月29日 下午11:06:59
+	 * @param target		指定对象或类
+	 * @param methodName	方法名
+	 * @param arguments		参数值，null为无参数
+	 */
+	public void executeMethodInMainThread(Object target,String methodName,Object... arguments) {
+		executeMethodInMainThread(0, target, methodName, arguments);
+	}
+	/**
+	 * 在主线程中执行指定对象或类的方法
+	 * lzw
+	 * 2014年5月29日 下午11:06:59
+	 * @param delay			等待delay毫秒后执行
+	 * @param target		指定对象或类
+	 * @param methodName	方法名
+	 * @param arguments		参数值，null为无参数
+	 */
+	public void executeMethodInMainThread(long delay,Object target,String methodName,Object... arguments) {
+		getApplication().executeMethodInMainThread(delay, target, methodName, arguments);
+	}
+	
+	/**********************线程执行结束******************/
 }

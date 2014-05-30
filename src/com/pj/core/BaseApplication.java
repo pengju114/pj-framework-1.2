@@ -1,9 +1,12 @@
 package com.pj.core;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import com.pj.core.http.HttpImage;
 import com.pj.core.managers.LogManager;
@@ -78,25 +81,22 @@ public class BaseApplication extends Application {
 	
 	/** 异步线程处理器 */
 	public static final Handler ASYNC_THREAD_HANDLER;
+	private static final SparseArray<AsyncExecutorWrapper<?>> ASYNC_EXECUTOR_ARRAY=new SparseArray<BaseApplication.AsyncExecutorWrapper<?>>();
 	static{
 		HandlerThread thread=new HandlerThread(BaseApplication.class.getName());
 		thread.start();
 		ASYNC_THREAD_HANDLER=new Handler(thread.getLooper());
 	}
 	
-	private static final SparseArray<AsyncExecuteAction<?>> ASYNC_EXECUTOR_ARRAY=new SparseArray<BaseApplication.AsyncExecuteAction<?>>();
-	
-	
-	
-	private static BaseApplication application;
-	
-	private TaskManager    taskManager;
-	
-	private Map<Object, Object> session;
-	private Map<Activity, Object> activitiesMap;
-	private Map<BaseService, Object> serviceMap;
 	private SparseArray<HashMap<ApplicationNotificationListener,Object>> applicationNotificationListeners;//notificationID->[listener->sender]
-	private final int detectDelay=500;
+	
+	private static BaseApplication   application;
+	private ExecutorService 		 threadPool;
+	private TaskManager    			 taskManager;
+	private Map<Object, Object> 	 session;
+	private Map<Activity, Object> 	 activitiesMap;
+	private Map<BaseService, Object> serviceMap;
+	private final int 				 detectDelay=500;
 	
 	private AsyncExecutor<Boolean> exitExecutor=new AsyncExecutor<Boolean>() {
 		
@@ -136,6 +136,21 @@ public class BaseApplication extends Application {
 			taskManager=new TaskManager(AppConfig.getConfig(AppConfig.CONF_TASK_SIZE, AppConfig.VALUE_TASK_SIZE));
 		}
 		return taskManager;
+	}
+	
+	public ExecutorService getThreadPool() {
+		if (threadPool==null) {
+			synchronized (this) {
+				if (threadPool==null) {
+					int size = Runtime.getRuntime().availableProcessors()*2;
+					if (size>5) {
+						size = 5;
+					}
+					threadPool = Executors.newFixedThreadPool(size);
+				}
+			}
+		}
+		return threadPool;
 	}
 	
 	/**
@@ -434,6 +449,11 @@ public class BaseApplication extends Application {
 		getInstance().applicationNotificationListeners.clear();
 		
 		application.unregisterNetworkStateReciever();
+		
+		if (application.threadPool!=null) {
+			application.threadPool.shutdownNow();
+			application.threadPool = null;
+		}
 	}
 	
 	protected void onExit(){
@@ -444,42 +464,96 @@ public class BaseApplication extends Application {
 	
 	/**
 	 * 执行异步任务
+	 * 任务会放到任务列表等待执行，如果前面还有任务未完成则会继续等待
 	 * PENGJU
 	 * 2014年3月17日 下午10:21:18
 	 * @param executor
 	 */
 	public <T> void asyncExecute(AsyncExecutor<T> executor){
-		AsyncExecuteAction<T> action=new AsyncExecuteAction<T>(executor);
+		AsyncExecutorWrapper<T> action=new AsyncExecutorWrapper<T>(executor);
 		ASYNC_EXECUTOR_ARRAY.put(executor.hashCode(), action);
 		postMessage(MSG_HANDLE_ASYNC_PREPARE, null, action);
-		
 	}
 	/**
 	 * 延迟delay毫秒后执行异步任务
+	 * 任务等待delay毫秒后会放到任务列表等待执行，如果前面还有任务未完成则会继续等待
 	 * PENGJU
 	 * 2013-1-20 上午10:39:01
 	 * @param executor
 	 * @param delay
 	 */
 	public <T> void asyncExecute(AsyncExecutor<T> executor,long delay){
-		AsyncExecuteAction<T> action=new AsyncExecuteAction<T>(executor);
+		AsyncExecutorWrapper<T> action=new AsyncExecutorWrapper<T>(executor);
 		ASYNC_EXECUTOR_ARRAY.put(executor.hashCode(), action);
 		postMessage(MSG_HANDLE_ASYNC_PREPARE, null, delay, action);
 	}
 	
 	/**
-	 * 取消一个正在等待执行的异步任务
+	 * 取消队列中一个正在等待执行的异步任务
 	 * PENGJU
 	 * 2014年3月17日 下午10:21:45
 	 * @param executor
 	 */
 	public void cancelAsyncExecute(AsyncExecutor<?> executor){
 		removeMessages(MSG_HANDLE_ASYNC_PREPARE);
-		AsyncExecuteAction<?> action=ASYNC_EXECUTOR_ARRAY.get(executor.hashCode());
+		AsyncExecutorWrapper<?> action=ASYNC_EXECUTOR_ARRAY.get(executor.hashCode());
 		ASYNC_EXECUTOR_ARRAY.remove(executor.hashCode());
 		if (action!=null) {
 			ASYNC_THREAD_HANDLER.removeCallbacks(action);
 		}
+	}
+	
+	
+	
+	
+	/**
+	 * 在线程池中执行指定对象或类的方法
+	 * lzw
+	 * 2014年5月29日 下午11:06:59
+	 * @param target		指定对象或类
+	 * @param methodName	方法名
+	 * @param arguments		参数值，null为无参数
+	 */
+	public void executeMethodInBackground(Object target,String methodName,Object... arguments) {
+		executeMethodInBackground(0, target, methodName, arguments);
+	}
+	/**
+	 * 在线程池中执行指定对象或类的方法
+	 * lzw
+	 * 2014年5月29日 下午11:06:59
+	 * @param delay			等待delay毫秒后执行
+	 * @param target		指定对象或类
+	 * @param methodName	方法名
+	 * @param arguments		参数值，null为无参数
+	 */
+	public void executeMethodInBackground(long delay,Object target,String methodName,Object... arguments) {
+		ExecuteMethodRunnable emr = new ExecuteMethodRunnable(delay, target, methodName, arguments, false);
+		getThreadPool().execute(emr);
+	}
+	
+	/**
+	 * 在主线程中执行指定对象或类的方法
+	 * lzw
+	 * 2014年5月29日 下午11:06:59
+	 * @param target		指定对象或类
+	 * @param methodName	方法名
+	 * @param arguments		参数值，null为无参数
+	 */
+	public void executeMethodInMainThread(Object target,String methodName,Object... arguments) {
+		executeMethodInMainThread(0, target, methodName, arguments);
+	}
+	/**
+	 * 在主线程中执行指定对象或类的方法
+	 * lzw
+	 * 2014年5月29日 下午11:06:59
+	 * @param delay			等待delay毫秒后执行
+	 * @param target		指定对象或类
+	 * @param methodName	方法名
+	 * @param arguments		参数值，null为无参数
+	 */
+	public void executeMethodInMainThread(long delay,Object target,String methodName,Object... arguments) {
+		ExecuteMethodRunnable emr = new ExecuteMethodRunnable(delay, target, methodName, arguments, true);
+		getThreadPool().execute(emr);
 	}
 	
 	/**********************线程执行结束******************/
@@ -526,10 +600,10 @@ public class BaseApplication extends Application {
 	 * 2013-1-20 上午10:22:29
 	 * email: pengju114@163.com
 	 */
-	private class AsyncExecuteAction<T> implements Runnable,MessageListener{
+	private class AsyncExecutorWrapper<T> implements Runnable,MessageListener{
 		
 		private AsyncExecutor<T> executor;
-		public AsyncExecuteAction(AsyncExecutor<T> executor){
+		public AsyncExecutorWrapper(AsyncExecutor<T> executor){
 			this.executor=executor;
 		}
 
@@ -544,7 +618,7 @@ public class BaseApplication extends Application {
 			if (messageId==MSG_HANDLE_ASYNC_PREPARE) {
 				executor.executePrepare();
 				//执行完准备操作就开始异步任务
-				ASYNC_THREAD_HANDLER.post(AsyncExecuteAction.this);
+				ASYNC_THREAD_HANDLER.post(AsyncExecutorWrapper.this);
 			} else if (messageId==MSG_HANDLE_ASYNC_COMPLETE) {
 				T v=(T) data;
 				executor.executeComplete(v);
@@ -561,7 +635,7 @@ public class BaseApplication extends Application {
 				LogManager.trace(e);
 			} finally{
 				
-				postMessage(MSG_HANDLE_ASYNC_COMPLETE, v, AsyncExecuteAction.this);
+				postMessage(MSG_HANDLE_ASYNC_COMPLETE, v, AsyncExecutorWrapper.this);
 				ASYNC_EXECUTOR_ARRAY.remove(executor.hashCode());
 			}
 		}
@@ -621,5 +695,66 @@ public class BaseApplication extends Application {
 	 */
 	public Object getTransientObject(int key){
 		return session.remove(String.valueOf(key));
+	}
+	
+	
+	
+	private class ExecuteMethodRunnable implements Runnable,MessageListener{
+		private long 		delay;
+		private Object 		target;
+		private String 		method;
+		private Object[]    arguments;
+		private boolean     executeInMainThread;
+		
+		public ExecuteMethodRunnable(
+				long 		delay,
+				Object 		target,
+				String 		method,
+				Object[]    arguments,
+				boolean     executeInMainThread ){
+			this.delay 		= delay;
+			this.target 	= target;
+			this.method		= method;
+			this.arguments	= arguments;
+			this.executeInMainThread = executeInMainThread;
+		}
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			try {
+				if (delay>0) {
+					Thread.sleep(delay);
+				}
+				
+				if (executeInMainThread) {
+					Method md = AppUtility.findMethod(target, method, arguments);
+					if (md != null) {
+						postMessage(0, md, this);
+					}else {
+						throw new UnsupportedOperationException("method:"+method+" not fount");
+					}
+				}else {
+					AppUtility.invokeMethod(target, method, arguments);
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				LogManager.e(BaseApplication.this.getClass().getSimpleName(), "execute method "+method, e);
+			}
+		}
+
+		@Override
+		public void handleMessage(int messageId, Object data) {
+			// TODO Auto-generated method stub
+			Method md = (Method) data;
+			if (md!=null) {
+				try {
+					md.invoke(target, arguments);
+				} catch (Exception e) {
+					// TODO: handle exception
+					LogManager.trace(e);
+				}
+			}
+		}
 	}
 }

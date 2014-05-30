@@ -3,11 +3,14 @@ package com.pj.core.utilities;
 import java.io.File;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+
 import com.pj.core.BaseApplication;
 import com.pj.core.managers.LogManager;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -66,6 +69,7 @@ public class AppUtility {
 		InputMethodManager inputMethodManager=(InputMethodManager) trigger.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 		return inputMethodManager.showSoftInput(trigger, InputMethodManager.SHOW_FORCED);
 	}
+	
 	
 	@SuppressWarnings("unchecked")
 	public static String getFileMimeType(File file) {
@@ -321,5 +325,99 @@ public class AppUtility {
 		}
 		
 		return -1;
+	}
+	
+	/**
+	 * 调用指定对象或类的方法
+	 * lzw
+	 * 2014年5月29日 下午10:47:27
+	 * @param target     目标对象或类
+	 * @param name		 方法名字
+	 * @param arguments  调用方法时的参数值，null表示无参数方法，值的类型一定要对应上方法参数类型
+	 * @return			 执行方法后返回的值，方法无返回则返回null
+	 * @throws Exception
+	 */
+	public static Object invokeMethod(Object target,String name,Object...arguments) throws Exception{
+		
+	
+		Method method = findMethod(target, name, arguments);
+		Object val    = null;
+		
+		if (method!=null) {
+			val = method.invoke(target, arguments);
+		}else {
+			throw new UnsupportedOperationException("method \""+name+"\" with "+(arguments==null?0:arguments.length)+" argument(s) not found!");
+		}
+		
+		
+		return val;
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static Method findMethod(Object target,String name,Object... arguments) {
+		
+		Class clazz = (target instanceof Class)?(Class)target:target.getClass();
+		
+		Class[] argumentTypes = null;
+		if (arguments!=null) {
+			argumentTypes = new Class[arguments.length];
+			for (int i = 0; i < arguments.length; i++) {
+				argumentTypes[i] = arguments[i]==null?null:arguments[i].getClass();
+			}
+		}
+		
+		Method method = null;
+		try {
+			method = clazz.getDeclaredMethod(name, argumentTypes);
+		} catch (Exception e) {
+			// TODO: handle exception
+			try {
+				method = clazz.getMethod(name, argumentTypes);
+			} catch (Exception e2) {
+				// TODO: handle exception
+				method = filterMethod(clazz.getDeclaredMethods(), name, argumentTypes);
+				if (method==null) {
+					method = filterMethod(clazz.getMethods(), name, argumentTypes);
+				}
+			}
+		}
+		
+		if (method!=null) {
+			method.setAccessible(true);
+		}
+		
+		return method;
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static Method filterMethod(Method[] mds,String name ,Class[]argumentTypes){
+		int targetArgumentLength = argumentTypes==null?0:argumentTypes.length;
+		
+		Method target = null;
+		
+		for (int i = 0; i < mds.length; i++) {
+			Method tmp = mds[i];
+			Class[] argTypes = tmp.getParameterTypes();
+			int argLen = argTypes==null?0:argTypes.length;
+			if (argLen==targetArgumentLength && tmp.getName().equals(name)) {
+				if (argLen==0) {
+					target = tmp;
+					break;
+				}else {
+					int c = 0;
+					for (int j = 0; j < argLen; j++) {
+						if (argumentTypes[j]==null || argTypes[j].isAssignableFrom(argumentTypes[j])) {
+							c++;
+						}
+					}
+					if (c==argLen) {
+						target = tmp;
+						break;
+					}
+				}
+			}
+		}
+		
+		return target;
 	}
 }
