@@ -4,7 +4,6 @@
  */
 package com.pj.core.utilities;
 
-import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -20,6 +19,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+
+
 import com.pj.core.datamodel.DataWrapper;
 import com.pj.core.managers.LogManager;
 
@@ -29,8 +30,7 @@ import com.pj.core.managers.LogManager;
  * 2012-7-27 10:40:10
  */
 public class HttpUtility {
-    private static final String VALUE_NODE_NAME="init-param";
-    private static final String VALUE_NODE_ATTRIBUTE_NAME="name";
+	private static final String NODE_NAME_LIST_ITEM="item";
     
     /**
      * XML数据处理
@@ -43,7 +43,9 @@ public class HttpUtility {
     	DataWrapper wrapper=null;
         try {
             Document doc=DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(in);
-            wrapper=parseValueNode(doc.getDocumentElement().getChildNodes());
+            wrapper = new DataWrapper();
+            DataWrapper parent  = new DataWrapper();
+            parseNodeTree(parent,wrapper,doc.getDocumentElement());
             doc=null;
         } catch (Exception e) {
         	LogManager.trace(e);
@@ -52,57 +54,64 @@ public class HttpUtility {
         return  wrapper;
     }
     
-    /**
-     * XML数据处理
-     * PENGJU
-     * 2012-10-18 13:45:56
-     * @param in
-     * @return
-     */
-    public static DataWrapper parseXML(String xml){
-    	DataWrapper wrapper=null;
-        try {
-            Document doc=DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new ByteArrayInputStream(xml.getBytes("UTF-8")));
-            wrapper=parseValueNode(doc.getDocumentElement().getChildNodes());
-            doc=null;
-        } catch (Exception e) {
-        	LogManager.trace(e);
-        }
-        
-        return  wrapper;
-    }
     
-    private static DataWrapper parseValueNode(NodeList list){
-    	DataWrapper wrapper=new DataWrapper();
-        for (int i = 0; i < list.getLength(); i++) {
-        	
-    		Node node = list.item(i);
-            if (node.getNodeType()==Node.TEXT_NODE) {
-                continue;
-            }
-            String nodeName=node.getNodeName();
-            //元数据节点
-            if (VALUE_NODE_NAME.equals(nodeName)) {
-            	//key属性值
-                String key=node.getAttributes().getNamedItem(VALUE_NODE_ATTRIBUTE_NAME).getNodeValue();
-                Node fc=node.getFirstChild();
-                String value=null;
-                if (fc!=null) {
-                	value=fc.getNodeValue().trim();
+    private static void parseNodeTree(DataWrapper parent,DataWrapper element,Node node) {
+		// TODO Auto-generated method stub
+    	
+		
+		if (node.getNodeType() == Node.ELEMENT_NODE) {
+			
+			NodeList list = node.getChildNodes();
+			
+			if (list!=null && list.getLength()>1) {
+				for (int i = 0; i < list.getLength(); i++) {
+					Node n = list.item(i);
+					if (n.getNodeType()==Node.TEXT_NODE) {
+						continue;
+					}
+					
+					if (!isMetaItemAndFetch(n, element)) {
+						DataWrapper childWrapper = new DataWrapper();
+						parseNodeTree(element , childWrapper, n);
+						
+						if (NODE_NAME_LIST_ITEM.equalsIgnoreCase(n.getNodeName())) {
+							addChildWrapper(parent, childWrapper, node.getNodeName());
+						}else {
+							addChildWrapper(element, childWrapper, n.getNodeName());
+						}
+					}
 				}
-                wrapper.setObject(key, value);
-            	
-            } else {
-            	List<DataWrapper> l=wrapper.getList(nodeName);
-                if (l==null) {
-                    l=new ArrayList<DataWrapper>();
-                    wrapper.setObject(nodeName, l);
-                }
-                l.add(parseValueNode(node.getChildNodes()));
-            }
-        }
-        
-        return wrapper;
+			}
+		}
+	}
+	
+	private static boolean isMetaItemAndFetch(Node node,DataWrapper wrapper){
+		NodeList children = node.getChildNodes();
+		if (node.getNodeType()==Node.ELEMENT_NODE && children.getLength()<2) {
+			Node child = children.item(0);
+			boolean isMetaItem = child==null || (child.getNodeType()==Node.TEXT_NODE||child.getNodeType()==Node.CDATA_SECTION_NODE);
+			if (isMetaItem && wrapper!=null) {
+				String val = child==null?"":child.getNodeValue();
+				if (val==null) {
+					val = "";
+				}
+				wrapper.setObject(node.getNodeName(), val.trim());
+			}
+			return isMetaItem;
+		}
+		return false;
+	}
+    
+    private static void addChildWrapper(DataWrapper parent,DataWrapper child,String key){
+    	if (child.isEmpty()) {
+			return;
+		}
+    	List<DataWrapper> array = parent.getList(key);
+		if (array == null) {
+			array = new ArrayList<DataWrapper>();
+			parent.setObject(key, array);
+		}
+		array.add(child);
     }
     
     /**
@@ -164,7 +173,7 @@ public class HttpUtility {
 	
 	private static List<DataWrapper> parseJSONArray(JSONArray object) {
 		// TODO Auto-generated method stub
-		ArrayList<DataWrapper> list=new ArrayList<DataWrapper>();
+		ArrayList<DataWrapper> list=new ArrayList<DataWrapper>(object.length());
 		for (int i = 0; i < object.length(); i++) {
 			try {
 				Object o=object.get(i);

@@ -1,6 +1,7 @@
 package com.pj.core.http;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.pj.core.datamodel.DataWrapper;
 import com.pj.core.utilities.ConvertUtility;
@@ -22,11 +23,15 @@ public class HttpResult implements Serializable{
 	public static final int HTTP_NOT_LOGIN			=-1;
 	public static final int HTTP_ERROR				=-9;
 	
-	private static final String KEY_STATUS_CODE		="status";
-	private static final String KEY_STATUS_TEXT		="status_text";
-	private static final String KEY_TOTAL_RESULT_COUNT="totalElements";
-	private static final String KEY_CURRENT_PAGE	="pageNumber";
-	private static final String KEY_PAGE_COUNT		="lastPageNumber";
+	private static final String KEY_HEADER		    ="header";
+	private static final String KEY_RESULT		    ="result";
+	
+	
+	private static final String KEY_STATUS_CODE		  ="statusCode";
+	private static final String KEY_STATUS_TEXT		  ="statusText";
+	private static final String KEY_TOTAL_RESULT_COUNT="totalResults";
+	private static final String KEY_CURRENT_PAGE	  ="pageNumber";
+	private static final String KEY_PAGE_COUNT		  ="pageCount";
 	
 	private Object	  responseData;
 	private Parameter responseHeader;
@@ -50,10 +55,14 @@ public class HttpResult implements Serializable{
 		// TODO Auto-generated method stub
 		statusCode=HTTP_ERROR;
 		if (responseData!=null && (responseData instanceof DataWrapper)) {
+			
 			DataWrapper wrapper=(DataWrapper) responseData;
-			statusCode=ConvertUtility.parseInt(wrapper.getString(KEY_STATUS_CODE), statusCode);
-			if (!StringUtility.isEmpty(wrapper.getString(KEY_STATUS_TEXT))) {
-				statusText=wrapper.getString(KEY_STATUS_TEXT);
+			DataWrapper header = wrapper.getObjectAndIgnoreList(KEY_HEADER);
+			if (header!=null) {
+				statusCode=ConvertUtility.parseInt(header.getString(KEY_STATUS_CODE), statusCode);
+				if (!StringUtility.isEmpty(header.getString(KEY_STATUS_TEXT))) {
+					statusText=header.getString(KEY_STATUS_TEXT);
+				}
 			}
 		}
 	}
@@ -80,6 +89,14 @@ public class HttpResult implements Serializable{
 		return null;
 	}
 	
+	public List<DataWrapper> getDataList(){
+		if (responseData!=null && (responseData instanceof DataWrapper)) {
+			DataWrapper wrapper=(DataWrapper) responseData;
+			return wrapper.getList(KEY_RESULT);
+		}
+		return null;
+	}
+	
 	public Parameter getResponseHeader() {
 		return responseHeader;
 	}
@@ -97,7 +114,8 @@ public class HttpResult implements Serializable{
 	private int getIntValue(String key){
 		if (responseData!=null && (responseData instanceof DataWrapper)) {
 			DataWrapper wrapper=(DataWrapper) responseData;
-			return wrapper.getInt(key);
+			DataWrapper header = wrapper.getObjectAndIgnoreList(KEY_HEADER);
+			return header.getInt(key);
 		}
 		return -1;
 	}
