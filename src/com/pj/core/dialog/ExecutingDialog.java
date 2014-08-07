@@ -15,7 +15,8 @@ public class ExecutingDialog extends BaseDialog implements CacheableDialog{
 	private TextView statusTextView;
 
 	public ExecutingDialog(Context context) {
-		super(context);
+		// 全屏
+		this(context, android.R.style.Theme_Translucent_NoTitleBar);
 	}
 
 
