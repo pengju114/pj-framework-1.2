@@ -1,18 +1,19 @@
 package com.pj.core.dialog;
 
 import android.content.DialogInterface;
+import android.view.KeyEvent;
 import android.view.Window;
 
 import com.pj.core.managers.LogManager;
 import com.pj.core.viewholders.ViewHolder;
 
-public class HolderDialog extends BaseDialog{
+public class HolderDialog extends BaseDialog implements DialogInterface.OnKeyListener{
 	
 	private ViewHolder root;
 	private ViewHolder targetHolder;
 	
 	public HolderDialog(ViewHolder holder){
-		super(holder.getActivity());
+		super(holder.getActivity(),android.R.style.Theme_Translucent_NoTitleBar);
 		
 		root=holder.getActivity().new DecorViewHolder(holder.getActivity());
 		
@@ -27,6 +28,8 @@ public class HolderDialog extends BaseDialog{
 		targetHolder=holder;
 		//这样才会触发holder的生命周期函数
 		root.addChild(holder);
+		
+		setOnKeyListener(this);
 	}
 	
 	@Override
@@ -68,6 +71,12 @@ public class HolderDialog extends BaseDialog{
 		// TODO Auto-generated method stub
 		clear();
 		super.onDismiss(dialog);
+	}
+
+	@Override
+	public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		return targetHolder.onKeyDown(keyCode, event);
 	}
 
 }
