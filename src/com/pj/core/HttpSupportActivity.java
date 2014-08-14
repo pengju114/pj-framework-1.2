@@ -133,8 +133,6 @@ public class HttpSupportActivity extends BaseActivity implements HttpRequestList
 				request.addParameter(key, value);
 			}
 		}
-		request.setResponseDataFormat(HttpRequest.FORMAT_XML);
-		request.setResponseDataType(HttpRequest.DATA_DATAWRAPPER);
 		return request;
 	}
 

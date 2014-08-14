@@ -58,28 +58,28 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 	/**
 	 * 要求返回的数据类型为字节流(InputStream)
 	 */
-	public static final int 		DATA_STREAM=1<<1;
+	public static final int 		EXPRCTED_STREAM=1<<1;
 	/**
 	 * 要求返回的数据类型为字符串(String)
 	 */
-	public static final int 		DATA_STRING=1<<2;
+	public static final int 		EXPRCTED_STRING=1<<2;
 	/**
 	 * 要求返回的数据类型为TreeDataWrapper
 	 */
-	public static final int 		DATA_DATAWRAPPER=1<<3;
+	public static final int 		EXPRCTED_DATAWRAPPER=1<<3;
 	
 	/**
 	 * 服务器返回的数据为文本
 	 */
-	public static final int 		FORMAT_TEXT=1<<4;
+	public static final int 		RESPONSE_TEXT=1<<4;
 	/**
 	 * 服务器返回的数据为XML数据
 	 */
-	public static final int 		FORMAT_XML=1<<5;
+	public static final int 		RESPONSE_XML=1<<5;
 	/**
 	 * 服务器返回的数据为JSON数据
 	 */
-	public static final int 		FORMAT_JSON=1<<6;
+	public static final int 		RESPONSE_JSON=1<<6;
 	
 	//全局id
 	private static int 				GLOBAL_ID=Integer.MIN_VALUE/2;
@@ -102,7 +102,7 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 	/**
 	 * 拿到数据后要解析成的目标数据类型
 	 */
-	private int 					responseDataType;
+	private int 					expectedDataFormat;
 	/**
 	 * 指明服务器返回的数据类型
 	 */
@@ -111,6 +111,9 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 	private HttpRequestBase         nativeRequest;
 	
 	private HttpRequestListener		httpRequestListener;
+	
+	
+	private boolean                 sessionPersistent;
 	
 	public HttpRequest(String url,int requestCode){
 		this.url=url;
@@ -129,8 +132,9 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 		multipart=false;
 		method=METHOD_POST;
 		extraData=null;
-		responseDataType=DATA_DATAWRAPPER;
-		responseDataFormat=FORMAT_JSON;
+		expectedDataFormat=EXPRCTED_DATAWRAPPER;
+		responseDataFormat=RESPONSE_JSON;
+		sessionPersistent = true;
 	}
 	
 	public String getUrl() {
@@ -157,22 +161,34 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 	}
 	
 	/**
+	 * 是否维护会话
+	 * @param sessionPersistent
+	 */
+	public void setSessionPersistent(boolean sessionPersistent) {
+		this.sessionPersistent = sessionPersistent;
+	}
+	
+	public boolean isSessionPersistent() {
+		return sessionPersistent;
+	}
+	
+	/**
 	 * 设置要把服务器返回的数据解析成哪种数据类型
 	 * @param responseDataType 可用的值有<br>
-	 * {@link HttpRequest#DATA_DATAWRAPPER}(默认)<br>
-	 * {@link HttpRequest#DATA_STRING}<br>
-	 * {@link HttpRequest#DATA_INPUTSTREAM}
+	 * {@link HttpRequest#EXPRCTED_DATAWRAPPER}(默认)<br>
+	 * {@link HttpRequest#EXPRCTED_STRING}<br>
+	 * {@link HttpRequest#EXPRCTED_STREAM}
 	 */
-	public void setResponseDataType(int responseDataType) {
-		this.responseDataType = responseDataType;
+	public void setExpectedDataFormat(int expectedDataFormat) {
+		this.expectedDataFormat = expectedDataFormat;
 	}
 	
 	/**
 	 * 要解析成哪种目标数据类型
 	 * @return
 	 */
-	public int getResponseDataType() {
-		return responseDataType;
+	public int getExpectedDataFormat() {
+		return expectedDataFormat;
 	}
 	
 	/**
@@ -186,9 +202,9 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 	/**
 	 * 指明服务器将要返回的数据类型
 	 * @param responseDataFormat 可用的值有<br>
-	 * {@link HttpRequest#FORMAT_JSON}(默认)<br>
-	 * {@link HttpRequest#FORMAT_XML}<br>
-	 * {@link HttpRequest#FORMAT_TEXT}
+	 * {@link HttpRequest#RESPONSE_JSON}(默认)<br>
+	 * {@link HttpRequest#RESPONSE_XML}<br>
+	 * {@link HttpRequest#RESPONSE_TEXT}
 	 */
 	public void setResponseDataFormat(int responseDataFormat) {
 		this.responseDataFormat = responseDataFormat;
@@ -303,6 +319,10 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 	
 	private void addRequestHeader(org.apache.http.HttpRequest request) {
 		if (request!=null) {
+			if (isSessionPersistent()) {
+				headers.removeParameter("Cookie");
+				headers.addParameter("Cookie", "JSESSIONID="+BaseApplication.getInstance().getSessionId());
+			}
 			for (Entry<String, LinkedList<? extends Object>> h : headers.getParameterEntrys()) {
 				for (Object v : h.getValue()) {
 					request.addHeader(h.getKey(), StringUtility.toString(v));
@@ -381,22 +401,51 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 		}
 		
 		Object responseData=null;
-		if (getResponseDataType()==DATA_STRING) {
+		if (getExpectedDataFormat()==EXPRCTED_STRING) {
 			responseData=EntityUtils.toString(result, getCharset());
-		}else if (getResponseDataType()==DATA_STREAM) {
+		}else if (getExpectedDataFormat()==EXPRCTED_STREAM) {
 			responseData=result.getContent();
 		}else {
-			if (getResponseDataFormat()==FORMAT_JSON) {
+			if (getResponseDataFormat()==RESPONSE_JSON) {
 				responseData=HttpUtility.parseJSON(EntityUtils.toString(result, getCharset()));
-			}else if (getResponseDataFormat()==FORMAT_XML) {
+			}else if (getResponseDataFormat()==RESPONSE_XML) {
 				responseData=HttpUtility.parseXML(result.getContent());
 			}else {
 				throw new HttpException(BaseApplication.getInstance().getResources().getString(R.string.c_msg_http_illegal_data_format, "DATA_DATAWRAPPER"));
 			}
 		}
 		
+		// 获取session id
+		if (responseHeader!=null) {
+			for (String key : responseHeader.getParameterNames()) {
+				if ("Set-Cookie".equalsIgnoreCase(key)) {
+					Object[] cookie = responseHeader.getParameterValues(key);
+					String sessionString = null;
+					for (Object object : cookie) {
+						sessionString = StringUtility.toString(object);
+						int index = sessionString.indexOf("JSESSIONID=");
+						if (index==-1) {
+							index = sessionString.indexOf("jsessionid=");
+						}
+						if (index!=-1) {
+							String id = sessionString.substring(index+11);
+							if (id!=null) {
+								index = id.indexOf(";");
+								if (index>-1) {
+									id = id.substring(0, index);
+								}
+							}
+							BaseApplication.getInstance().setSessionId(id);
+							break;
+						}
+					}
+					break;
+				}
+			}
+		}
+		
 		HttpResult httpResult=new HttpResult(responseData, responseHeader);
-		if (getResponseDataType()!=DATA_DATAWRAPPER) {
+		if (getExpectedDataFormat()!=EXPRCTED_DATAWRAPPER) {
 			httpResult.statusCode=HttpResult.HTTP_OK;
 		}
 		

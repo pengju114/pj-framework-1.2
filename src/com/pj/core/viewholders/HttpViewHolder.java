@@ -174,8 +174,6 @@ public abstract class HttpViewHolder extends ViewHolder implements HttpRequestLi
 				request.addParameter(key, value);
 			}
 		}
-		request.setResponseDataFormat(HttpRequest.FORMAT_XML);
-		request.setResponseDataType(HttpRequest.DATA_DATAWRAPPER);
 		return request;
 	}
 
