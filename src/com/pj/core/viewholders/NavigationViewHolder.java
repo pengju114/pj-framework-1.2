@@ -72,7 +72,7 @@ public class NavigationViewHolder extends ViewHolder{
 	}
 	
 	public FrameLayout getNavigationContainerView() {
-		return (FrameLayout) find(navigationContainerID);
+		return (FrameLayout) findViewById(navigationContainerID);
 	}
 	
 	public ViewHolder getCurrentTopHolder(){
@@ -95,7 +95,7 @@ public class NavigationViewHolder extends ViewHolder{
 	@Override
 	protected void onApplyView(View view) {
 		// TODO Auto-generated method stub
-		navigationBarLayout=(RelativeLayout) find(navigationBarID);
+		navigationBarLayout=(RelativeLayout) findViewById(navigationBarID);
 	}
 	
 	
@@ -633,5 +633,9 @@ public class NavigationViewHolder extends ViewHolder{
 			// TODO Auto-generated method stub
 			
 		}
+	}
+	
+	public static class NavigationViewParams{
+		
 	}
 }

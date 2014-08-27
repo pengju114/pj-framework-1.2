@@ -8,6 +8,7 @@ import java.util.List;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils.TruncateAt;
 import android.util.SparseArray;
@@ -256,7 +257,7 @@ public abstract class ViewHolder implements MessageListener{
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public <T extends View> T find(int id) {
+	public <T extends View> T findViewById(int id) {
 		View selfView=getView();
 		if (selfView!=null) {
 			View v=selfView.findViewById(id);
@@ -305,7 +306,7 @@ public abstract class ViewHolder implements MessageListener{
 	public void assignClickListener(View.OnClickListener listener,int... viewIds){
 		if (viewIds!=null) {
 			for (int i : viewIds) {
-				View v=find(i);
+				View v=findViewById(i);
 				if (v!=null) {
 					v.setOnClickListener(listener);
 				}
@@ -320,7 +321,7 @@ public abstract class ViewHolder implements MessageListener{
 	 * @param viewId 要申请的视图ID
 	 */
 	public void applyViewOnHolder(ViewHolder holder,int viewId){
-		applyViewOnHolder(holder, holder.find(viewId));
+		applyViewOnHolder(holder, holder.findViewById(viewId));
 	}
 	
 	/**
@@ -384,7 +385,7 @@ public abstract class ViewHolder implements MessageListener{
 	
 	private void addChild(int containerID,ViewHolder holder,LayoutParams param,boolean animated) {
 		if (getView()!=null && holder.getView()!=null) {
-			addChild(find(containerID), holder, param, animated);
+			addChild(findViewById(containerID), holder, param, animated);
 		}
 	}
 	
@@ -456,7 +457,7 @@ public abstract class ViewHolder implements MessageListener{
 	 * @return            布局文件的根视图 如果ID为containerId的布局不存在则返回null
 	 */
 	public View addLayout(int containerId,int layout){
-		ViewGroup group = find(containerId);
+		ViewGroup group = findViewById(containerId);
 		if (group != null) {
 			View view = getLayoutInflater().inflate(layout, group, false);
 			
@@ -685,11 +686,12 @@ public abstract class ViewHolder implements MessageListener{
 	
 	/**
 	 * 设置视图数据
+	 * 在DefaultListAdapter中使用
 	 * lzw
 	 * 2013-5-12 下午9:50:56
 	 * @param wrapper
 	 */
-	public void setData(Object data){}
+	public void setItem(int index, Object data){}
 	
 	/**
 	 * 向UI线程发送消息
@@ -1464,6 +1466,14 @@ public abstract class ViewHolder implements MessageListener{
 			return defaultGobackButton;
 		}
 		
+		public Button newNavigationBarButton(String text , View.OnClickListener listener){
+			Button button = new Button(getActivity());
+			button.setText(text);
+			button.setOnClickListener(listener);
+			button.setBackgroundResource(com.pj.core.R.drawable.c_navigation_item_selector);
+			return button;
+		}
+		
 		
 		/**
 		 * 将导航栏的组件加到相对布局中
@@ -1631,7 +1641,7 @@ public abstract class ViewHolder implements MessageListener{
 	}
 	
 	public void setText(int resId,CharSequence text){
-		TextView textView=find(resId);
+		TextView textView=findViewById(resId);
 		if (textView!=null) {
 			textView.setText(text);
 		}
@@ -1763,4 +1773,60 @@ public abstract class ViewHolder implements MessageListener{
 	}
 	
 	/**********************线程执行结束******************/
+	
+	
+	/*******************  导航栏组件配置参数部分  ********************/
+	public static class NavigationBarParams{
+		/** 返回按钮字体大小，单位为SP */
+		public static int GobackButtonTextSize = 16;
+		/** 返回按钮正常状态字体颜色 */
+		public static int GobackButtonPlainTextColor = Color.WHITE;
+		/** 返回按钮按下状态字体颜色 */
+		public static int GobackButtonPressedTextColor = Color.WHITE;
+		/** 返回按钮背景 */
+		public static Drawable GobackButtonBackground;
+		
+		/** 返回按钮padding，单位为dip */
+		public static int GobackButtonPaddingLeft = 4;
+		/** 返回按钮padding，单位为dip */
+		public static int GobackButtonPaddingTop = 2;
+		/** 返回按钮padding，单位为dip */
+		public static int GobackButtonPaddingRight = 4;
+		/** 返回按钮padding，单位为dip */
+		public static int GobackButtonPaddingBottom = 2;
+		/** 返回按钮最大高度，单位为dip */
+		public static int GobackButtonMaxHeight = 36;
+		/** 返回按钮最小高度，单位为dip */
+		public static int GobackButtonMinHeight = 32;
+		
+		
+		/** 返回按钮字体大小，单位为SP */
+		public static int TitleTextSize = 18;
+		/** 返回按钮字体颜色 */
+		public static int TitleTextColor = Color.WHITE;
+		
+		
+		/** 导航栏普通按钮字体大小，单位为SP */
+		public static int ItemButtonTextSize = 16;
+		/** 导航栏普通按钮正常状态字体颜色 */
+		public static int ItemButtonPlainTextColor = Color.WHITE;
+		/** 导航栏普通按钮按下状态字体颜色 */
+		public static int ItemButtonPressedTextColor = Color.WHITE;
+		/** 导航栏普通按钮背景 */
+		public static Drawable ItemButtonBackground;
+		
+		/** 导航栏普通按钮padding，单位为dip */
+		public static int ItemButtonPaddingLeft = 4;
+		/** 导航栏普通按钮padding，单位为dip */
+		public static int ItemButtonPaddingTop = 2;
+		/** 导航栏普通按钮padding，单位为dip */
+		public static int ItemButtonPaddingRight = 4;
+		/** 导航栏普通按钮padding，单位为dip */
+		public static int ItemButtonPaddingBottom = 2;
+		
+		/** 导航栏普通按钮最大高度，单位为dip */
+		public static int ItemButtonMaxHeight = 36;
+		/** 导航栏普通按钮最小高度，单位为dip */
+		public static int ItemButtonMinHeight = 32;
+	}
 }

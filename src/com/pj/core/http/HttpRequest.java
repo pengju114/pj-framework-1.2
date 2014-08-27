@@ -52,7 +52,7 @@ import com.pj.core.utilities.URLUtility;
  *
  */
 public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
-	public static final String 		METHOD_GET="GET";
+	public static final String 		METHOD_GET ="GET";
 	public static final String 		METHOD_POST="POST";
 	
 	/**

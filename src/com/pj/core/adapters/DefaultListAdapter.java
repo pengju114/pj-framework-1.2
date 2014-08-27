@@ -80,7 +80,7 @@ public class DefaultListAdapter<T> extends ArrayAdapter<T>{
 	protected void onAssignData(ViewHolder item,int pos) {
 		
 		T info=getItem(pos);
-		item.setData(info);
+		item.setItem(pos, info);
 	}
 	
 	public HashSet<ViewHolder> getCacheHolders() {
