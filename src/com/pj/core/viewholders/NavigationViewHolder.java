@@ -8,6 +8,7 @@ import com.pj.core.managers.LogManager;
 import com.pj.core.transition.AnimationFactory;
 import com.pj.core.utilities.DimensionUtility;
 
+import android.graphics.Color;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -636,6 +637,52 @@ public class NavigationViewHolder extends ViewHolder{
 	}
 	
 	public static class NavigationViewParams{
+		/** 导航栏高度 ,单位为dip*/
+		public static int NavigationBarHeight = 44;
+		/**  导航栏背景  */
+		public static int NavigationBarBackground;
+		/**  导航栏背景颜色,若已设置{@link #NavigationBarBackground}则忽略此颜色  */
+		public static int NavigationBarBackgroundColor = Color.LTGRAY;
 		
+		/** 导航栏padding，单位为dip */
+		public static int NavigationBarPaddingLeft = 12;
+		/** 导航栏padding，单位为dip */
+		public static int NavigationBarPaddingTop = 0;
+		/** 导航栏padding，单位为dip */
+		public static int NavigationBarPaddingRight = 12;
+		/** 导航栏padding，单位为dip */
+		public static int NavigationBarPaddingBottom = 0;
+		
+		
+		
+		
+		/**  导航内容容器背景  */
+		public static int NavigationContentBackground;
+		/**  导航内容容器背景颜色,若已设置{@link #NavigationContentBackground}则忽略此颜色  */
+		public static int NavigationContentBackgroundColor = Color.LTGRAY;
+		
+		/** 导航内容容器padding，单位为dip */
+		public static int NavigationContentPaddingLeft = 0;
+		/** 导航内容容器padding，单位为dip */
+		public static int NavigationContentPaddingTop = 0;
+		/** 导航内容容器padding，单位为dip */
+		public static int NavigationContentPaddingRight = 0;
+		/** 导航内容容器padding，单位为dip */
+		public static int NavigationContentPaddingBottom = 0;
+		
+		
+		/**  导航视图（导航栏和导航内容容器的父视图）背景  */
+		public static int NavigationBackground;
+		/**  导航视图（导航栏和导航内容容器的父视图）背景颜色,若已设置{@link #NavigationBackground}则忽略此颜色  */
+		public static int NavigationBackgroundColor = Color.WHITE;
+		
+		/** 导航视图（导航栏和导航内容容器的父视图）padding，单位为dip */
+		public static int NavigationPaddingLeft = 0;
+		/** 导航视图（导航栏和导航内容容器的父视图）padding，单位为dip */
+		public static int NavigationPaddingTop = 0;
+		/** 导航视图（导航栏和导航内容容器的父视图）padding，单位为dip */
+		public static int NavigationPaddingRight = 0;
+		/** 导航视图（导航栏和导航内容容器的父视图）padding，单位为dip */
+		public static int NavigationPaddingBottom = 0;
 	}
 }
