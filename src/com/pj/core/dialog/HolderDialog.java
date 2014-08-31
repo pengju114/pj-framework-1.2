@@ -13,7 +13,7 @@ public class HolderDialog extends BaseDialog implements DialogInterface.OnKeyLis
 	private ViewHolder targetHolder;
 	
 	public HolderDialog(ViewHolder holder){
-		super(holder.getActivity(),android.R.style.Theme_Translucent_NoTitleBar);
+		super(holder.getActivity());
 		
 		root=holder.getActivity().new DecorViewHolder(holder.getActivity());
 		
@@ -26,6 +26,7 @@ public class HolderDialog extends BaseDialog implements DialogInterface.OnKeyLis
 		root.onViewAttached();
 		holder.attachedDialog=this;
 		targetHolder=holder;
+		
 		//这样才会触发holder的生命周期函数
 		root.addChild(holder);
 		

@@ -7,10 +7,12 @@ import com.pj.core.BaseActivity;
 import com.pj.core.managers.LogManager;
 import com.pj.core.transition.AnimationFactory;
 import com.pj.core.utilities.DimensionUtility;
+import com.pj.core.utilities.StringUtility;
 
 import android.graphics.Color;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
@@ -32,10 +34,9 @@ import android.widget.RelativeLayout;
  * email: pengju114@163.com
  */
 public class NavigationViewHolder extends ViewHolder{
-	private int navigationBarID;
-	private int navigationContainerID; 
 	
 	private RelativeLayout navigationBarLayout;
+	private FrameLayout    navigationContentLayout;
 	
 	private boolean animating;
 	private ArrayList<ViewHolder> pageHolders;
@@ -60,20 +61,88 @@ public class NavigationViewHolder extends ViewHolder{
 	public NavigationViewHolder(ViewHolder firstViewHolder) {
 		super(firstViewHolder.getActivity());
 		// TODO Auto-generated constructor stub
-		setLayoutResource(com.pj.core.R.layout.c_navigation_view);
+		setView(generateView());
 		
 		firstViewHolder.setDuplicateParentState(false);
 		push(firstViewHolder, false);
 	}
 	
 	
+	
+	
+	@SuppressWarnings("deprecation")
+	private View generateView() {
+		// TODO Auto-generated method stub
+		RelativeLayout rootLayout = new RelativeLayout(getActivity());
+		if (NavigationViewHolder.NavigationViewParams.NavigationBackgroundResource != 0) {
+			rootLayout.setBackgroundResource(NavigationViewHolder.NavigationViewParams.NavigationBackgroundResource);
+		}else {
+			rootLayout.setBackgroundColor(NavigationViewHolder.NavigationViewParams.NavigationBackgroundColor);
+		}
+		rootLayout.setPadding(
+				DimensionUtility.dp2px(NavigationViewHolder.NavigationViewParams.NavigationPaddingLeft), 
+				DimensionUtility.dp2px(NavigationViewHolder.NavigationViewParams.NavigationPaddingTop), 
+				DimensionUtility.dp2px(NavigationViewHolder.NavigationViewParams.NavigationPaddingRight), 
+				DimensionUtility.dp2px(NavigationViewHolder.NavigationViewParams.NavigationPaddingBottom)
+				);
+		
+		int navBarHeight = DimensionUtility.dp2px(NavigationViewHolder.NavigationViewParams.NavigationBarHeight);
+		navigationBarLayout = new RelativeLayout(getActivity());
+		if (NavigationViewHolder.NavigationViewParams.NavigationBarBackgroundResource != 0) {
+			navigationBarLayout.setBackgroundResource(NavigationViewHolder.NavigationViewParams.NavigationBarBackgroundResource);
+		}else {
+			navigationBarLayout.setBackgroundColor(NavigationViewHolder.NavigationViewParams.NavigationBarBackgroundColor);
+		}
+		navigationBarLayout.setPadding(
+				DimensionUtility.dp2px(NavigationViewHolder.NavigationViewParams.NavigationBarPaddingLeft), 
+				DimensionUtility.dp2px(NavigationViewHolder.NavigationViewParams.NavigationBarPaddingTop), 
+				DimensionUtility.dp2px(NavigationViewHolder.NavigationViewParams.NavigationBarPaddingRight), 
+				DimensionUtility.dp2px(NavigationViewHolder.NavigationViewParams.NavigationBarPaddingBottom)
+				);
+		
+		RelativeLayout.LayoutParams navBarParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, navBarHeight);
+		navBarParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+		navBarParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+		
+		
+		navigationContentLayout = new FrameLayout(getActivity());
+		if (NavigationViewHolder.NavigationViewParams.NavigationContentBackgroundResource != 0) {
+			navigationContentLayout.setBackgroundResource(NavigationViewHolder.NavigationViewParams.NavigationContentBackgroundResource);
+		}else {
+			navigationContentLayout.setBackgroundColor(NavigationViewHolder.NavigationViewParams.NavigationContentBackgroundColor);
+		}
+		
+		navigationContentLayout.setPadding(
+				DimensionUtility.dp2px(NavigationViewHolder.NavigationViewParams.NavigationContentPaddingLeft), 
+				DimensionUtility.dp2px(NavigationViewHolder.NavigationViewParams.NavigationContentPaddingTop), 
+				DimensionUtility.dp2px(NavigationViewHolder.NavigationViewParams.NavigationContentPaddingRight), 
+				DimensionUtility.dp2px(NavigationViewHolder.NavigationViewParams.NavigationContentPaddingBottom)
+				);
+		
+		RelativeLayout.LayoutParams navContentParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+		navContentParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+		navContentParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+		navContentParams.topMargin = navBarHeight + DimensionUtility.dp2px(NavigationViewHolder.NavigationViewParams.NavigationBarAndContentGap);
+		
+		navigationBarLayout.setClipToPadding(false);
+		navigationContentLayout.setClipToPadding(false);
+		
+		rootLayout.addView(navigationContentLayout, navContentParams);
+		rootLayout.addView(navigationBarLayout, navBarParams);
+		
+		return rootLayout;
+	}
+
+
+
+
 	public RelativeLayout getNavigationBarView() {
 		// TODO Auto-generated method stub
 		return navigationBarLayout;
 	}
 	
-	public FrameLayout getNavigationContainerView() {
-		return (FrameLayout) findViewById(navigationContainerID);
+	public FrameLayout getNavigationContentView() {
+		return navigationContentLayout;
 	}
 	
 	public ViewHolder getCurrentTopHolder(){
@@ -82,9 +151,6 @@ public class NavigationViewHolder extends ViewHolder{
 	
 	@Override
 	protected void initialize(BaseActivity activity, View view) {
-		// TODO Auto-generated method stub
-		navigationBarID=com.pj.core.R.id.c_navigation_bar;
-		navigationContainerID=com.pj.core.R.id.c_navigation_container;
 		
 		animating=false;
 		pageHolders=new ArrayList<ViewHolder>(8);
@@ -96,7 +162,6 @@ public class NavigationViewHolder extends ViewHolder{
 	@Override
 	protected void onApplyView(View view) {
 		// TODO Auto-generated method stub
-		navigationBarLayout=(RelativeLayout) findViewById(navigationBarID);
 	}
 	
 	
@@ -133,9 +198,14 @@ public class NavigationViewHolder extends ViewHolder{
 		ViewHolder topViewHolder=getTop();
 		pageHolders.add(holder);
 		
-		if (leftView==null && topViewHolder!=null) {
+		if (leftView==null && topViewHolder!=null && !bar.isHideGobackButton()) {
 			Button back=bar.getDefaultGobackButton();
-			back.setText(topViewHolder.getNavigationBar().getTitle());
+			if (StringUtility.isEmpty(bar.getGobackText())) {
+				back.setText(topViewHolder.getNavigationBar().getTitle());
+			}else {
+				back.setText(bar.getGobackText());
+			}
+			
 			back.setOnClickListener(gobackClickListener);
 			leftView=back;
 		}
@@ -219,9 +289,9 @@ public class NavigationViewHolder extends ViewHolder{
 			}
 		}
 		if (animate) {
-			addChild(getContentPushAnimation(holder),navigationContainerID, holder);
+			addChild(getContentPushAnimation(holder),navigationContentLayout, holder);
 		}else {
-			addChild(navigationContainerID,holder);
+			addChild(navigationContentLayout,holder);
 			onTransitionEnd();
 		}
 		
@@ -413,10 +483,10 @@ public class NavigationViewHolder extends ViewHolder{
 		//内容部分
 		if (animate) {
 			removeChild(getContentPopoutAnimation(currTopHolder), currTopHolder);
-			addChild(getContentPopinAnimation(gettingShowHolder), navigationContainerID, gettingShowHolder);
+			addChild(getContentPopinAnimation(gettingShowHolder), navigationContentLayout, gettingShowHolder);
 		}else {
 			removeChild(currTopHolder);
-			addChild(navigationContainerID, gettingShowHolder);
+			addChild(navigationContentLayout, gettingShowHolder);
 			onTransitionEnd();
 		}
 		
@@ -640,8 +710,8 @@ public class NavigationViewHolder extends ViewHolder{
 		/** 导航栏高度 ,单位为dip*/
 		public static int NavigationBarHeight = 44;
 		/**  导航栏背景  */
-		public static int NavigationBarBackground;
-		/**  导航栏背景颜色,若已设置{@link #NavigationBarBackground}则忽略此颜色  */
+		public static int NavigationBarBackgroundResource = 0;
+		/**  导航栏背景颜色,若已设置{@link #NavigationBarBackgroundResource}则忽略此颜色  */
 		public static int NavigationBarBackgroundColor = Color.LTGRAY;
 		
 		/** 导航栏padding，单位为dip */
@@ -657,8 +727,8 @@ public class NavigationViewHolder extends ViewHolder{
 		
 		
 		/**  导航内容容器背景  */
-		public static int NavigationContentBackground;
-		/**  导航内容容器背景颜色,若已设置{@link #NavigationContentBackground}则忽略此颜色  */
+		public static int NavigationContentBackgroundResource = 0;
+		/**  导航内容容器背景颜色,若已设置{@link #NavigationContentBackgroundResource}则忽略此颜色  */
 		public static int NavigationContentBackgroundColor = Color.LTGRAY;
 		
 		/** 导航内容容器padding，单位为dip */
@@ -672,8 +742,8 @@ public class NavigationViewHolder extends ViewHolder{
 		
 		
 		/**  导航视图（导航栏和导航内容容器的父视图）背景  */
-		public static int NavigationBackground;
-		/**  导航视图（导航栏和导航内容容器的父视图）背景颜色,若已设置{@link #NavigationBackground}则忽略此颜色  */
+		public static int NavigationBackgroundResource = 0;
+		/**  导航视图（导航栏和导航内容容器的父视图）背景颜色,若已设置{@link #NavigationBackgroundResource}则忽略此颜色  */
 		public static int NavigationBackgroundColor = Color.WHITE;
 		
 		/** 导航视图（导航栏和导航内容容器的父视图）padding，单位为dip */
@@ -684,5 +754,8 @@ public class NavigationViewHolder extends ViewHolder{
 		public static int NavigationPaddingRight = 0;
 		/** 导航视图（导航栏和导航内容容器的父视图）padding，单位为dip */
 		public static int NavigationPaddingBottom = 0;
+		
+		/** 导航栏和导航内容容器的间隔，默认0，负数则内容容器嵌入导航栏下面，单位为dip */
+		public static int NavigationBarAndContentGap = 0;
 	}
 }

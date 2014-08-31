@@ -16,6 +16,8 @@ import com.pj.core.res.Constants;
 import com.pj.core.services.BaseService;
 import com.pj.core.utilities.AppUtility;
 import com.pj.core.utilities.StringUtility;
+import com.pj.core.viewholders.NavigationViewHolder;
+import com.pj.core.viewholders.ViewHolder;
 
 import android.app.Activity;
 import android.app.Application;
@@ -24,6 +26,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -105,7 +108,7 @@ public class BaseApplication extends Application {
 		@Override
 		public void executeComplete(Boolean value) {
 			// TODO Auto-generated method stub
-			if (value.booleanValue()) {
+			if (value.booleanValue() && activitiesMap.size()<1) {
 				exit();
 				System.exit(0);
 			}
@@ -165,8 +168,22 @@ public class BaseApplication extends Application {
 		applicationNotificationListeners=new SparseArray<HashMap<ApplicationNotificationListener,Object>>();
 		init();
 		registerNetworkStateReciever();
+		
+		// 设置默认UI
+		setDefaultUI();
 	}
 	
+	
+	
+	private void setDefaultUI() {
+		// TODO Auto-generated method stub
+		ViewHolder.NavigationBarParams.GobackButtonBackgroundResource = R.drawable.c_navigation_back_selector;
+		ViewHolder.NavigationBarParams.ItemButtonBackgroundResource   = R.drawable.c_navigation_item_selector;
+		ViewHolder.NavigationBarParams.ItemButtonPressedTextColor = Color.YELLOW;
+		
+		NavigationViewHolder.NavigationViewParams.NavigationBarBackgroundResource = R.drawable.navigation_blue_bg;
+	}
+
 	private void registerNetworkStateReciever(){
 		IntentFilter intentFilter=new IntentFilter();
 		intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);

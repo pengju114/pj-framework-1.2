@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils.TruncateAt;
 import android.util.SparseArray;
@@ -379,6 +378,9 @@ public abstract class ViewHolder implements MessageListener{
 	public void addChild(int containerID,ViewHolder holder) {
 		addChild(containerID, holder,null);
 	}
+	public void addChild(ViewGroup container,ViewHolder holder) {
+		addChild(container, holder,null,false);
+	}
 	
 	public void addChild(int containerID,ViewHolder holder,LayoutParams param) {
 		
@@ -431,6 +433,12 @@ public abstract class ViewHolder implements MessageListener{
 	
 	public void addChild(Animation animation,ViewHolder holder,LayoutParams params){
 		addChild(getView(), holder, params, true);
+		//添加成功
+		startAddAnimation(animation,holder);
+	}
+	
+	public void addChild(Animation animation,ViewGroup container,ViewHolder holder){
+		addChild(container, holder, null, true);
 		//添加成功
 		startAddAnimation(animation,holder);
 	}
@@ -1323,10 +1331,13 @@ public abstract class ViewHolder implements MessageListener{
 		private View navigationRightView;
 		private View navigationCenterView;
 		
-		private String title;
+		private String   title;
 		private TextView titleView;
 		
-		Button defaultGobackButton;
+		private String   gobackText;
+		
+		private boolean  hideGobackButton = false;
+		Button           defaultGobackButton;
 		/**
 		 * 获取导航栏视图
 		 * @return
@@ -1460,8 +1471,20 @@ public abstract class ViewHolder implements MessageListener{
 			return titleView;
 		}
 		
+		public void setGobackText(String gobackText) {
+			this.gobackText = gobackText;
+		}
+		public String getGobackText() {
+			return gobackText;
+		}
 		
-		@SuppressWarnings("deprecation")
+		public void setHideGobackButton(boolean hideGobackButton) {
+			this.hideGobackButton = hideGobackButton;
+		}
+		public boolean isHideGobackButton() {
+			return hideGobackButton;
+		}
+		
 		public Button getDefaultGobackButton() {
 			if (defaultGobackButton==null) {
 				defaultGobackButton=new Button(getActivity());
@@ -1470,19 +1493,19 @@ public abstract class ViewHolder implements MessageListener{
 				
 				int[] color = new int[]{
 						ViewHolder.NavigationBarParams.GobackButtonPlainTextColor,
-						ViewHolder.NavigationBarParams.GobackButtonPlainTextColor,
+//						ViewHolder.NavigationBarParams.GobackButtonPlainTextColor,
 						ViewHolder.NavigationBarParams.GobackButtonPressedTextColor};
 				
 				int[][] states = new int[][]{
-						{android.R.attr.state_enabled},
+//						{android.R.attr.state_enabled},
 						{},
-						{android.R.attr.state_enabled,android.R.attr.state_pressed}
+						{android.R.attr.state_pressed}
 				};
 				ColorStateList textColorStateList = new ColorStateList(states, color);
 				
 				defaultGobackButton.setTextColor(textColorStateList);
-				if (ViewHolder.NavigationBarParams.GobackButtonBackground!=null) {
-					defaultGobackButton.setBackgroundDrawable(ViewHolder.NavigationBarParams.GobackButtonBackground);
+				if (ViewHolder.NavigationBarParams.GobackButtonBackgroundResource != 0) {
+					defaultGobackButton.setBackgroundResource(ViewHolder.NavigationBarParams.GobackButtonBackgroundResource);
 				}else {
 					defaultGobackButton.setBackgroundColor(ViewHolder.NavigationBarParams.GobackButtonBackgroundColor);
 				}
@@ -1497,12 +1520,10 @@ public abstract class ViewHolder implements MessageListener{
 			return defaultGobackButton;
 		}
 		
-		@SuppressWarnings("deprecation")
 		public Button newNavigationBarItem(String text , View.OnClickListener listener){
 			Button button = new Button(getActivity());
 			button.setText(text);
 			button.setOnClickListener(listener);
-//			button.setBackgroundResource(com.pj.core.R.drawable.c_navigation_item_selector);
 			
 			button.setTextSize(TypedValue.COMPLEX_UNIT_SP, ViewHolder.NavigationBarParams.ItemButtonTextSize);
 			
@@ -1519,8 +1540,8 @@ public abstract class ViewHolder implements MessageListener{
 			ColorStateList textColorStateList = new ColorStateList(states, color);
 			
 			button.setTextColor(textColorStateList);
-			if (ViewHolder.NavigationBarParams.ItemButtonBackground!=null) {
-				button.setBackgroundDrawable(ViewHolder.NavigationBarParams.ItemButtonBackground);
+			if (ViewHolder.NavigationBarParams.ItemButtonBackgroundResource != 0) {
+				button.setBackgroundResource(ViewHolder.NavigationBarParams.ItemButtonBackgroundResource);
 			}else {
 				button.setBackgroundColor(ViewHolder.NavigationBarParams.ItemButtonBackgroundColor);
 			}
@@ -1846,28 +1867,28 @@ public abstract class ViewHolder implements MessageListener{
 	/*******************  导航栏组件配置参数部分  ********************/
 	public static class NavigationBarParams{
 		/** 返回按钮字体大小，单位为SP */
-		public static int GobackButtonTextSize = 16;
+		public static int GobackButtonTextSize = 14;
 		/** 返回按钮正常状态字体颜色 */
 		public static int GobackButtonPlainTextColor = Color.WHITE;
 		/** 返回按钮按下状态字体颜色 */
-		public static int GobackButtonPressedTextColor = Color.WHITE;
+		public static int GobackButtonPressedTextColor = Color.YELLOW;
 		/** 返回按钮背景 */
-		public static Drawable GobackButtonBackground;
-		/** 返回按钮背景颜色,如果设置了 {@link #GobackButtonBackground }则忽略此颜色 */
+		public static int GobackButtonBackgroundResource = 0;
+		/** 返回按钮背景颜色,如果设置了 {@link #GobackButtonBackgroundResource }则忽略此颜色 */
 		public static int GobackButtonBackgroundColor = Color.TRANSPARENT;
 		
 		/** 返回按钮padding，单位为dip */
-		public static int GobackButtonPaddingLeft = 4;
+		public static int GobackButtonPaddingLeft = 6;
 		/** 返回按钮padding，单位为dip */
-		public static int GobackButtonPaddingTop = 2;
+		public static int GobackButtonPaddingTop = 1;
 		/** 返回按钮padding，单位为dip */
-		public static int GobackButtonPaddingRight = 4;
+		public static int GobackButtonPaddingRight = 6;
 		/** 返回按钮padding，单位为dip */
-		public static int GobackButtonPaddingBottom = 2;
+		public static int GobackButtonPaddingBottom = 1;
 		/** 返回按钮最大高度，单位为dip */
-		public static int GobackButtonMaxHeight = 36;
+		public static int GobackButtonMaxHeight = 32;
 		/** 返回按钮最小高度，单位为dip */
-		public static int GobackButtonMinHeight = 32;
+		public static int GobackButtonMinHeight = 16;
 		
 		
 		/** 标题字体大小，单位为SP */
@@ -1877,28 +1898,28 @@ public abstract class ViewHolder implements MessageListener{
 		
 		
 		/** 导航栏普通按钮字体大小，单位为SP */
-		public static int ItemButtonTextSize = 16;
+		public static int ItemButtonTextSize = 14;
 		/** 导航栏普通按钮正常状态字体颜色 */
 		public static int ItemButtonPlainTextColor = Color.WHITE;
 		/** 导航栏普通按钮按下状态字体颜色 */
 		public static int ItemButtonPressedTextColor = Color.WHITE;
 		/** 导航栏普通按钮背景 */
-		public static Drawable ItemButtonBackground;
-		/** 导航栏普通按钮背景颜色，如已设置了 {@link #ItemButtonBackground}则忽略此颜色 */
-		public static int ItemButtonBackgroundColor;
+		public static int ItemButtonBackgroundResource = 0;
+		/** 导航栏普通按钮背景颜色，如已设置了 {@link #ItemButtonBackgroundResource}则忽略此颜色 */
+		public static int ItemButtonBackgroundColor = Color.TRANSPARENT;
 		
 		/** 导航栏普通按钮padding，单位为dip */
-		public static int ItemButtonPaddingLeft = 4;
+		public static int ItemButtonPaddingLeft = 6;
 		/** 导航栏普通按钮padding，单位为dip */
-		public static int ItemButtonPaddingTop = 2;
+		public static int ItemButtonPaddingTop = 1;
 		/** 导航栏普通按钮padding，单位为dip */
-		public static int ItemButtonPaddingRight = 4;
+		public static int ItemButtonPaddingRight = 6;
 		/** 导航栏普通按钮padding，单位为dip */
-		public static int ItemButtonPaddingBottom = 2;
+		public static int ItemButtonPaddingBottom = 1;
 		
 		/** 导航栏普通按钮最大高度，单位为dip */
-		public static int ItemButtonMaxHeight = 36;
+		public static int ItemButtonMaxHeight = 32;
 		/** 导航栏普通按钮最小高度，单位为dip */
-		public static int ItemButtonMinHeight = 32;
+		public static int ItemButtonMinHeight = 16;
 	}
 }
