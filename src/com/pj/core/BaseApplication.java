@@ -16,8 +16,6 @@ import com.pj.core.res.Constants;
 import com.pj.core.services.BaseService;
 import com.pj.core.utilities.AppUtility;
 import com.pj.core.utilities.StringUtility;
-import com.pj.core.viewholders.NavigationViewHolder;
-import com.pj.core.viewholders.ViewHolder;
 
 import android.app.Activity;
 import android.app.Application;
@@ -26,7 +24,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -168,20 +165,6 @@ public class BaseApplication extends Application {
 		applicationNotificationListeners=new SparseArray<HashMap<ApplicationNotificationListener,Object>>();
 		init();
 		registerNetworkStateReciever();
-		
-		// 设置默认UI
-		setDefaultUI();
-	}
-	
-	
-	
-	private void setDefaultUI() {
-		// TODO Auto-generated method stub
-		ViewHolder.NavigationBarParams.GobackButtonBackgroundResource = R.drawable.c_navigation_back_selector;
-		ViewHolder.NavigationBarParams.ItemButtonBackgroundResource   = R.drawable.c_navigation_item_selector;
-		ViewHolder.NavigationBarParams.ItemButtonPressedTextColor = Color.YELLOW;
-		
-		NavigationViewHolder.NavigationViewParams.NavigationBarBackgroundResource = R.drawable.navigation_blue_bg;
 	}
 
 	private void registerNetworkStateReciever(){
@@ -525,51 +508,56 @@ public class BaseApplication extends Application {
 	
 	/**
 	 * 在线程池中执行指定对象或类的方法
+	 * 要执行的方法必须是用注解{@link com.pj.core.annotation.MethodIdentifier}}标明ID的方法
 	 * lzw
 	 * 2014年5月29日 下午11:06:59
 	 * @param target		指定对象或类
-	 * @param methodName	方法名
+	 * @param methodId	    方法ID
 	 * @param arguments		参数值，null为无参数
 	 */
-	public void executeMethodInBackground(Object target,String methodName,Object... arguments) {
-		executeMethodInBackground(0, target, methodName, arguments);
+	public void executeMethodInBackground(Object target,int methodId,Object... arguments) {
+		executeMethodInBackground(0, target, methodId, arguments);
 	}
+	
 	/**
 	 * 在线程池中执行指定对象或类的方法
+	 * 要执行的方法必须是用注解{@link com.pj.core.annotation.MethodIdentifier}}标明ID的方法
 	 * lzw
 	 * 2014年5月29日 下午11:06:59
 	 * @param delay			等待delay毫秒后执行
 	 * @param target		指定对象或类
-	 * @param methodName	方法名
+	 * @param methodId	    方法ID
 	 * @param arguments		参数值，null为无参数
 	 */
-	public void executeMethodInBackground(long delay,Object target,String methodName,Object... arguments) {
-		ExecuteMethodRunnable emr = new ExecuteMethodRunnable(delay, target, methodName, arguments, false);
+	public void executeMethodInBackground(long delay,Object target,int methodId,Object... arguments) {
+		ExecuteMethodRunnable emr = new ExecuteMethodRunnable(delay, target, methodId, arguments, false);
 		getThreadPool().execute(emr);
 	}
 	
 	/**
 	 * 在主线程中执行指定对象或类的方法
+	 * 要执行的方法必须是用注解{@link com.pj.core.annotation.MethodIdentifier}}标明ID的方法
 	 * lzw
 	 * 2014年5月29日 下午11:06:59
 	 * @param target		指定对象或类
-	 * @param methodName	方法名
+	 * @param methodId	    方法ID
 	 * @param arguments		参数值，null为无参数
 	 */
-	public void executeMethodInMainThread(Object target,String methodName,Object... arguments) {
-		executeMethodInMainThread(0, target, methodName, arguments);
+	public void executeMethodInMainThread(Object target,int methodId,Object... arguments) {
+		executeMethodInMainThread(0, target, methodId, arguments);
 	}
 	/**
 	 * 在主线程中执行指定对象或类的方法
+	 * 要执行的方法必须是用注解{@link com.pj.core.annotation.MethodIdentifier}}标明ID的方法
 	 * lzw
 	 * 2014年5月29日 下午11:06:59
 	 * @param delay			等待delay毫秒后执行
 	 * @param target		指定对象或类
-	 * @param methodName	方法名
+	 * @param methodId	    方法ID
 	 * @param arguments		参数值，null为无参数
 	 */
-	public void executeMethodInMainThread(long delay,Object target,String methodName,Object... arguments) {
-		ExecuteMethodRunnable emr = new ExecuteMethodRunnable(delay, target, methodName, arguments, true);
+	public void executeMethodInMainThread(long delay,Object target,int methodId,Object... arguments) {
+		ExecuteMethodRunnable emr = new ExecuteMethodRunnable(delay, target, methodId, arguments, true);
 		getThreadPool().execute(emr);
 	}
 	
@@ -719,14 +707,14 @@ public class BaseApplication extends Application {
 	private class ExecuteMethodRunnable implements Runnable,MessageListener{
 		private long 		delay;
 		private Object 		target;
-		private String 		method;
+		private int 		method;
 		private Object[]    arguments;
 		private boolean     executeInMainThread;
 		
 		public ExecuteMethodRunnable(
 				long 		delay,
 				Object 		target,
-				String 		method,
+				int 		method,
 				Object[]    arguments,
 				boolean     executeInMainThread ){
 			this.delay 		= delay;
@@ -745,14 +733,14 @@ public class BaseApplication extends Application {
 				}
 				
 				if (executeInMainThread) {
-					Method md = AppUtility.findMethod(target, method, arguments);
+					Method md = AppUtility.findMethodById(target, method, arguments);
 					if (md != null) {
 						postMessage(0, md, this);
 					}else {
 						throw new UnsupportedOperationException("method:"+method+" not fount");
 					}
 				}else {
-					AppUtility.invokeMethod(target, method, arguments);
+					AppUtility.invokeMethodById(target, method, arguments);
 				}
 			} catch (Exception e) {
 				// TODO: handle exception

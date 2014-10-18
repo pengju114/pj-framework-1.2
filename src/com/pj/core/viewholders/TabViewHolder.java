@@ -4,17 +4,18 @@ import java.util.LinkedHashMap;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
-import android.widget.ImageView;
+//import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
-import android.widget.TextView;
+//import android.widget.TextView;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabContentFactory;
 import android.widget.TabWidget;
 
 import com.pj.core.BaseActivity;
-import com.pj.core.R;
+//import com.pj.core.R;
 import com.pj.core.utilities.DimensionUtility;
 
 public class TabViewHolder extends ViewHolder implements OnTabChangeListener, TabContentFactory {
@@ -28,11 +29,6 @@ public class TabViewHolder extends ViewHolder implements OnTabChangeListener, Ta
 	
 	private OnTabChangeListener onTabChangeListener;
 
-	public TabViewHolder(BaseActivity activity) {
-		super(activity);
-		// TODO Auto-generated constructor stub
-		setLayoutResource(R.layout.c_tab_view);
-	}
 
 	public TabViewHolder(BaseActivity activity, View view) {
 		super(activity, view);
@@ -80,18 +76,15 @@ public class TabViewHolder extends ViewHolder implements OnTabChangeListener, Ta
 			throw new IllegalArgumentException("ID为"+tabId+"的页签已存在");
 		}
 		
-		View tabIndicator=getActivity().defaultInflater().inflate(R.layout.c_tab_indicator, null);
-		TextView textView=(TextView) tabIndicator.findViewById(R.id.c_label_tab_indicator);
-		textView.setText(tabIndicatorText);
-		
-		ImageView imageView=(ImageView) tabIndicator.findViewById(R.id.c_img_tab_indicator);
+		tabViewHolder.setParent(this);
+		tabPages.put(tabId, tabViewHolder);
 		
 		if (indicatorIcon!=null) {
-			imageView.setImageDrawable(indicatorIcon);
+			tabHost.addTab(tabHost.newTabSpec(tabId).setIndicator(tabIndicatorText,indicatorIcon).setContent(this));
 		}else {
-			imageView.setVisibility(View.GONE);
+			tabHost.addTab(tabHost.newTabSpec(tabId).setIndicator(tabIndicatorText).setContent(this));
 		}
-		addTab(tabId, tabIndicator, tabViewHolder);
+		applyTabIndicatorGap(tabHost.getTabWidget());
 	}
 	
 	protected void applyTabIndicatorGap(TabWidget tabWidget) {
@@ -165,6 +158,50 @@ public class TabViewHolder extends ViewHolder implements OnTabChangeListener, Ta
 		for (ViewHolder holder : tabPages.values()) {
 			holder.onActivityStateChange(state,bundle);
 		}
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		boolean handle = false;
+		ViewHolder current = getCurrentTabPage();
+		if (current!=null) {
+			handle = current.onKeyDown(keyCode, event);
+		}
+		return handle?handle:super.onKeyDown(keyCode, event);
+	}
+	
+	@Override
+	public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		boolean handle = false;
+		ViewHolder current = getCurrentTabPage();
+		if (current!=null) {
+			handle = current.onKeyLongPress(keyCode, event);
+		}
+		return handle?handle:super.onKeyLongPress(keyCode, event);
+	}
+	
+	@Override
+	public boolean onKeyMultiple(int keyCode, int repeatCount, KeyEvent event) {
+		// TODO Auto-generated method stub
+		boolean handle = false;
+		ViewHolder current = getCurrentTabPage();
+		if (current!=null) {
+			handle = current.onKeyMultiple(keyCode,repeatCount, event);
+		}
+		return handle?handle:super.onKeyMultiple(keyCode, repeatCount ,event);
+	}
+	
+	@Override
+	public boolean onKeyUp(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		boolean handle = false;
+		ViewHolder current = getCurrentTabPage();
+		if (current!=null) {
+			handle = current.onKeyUp(keyCode, event);
+		}
+		return handle?handle:super.onKeyUp(keyCode, event);
 	}
 	
 	@Override

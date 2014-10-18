@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.pj.core.BaseApplication;
+import com.pj.core.annotation.MethodIdentifier;
 import com.pj.core.managers.LogManager;
 
 import android.content.Context;
@@ -419,5 +420,98 @@ public class AppUtility {
 		}
 		
 		return target;
+	}
+	
+	
+	@SuppressWarnings({ "rawtypes" })
+	public static Method findMethodById(Object target,int methodId,Object... arguments) {
+		
+		Class clazz = (target instanceof Class)?(Class)target:target.getClass();
+		
+		Class[] argumentTypes = null;
+		if (arguments!=null) {
+			argumentTypes = new Class[arguments.length];
+			for (int i = 0; i < arguments.length; i++) {
+				argumentTypes[i] = arguments[i]==null?null:arguments[i].getClass();
+			}
+		}
+		
+		Method method = null;
+		
+		method = filterMethodById(clazz.getDeclaredMethods(), methodId, argumentTypes);
+		if (method==null) {
+			method = filterMethodById(clazz.getMethods(), methodId, argumentTypes);
+		}
+		
+		if (method!=null) {
+			method.setAccessible(true);
+		}
+		
+		return method;
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static Method filterMethodById(Method[] mds,int methodId ,Class[]argumentTypes){
+		int targetArgumentLength = argumentTypes==null?0:argumentTypes.length;
+		
+		Method target = null;
+		
+		for (int i = 0; i < mds.length; i++) {
+			Method tmp = mds[i];
+			Class[] argTypes = tmp.getParameterTypes();
+			int argLen = argTypes==null?0:argTypes.length;
+			if (argLen==targetArgumentLength && tmp.isAnnotationPresent(MethodIdentifier.class)) {
+				int id = tmp.getAnnotation(MethodIdentifier.class).methodId();
+				
+				if (methodId != id) {
+					continue;
+				}
+				
+				if (argLen==0) {
+					target = tmp;
+					break;
+				}else {
+					int c = 0;
+					for (int j = 0; j < argLen; j++) {
+						if (argumentTypes[j]==null || argTypes[j].isAssignableFrom(argumentTypes[j])) {
+							c++;
+						}
+					}
+					if (c==argLen) {
+						target = tmp;
+						break;
+					}
+				}
+			}
+		}
+		
+		return target;
+	}
+	
+	
+	/**
+	 * 调用指定对象或类的方法
+	 * lzw
+	 * 2014年5月29日 下午10:47:27
+	 * @param target     目标对象或类
+	 * @param methodId	 方法ID
+	 * @param arguments  调用方法时的参数值，null表示无参数方法，值的类型一定要对应上方法参数类型
+	 * @return			 执行方法后返回的值，方法无返回则返回null
+	 * @throws Exception
+	 */
+	public static Object invokeMethodById(Object target,int methodId,Object...arguments) throws Exception{
+		
+	
+		Method method = findMethodById(target, methodId, arguments);
+		Object val    = null;
+		
+		if (method!=null) {
+			val = method.invoke(target, arguments);
+		}else {
+			throw new UnsupportedOperationException("method which id is \""+methodId+"\" with "+(arguments==null?0:arguments.length)+" argument(s) not found!");
+		}
+		
+		
+		return val;
 	}
 }

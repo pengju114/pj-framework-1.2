@@ -707,12 +707,12 @@ public class NavigationViewHolder extends ViewHolder{
 	}
 	
 	public static class NavigationViewParams{
-		/** 导航栏高度 ,单位为dip*/
+		/** 导航栏高度 ,单位为dip */
 		public static int NavigationBarHeight = 44;
 		/**  导航栏背景  */
 		public static int NavigationBarBackgroundResource = 0;
 		/**  导航栏背景颜色,若已设置{@link #NavigationBarBackgroundResource}则忽略此颜色  */
-		public static int NavigationBarBackgroundColor = Color.LTGRAY;
+		public static int NavigationBarBackgroundColor = Color.parseColor("#F3F3F3");
 		
 		/** 导航栏padding，单位为dip */
 		public static int NavigationBarPaddingLeft = 12;

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Paint.FontMetrics;
 import android.os.Bundle;
 import android.text.TextUtils.TruncateAt;
 import android.util.SparseArray;
@@ -41,6 +42,7 @@ import com.pj.core.dialog.HolderPopupWindow;
 import com.pj.core.managers.LogManager;
 import com.pj.core.transition.AnimationFactory;
 import com.pj.core.transition.Rotate3dAnimation;
+import com.pj.core.ui.GobackArrowDrawable;
 import com.pj.core.utilities.AppUtility;
 import com.pj.core.utilities.DimensionUtility;
 
@@ -865,6 +867,7 @@ public abstract class ViewHolder implements MessageListener{
 		holder.focus();
 		holder.clearFocus();
 		holder.focus();
+		holder.clearFocus();
 		
 		for (ViewHolder h : holder.childrenHolders) {
 			if (h.isDuplicateParentState()) {
@@ -1485,20 +1488,19 @@ public abstract class ViewHolder implements MessageListener{
 			return hideGobackButton;
 		}
 		
+		@SuppressWarnings("deprecation")
 		public Button getDefaultGobackButton() {
 			if (defaultGobackButton==null) {
 				defaultGobackButton=new Button(getActivity());
-//				defaultGobackButton.setBackgroundResource(com.pj.core.R.drawable.c_navigation_back_selector);
 				defaultGobackButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, ViewHolder.NavigationBarParams.GobackButtonTextSize);
+				
 				
 				int[] color = new int[]{
 						ViewHolder.NavigationBarParams.GobackButtonPlainTextColor,
-//						ViewHolder.NavigationBarParams.GobackButtonPlainTextColor,
 						ViewHolder.NavigationBarParams.GobackButtonPressedTextColor};
 				
 				int[][] states = new int[][]{
-//						{android.R.attr.state_enabled},
-						{},
+						{-android.R.attr.state_pressed},
 						{android.R.attr.state_pressed}
 				};
 				ColorStateList textColorStateList = new ColorStateList(states, color);
@@ -1507,15 +1509,21 @@ public abstract class ViewHolder implements MessageListener{
 				if (ViewHolder.NavigationBarParams.GobackButtonBackgroundResource != 0) {
 					defaultGobackButton.setBackgroundResource(ViewHolder.NavigationBarParams.GobackButtonBackgroundResource);
 				}else {
-					defaultGobackButton.setBackgroundColor(ViewHolder.NavigationBarParams.GobackButtonBackgroundColor);
+					FontMetrics metrics = defaultGobackButton.getPaint().getFontMetrics();
+					
+					GobackArrowDrawable drawable = new GobackArrowDrawable(ViewHolder.NavigationBarParams.GobackButtonPlainTextColor,metrics.descent - metrics.ascent);
+					
+					drawable.setStrokeWidth(DimensionUtility.dp2px(2));
+					defaultGobackButton.setBackgroundDrawable(drawable);
 				}
 				
 				defaultGobackButton.setMaxHeight(DimensionUtility.dp2px(ViewHolder.NavigationBarParams.GobackButtonMaxHeight));
 				defaultGobackButton.setMinHeight(DimensionUtility.dp2px(ViewHolder.NavigationBarParams.GobackButtonMinHeight));
-				defaultGobackButton.setPadding(ViewHolder.NavigationBarParams.GobackButtonPaddingLeft, 
-						ViewHolder.NavigationBarParams.GobackButtonPaddingTop, 
-						ViewHolder.NavigationBarParams.GobackButtonPaddingRight, 
-						ViewHolder.NavigationBarParams.GobackButtonPaddingBottom);
+				defaultGobackButton.setPadding(
+						DimensionUtility.dp2px(ViewHolder.NavigationBarParams.GobackButtonPaddingLeft), 
+						DimensionUtility.dp2px(ViewHolder.NavigationBarParams.GobackButtonPaddingTop), 
+						DimensionUtility.dp2px(ViewHolder.NavigationBarParams.GobackButtonPaddingRight), 
+						DimensionUtility.dp2px(ViewHolder.NavigationBarParams.GobackButtonPaddingBottom));
 			}
 			return defaultGobackButton;
 		}
@@ -1529,14 +1537,13 @@ public abstract class ViewHolder implements MessageListener{
 			
 			int[] color = new int[]{
 					ViewHolder.NavigationBarParams.ItemButtonPlainTextColor,
-					ViewHolder.NavigationBarParams.ItemButtonPlainTextColor,
 					ViewHolder.NavigationBarParams.ItemButtonPressedTextColor};
 			
 			int[][] states = new int[][]{
-					{android.R.attr.state_enabled},
-					{},
-					{android.R.attr.state_enabled,android.R.attr.state_pressed}
+					{-android.R.attr.state_pressed},
+					{android.R.attr.state_pressed}
 			};
+			
 			ColorStateList textColorStateList = new ColorStateList(states, color);
 			
 			button.setTextColor(textColorStateList);
@@ -1548,10 +1555,11 @@ public abstract class ViewHolder implements MessageListener{
 			
 			button.setMaxHeight(DimensionUtility.dp2px(ViewHolder.NavigationBarParams.ItemButtonMaxHeight));
 			button.setMinHeight(DimensionUtility.dp2px(ViewHolder.NavigationBarParams.ItemButtonMinHeight));
-			button.setPadding(ViewHolder.NavigationBarParams.ItemButtonPaddingLeft, 
-					ViewHolder.NavigationBarParams.ItemButtonPaddingTop, 
-					ViewHolder.NavigationBarParams.ItemButtonPaddingRight, 
-					ViewHolder.NavigationBarParams.ItemButtonPaddingBottom);
+			button.setPadding(
+					DimensionUtility.dp2px(ViewHolder.NavigationBarParams.ItemButtonPaddingLeft), 
+					DimensionUtility.dp2px(ViewHolder.NavigationBarParams.ItemButtonPaddingTop), 
+					DimensionUtility.dp2px(ViewHolder.NavigationBarParams.ItemButtonPaddingRight), 
+					DimensionUtility.dp2px(ViewHolder.NavigationBarParams.ItemButtonPaddingBottom));
 			return button;
 		}
 		
@@ -1815,50 +1823,54 @@ public abstract class ViewHolder implements MessageListener{
 	
 	/**
 	 * 在线程池中执行指定对象或类的方法
+	 * 要执行的方法必须是用注解{@link com.pj.core.annotation.MethodIdentifier}}标明ID的方法
 	 * lzw
 	 * 2014年5月29日 下午11:06:59
 	 * @param target		指定对象或类
-	 * @param methodName	方法名
+	 * @param methodId	    方法ID
 	 * @param arguments		参数值，null为无参数
 	 */
-	public void executeMethodInBackground(Object target,String methodName,Object... arguments) {
-		executeMethodInBackground(0,target, methodName, arguments);
+	public void executeMethodInBackground(Object target,int methodId,Object... arguments) {
+		executeMethodInBackground(0,target, methodId, arguments);
 	}
 	/**
 	 * 在线程池中执行指定对象或类的方法
+	 * 要执行的方法必须是用注解{@link com.pj.core.annotation.MethodIdentifier}}标明ID的方法
 	 * lzw
 	 * 2014年5月29日 下午11:06:59
 	 * @param delay			等待delay毫秒后执行
 	 * @param target		指定对象或类
-	 * @param methodName	方法名
+	 * @param methodId	    方法ID
 	 * @param arguments		参数值，null为无参数
 	 */
-	public void executeMethodInBackground(long delay,Object target,String methodName,Object... arguments) {
-		getApplication().executeMethodInBackground(delay, target, methodName, arguments);
+	public void executeMethodInBackground(long delay,Object target,int methodId,Object... arguments) {
+		getApplication().executeMethodInBackground(delay, target, methodId, arguments);
 	}
 	
 	/**
 	 * 在主线程中执行指定对象或类的方法
+	 * 要执行的方法必须是用注解{@link com.pj.core.annotation.MethodIdentifier}}标明ID的方法
 	 * lzw
 	 * 2014年5月29日 下午11:06:59
 	 * @param target		指定对象或类
 	 * @param methodName	方法名
 	 * @param arguments		参数值，null为无参数
 	 */
-	public void executeMethodInMainThread(Object target,String methodName,Object... arguments) {
-		executeMethodInMainThread(0, target, methodName, arguments);
+	public void executeMethodInMainThread(Object target,int methodId,Object... arguments) {
+		executeMethodInMainThread(0, target, methodId, arguments);
 	}
 	/**
 	 * 在主线程中执行指定对象或类的方法
+	 * 要执行的方法必须是用注解{@link com.pj.core.annotation.MethodIdentifier}}标明ID的方法
 	 * lzw
 	 * 2014年5月29日 下午11:06:59
 	 * @param delay			等待delay毫秒后执行
 	 * @param target		指定对象或类
-	 * @param methodName	方法名
+	 * @param methodId	   方法ID
 	 * @param arguments		参数值，null为无参数
 	 */
-	public void executeMethodInMainThread(long delay,Object target,String methodName,Object... arguments) {
-		getApplication().executeMethodInMainThread(delay, target, methodName, arguments);
+	public void executeMethodInMainThread(long delay,Object target,int methodId,Object... arguments) {
+		getApplication().executeMethodInMainThread(delay, target, methodId, arguments);
 	}
 	
 	/**********************线程执行结束******************/
@@ -1867,18 +1879,18 @@ public abstract class ViewHolder implements MessageListener{
 	/*******************  导航栏组件配置参数部分  ********************/
 	public static class NavigationBarParams{
 		/** 返回按钮字体大小，单位为SP */
-		public static int GobackButtonTextSize = 14;
+		public static int GobackButtonTextSize = 16;
 		/** 返回按钮正常状态字体颜色 */
-		public static int GobackButtonPlainTextColor = Color.WHITE;
+		public static int GobackButtonPlainTextColor = Color.parseColor("#3D6AC6");
 		/** 返回按钮按下状态字体颜色 */
-		public static int GobackButtonPressedTextColor = Color.YELLOW;
+		public static int GobackButtonPressedTextColor = Color.parseColor("#663D6AC6");
 		/** 返回按钮背景 */
 		public static int GobackButtonBackgroundResource = 0;
 		/** 返回按钮背景颜色,如果设置了 {@link #GobackButtonBackgroundResource }则忽略此颜色 */
 		public static int GobackButtonBackgroundColor = Color.TRANSPARENT;
 		
 		/** 返回按钮padding，单位为dip */
-		public static int GobackButtonPaddingLeft = 6;
+		public static int GobackButtonPaddingLeft = 12;
 		/** 返回按钮padding，单位为dip */
 		public static int GobackButtonPaddingTop = 1;
 		/** 返回按钮padding，单位为dip */
@@ -1894,15 +1906,15 @@ public abstract class ViewHolder implements MessageListener{
 		/** 标题字体大小，单位为SP */
 		public static int TitleTextSize = 18;
 		/** 标题字体颜色 */
-		public static int TitleTextColor = Color.WHITE;
+		public static int TitleTextColor = Color.BLACK;
 		
 		
 		/** 导航栏普通按钮字体大小，单位为SP */
-		public static int ItemButtonTextSize = 14;
+		public static int ItemButtonTextSize = 16;
 		/** 导航栏普通按钮正常状态字体颜色 */
-		public static int ItemButtonPlainTextColor = Color.WHITE;
+		public static int ItemButtonPlainTextColor = GobackButtonPlainTextColor;
 		/** 导航栏普通按钮按下状态字体颜色 */
-		public static int ItemButtonPressedTextColor = Color.WHITE;
+		public static int ItemButtonPressedTextColor = GobackButtonPressedTextColor;
 		/** 导航栏普通按钮背景 */
 		public static int ItemButtonBackgroundResource = 0;
 		/** 导航栏普通按钮背景颜色，如已设置了 {@link #ItemButtonBackgroundResource}则忽略此颜色 */

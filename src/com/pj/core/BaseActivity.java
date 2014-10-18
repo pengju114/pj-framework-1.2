@@ -379,50 +379,54 @@ public class BaseActivity extends Activity implements MessageListener{
 	
 	/**
 	 * 在线程池中执行指定对象或类的方法
+	 * 要执行的方法必须是用注解{@link com.pj.core.annotation.MethodIdentifier}}标明ID的方法
 	 * lzw
 	 * 2014年5月29日 下午11:06:59
 	 * @param target		指定对象或类
-	 * @param methodName	方法名
+	 * @param methodId	    方法ID
 	 * @param arguments		参数值，null为无参数
 	 */
-	public void executeMethodInBackground(Object target,String methodName,Object... arguments) {
-		executeMethodInBackground(0,target, methodName, arguments);
+	public void executeMethodInBackground(Object target,int methodId,Object... arguments) {
+		executeMethodInBackground(0,target, methodId, arguments);
 	}
 	/**
 	 * 在线程池中执行指定对象或类的方法
+	 * 要执行的方法必须是用注解{@link com.pj.core.annotation.MethodIdentifier}}标明ID的方法
 	 * lzw
 	 * 2014年5月29日 下午11:06:59
 	 * @param delay			等待delay毫秒后执行
 	 * @param target		指定对象或类
-	 * @param methodName	方法名
+	 * @param methodId	    方法ID
 	 * @param arguments		参数值，null为无参数
 	 */
-	public void executeMethodInBackground(long delay,Object target,String methodName,Object... arguments) {
-		BaseApplication.getInstance().executeMethodInBackground(delay, target, methodName, arguments);
+	public void executeMethodInBackground(long delay,Object target,int methodId,Object... arguments) {
+		BaseApplication.getInstance().executeMethodInBackground(delay, target, methodId, arguments);
 	}
 	
 	/**
 	 * 在主线程中执行指定对象或类的方法
+	 * 要执行的方法必须是用注解{@link com.pj.core.annotation.MethodIdentifier}}标明ID的方法
 	 * lzw
 	 * 2014年5月29日 下午11:06:59
 	 * @param target		指定对象或类
-	 * @param methodName	方法名
+	 * @param methodId	    方法ID
 	 * @param arguments		参数值，null为无参数
 	 */
-	public void executeMethodInMainThread(Object target,String methodName,Object... arguments) {
-		executeMethodInMainThread(0, target, methodName, arguments);
+	public void executeMethodInMainThread(Object target,int methodId,Object... arguments) {
+		executeMethodInMainThread(0, target, methodId, arguments);
 	}
 	/**
 	 * 在主线程中执行指定对象或类的方法
+	 * 要执行的方法必须是用注解{@link com.pj.core.annotation.MethodIdentifier}}标明ID的方法
 	 * lzw
 	 * 2014年5月29日 下午11:06:59
 	 * @param delay			等待delay毫秒后执行
 	 * @param target		指定对象或类
-	 * @param methodName	方法名
+	 * @param methodId	    方法ID
 	 * @param arguments		参数值，null为无参数
 	 */
-	public void executeMethodInMainThread(long delay,Object target,String methodName,Object... arguments) {
-		BaseApplication.getInstance().executeMethodInMainThread(delay, target, methodName, arguments);
+	public void executeMethodInMainThread(long delay,Object target,int methodId,Object... arguments) {
+		BaseApplication.getInstance().executeMethodInMainThread(delay, target, methodId, arguments);
 	}
 	
 	/**********************线程执行结束******************/
