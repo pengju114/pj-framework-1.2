@@ -16,7 +16,6 @@ import java.util.Map.Entry;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.pj.core.BaseApplication;
 import com.pj.core.managers.LogManager;
 import com.pj.core.managers.SDCardFileManager;
 import com.pj.core.utilities.ImageUtility;
@@ -26,6 +25,8 @@ import com.pj.core.utilities.StringUtility;
 
 
 
+
+import com.pj.core.utilities.ThreadUtility;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -155,7 +156,7 @@ public class HttpImage {
 			}
 			BitmapDisplayer bd = new BitmapDisplayer(bmp, photoToLoad);
 			// 更新的操作放在UI线程中
-			BaseApplication.UI_THREAD_HANDLER.post(bd);
+			ThreadUtility.UI_THREAD_HANDLER.post(bd);
 		}
 		
 		

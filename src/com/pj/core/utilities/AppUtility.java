@@ -354,10 +354,9 @@ public class AppUtility {
 		return val;
 	}
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	
+	@SuppressWarnings({ "rawtypes" })
 	public static Method findMethod(Object target,String name,Object... arguments) {
-		
-		Class clazz = (target instanceof Class)?(Class)target:target.getClass();
 		
 		Class[] argumentTypes = null;
 		if (arguments!=null) {
@@ -367,7 +366,17 @@ public class AppUtility {
 			}
 		}
 		
+		return findMethod(target, name, argumentTypes, arguments);
+	}
+	
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static Method findMethod(Object target,String name,Class[] argumentTypes, Object... arguments){
+		
+		Class clazz = (target instanceof Class)?(Class)target:target.getClass();
+		
 		Method method = null;
+		
 		try {
 			method = clazz.getDeclaredMethod(name, argumentTypes);
 		} catch (Exception e) {
@@ -389,6 +398,7 @@ public class AppUtility {
 		
 		return method;
 	}
+	
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static Method filterMethod(Method[] mds,String name ,Class[]argumentTypes){

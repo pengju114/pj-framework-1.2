@@ -30,11 +30,11 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.pj.core.ApplicationNotificationListener;
 import com.pj.core.AsyncExecutor;
 import com.pj.core.BaseActivity;
 import com.pj.core.BaseApplication;
-import com.pj.core.MessageListener;
+import com.pj.core.NotificationCenter;
+import com.pj.core.NotificationCenter.NotificationListener;
 import com.pj.core.R;
 import com.pj.core.dialog.BaseDialog;
 import com.pj.core.dialog.HolderDialog;
@@ -45,6 +45,8 @@ import com.pj.core.transition.Rotate3dAnimation;
 import com.pj.core.ui.GobackArrowDrawable;
 import com.pj.core.utilities.AppUtility;
 import com.pj.core.utilities.DimensionUtility;
+import com.pj.core.utilities.ThreadUtility;
+import com.pj.core.utilities.ThreadUtility.MessageListener;
 
 /**
  * 视图持有器，用来管理视图，代表页面中的一个视图模块
@@ -84,9 +86,9 @@ public abstract class ViewHolder implements MessageListener{
 	 */
 	public static final int NOTIFICATION_NETWORK_STATE_CHANGE		=BaseApplication.NOTIFICATION_NETWORK_STATE_CHANGE;
 	
-	private final ApplicationNotificationListener activityNotificationListener=new ApplicationNotificationListener() {
+	private final NotificationListener activityNotificationListener=new NotificationListener() {
 		@Override
-		public void onReceivedApplicationNotification(Object sender,
+		public void onReceivedNotification(Object sender,
 				int notificationId, Object data) {
 			if (sender==ViewHolder.this.getActivity()) {
 				if (notificationId==ACTIVITY_RESULT) {
@@ -536,8 +538,7 @@ public abstract class ViewHolder implements MessageListener{
 	}
 	
 	public static final void bindNotificationListener(ViewHolder holder){
-		BaseApplication application=BaseApplication.getInstance();
-		application.addNotificationListener(
+		NotificationCenter.getDefaultCenter().addNotificationListener(
 				holder.activityNotificationListener, 
 				holder.getActivity(),
 				ACTIVITY_CREATE,
@@ -554,8 +555,7 @@ public abstract class ViewHolder implements MessageListener{
 	}
 	
 	public static final void unbindNotificationListener(ViewHolder holder){
-		BaseApplication application=BaseApplication.getInstance();
-		application.removeNotificationListener(
+		NotificationCenter.getDefaultCenter().removeNotificationListener(
 				holder.activityNotificationListener,
 				holder.getActivity(), 
 				ACTIVITY_CREATE,
@@ -1798,8 +1798,8 @@ public abstract class ViewHolder implements MessageListener{
 	 * @author PENGJU
 	 * @param executor
 	 */
-	public <T> void asyncExecute(AsyncExecutor<T> executor){
-		BaseApplication.getInstance().asyncExecute(executor);
+	public <T> void execute(AsyncExecutor<T> executor){
+		ThreadUtility.execute(executor);
 	}
 	/**
 	 * 延迟delay毫秒后执行异步任务
@@ -1808,8 +1808,8 @@ public abstract class ViewHolder implements MessageListener{
 	 * @param executor
 	 * @param delay
 	 */
-	public <T> void asyncExecute(AsyncExecutor<T> executor,long delay){
-		BaseApplication.getInstance().asyncExecute(executor, delay);
+	public <T> void execute(AsyncExecutor<T> executor,long delay){
+		ThreadUtility.execute(executor, delay);
 	}
 	
 	/**
@@ -1817,8 +1817,8 @@ public abstract class ViewHolder implements MessageListener{
 	 * PENGJU
 	 * @param executor
 	 */
-	public void cancelAsyncExecute(AsyncExecutor<?> executor){
-		BaseApplication.getInstance().cancelAsyncExecute(executor);
+	public void cancelExecute(AsyncExecutor<?> executor){
+		ThreadUtility.cancelExecute(executor);
 	}
 	
 	/**
@@ -1844,7 +1844,7 @@ public abstract class ViewHolder implements MessageListener{
 	 * @param arguments		参数值，null为无参数
 	 */
 	public void executeMethodInBackground(long delay,Object target,int methodId,Object... arguments) {
-		getApplication().executeMethodInBackground(delay, target, methodId, arguments);
+		ThreadUtility.executeMethodInBackground(delay, target, methodId, arguments);
 	}
 	
 	/**
@@ -1870,7 +1870,7 @@ public abstract class ViewHolder implements MessageListener{
 	 * @param arguments		参数值，null为无参数
 	 */
 	public void executeMethodInMainThread(long delay,Object target,int methodId,Object... arguments) {
-		getApplication().executeMethodInMainThread(delay, target, methodId, arguments);
+		ThreadUtility.executeMethodInMainThread(delay, target, methodId, arguments);
 	}
 	
 	/**********************线程执行结束******************/

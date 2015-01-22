@@ -57,16 +57,16 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 	
 	/**
 	 * 要求返回的数据类型为字节流(InputStream)
-	 */
-	public static final int 		EXPRCTED_STREAM=1<<1;
+	 */ 
+	public static final int 		EXPECTED_STREAM=1<<1;
 	/**
 	 * 要求返回的数据类型为字符串(String)
 	 */
-	public static final int 		EXPRCTED_STRING=1<<2;
+	public static final int 		EXPECTED_STRING=1<<2;
 	/**
 	 * 要求返回的数据类型为TreeDataWrapper
 	 */
-	public static final int 		EXPRCTED_DATAWRAPPER=1<<3;
+	public static final int 		EXPECTED_DATAWRAPPER=1<<3;
 	
 	/**
 	 * 服务器返回的数据为文本
@@ -132,7 +132,7 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 		multipart=false;
 		method=METHOD_POST;
 		extraData=null;
-		expectedDataFormat=EXPRCTED_DATAWRAPPER;
+		expectedDataFormat=EXPECTED_DATAWRAPPER;
 		responseDataFormat=RESPONSE_JSON;
 		sessionPersistent = true;
 	}
@@ -401,9 +401,9 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 		}
 		
 		Object responseData=null;
-		if (getExpectedDataFormat()==EXPRCTED_STRING) {
+		if (getExpectedDataFormat()==EXPECTED_STRING) {
 			responseData=EntityUtils.toString(result, getCharset());
-		}else if (getExpectedDataFormat()==EXPRCTED_STREAM) {
+		}else if (getExpectedDataFormat()==EXPECTED_STREAM) {
 			responseData=result.getContent();
 		}else {
 			if (getResponseDataFormat()==RESPONSE_JSON) {
@@ -445,7 +445,7 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 		}
 		
 		HttpResult httpResult=new HttpResult(responseData, responseHeader);
-		if (getExpectedDataFormat()!=EXPRCTED_DATAWRAPPER) {
+		if (getExpectedDataFormat()!=EXPECTED_DATAWRAPPER) {
 			httpResult.statusCode=HttpResult.HTTP_OK;
 		}
 		

@@ -31,4 +31,10 @@ public interface AsyncExecutor<T> {
 	 * @param value 异步调用返回的结果
 	 */
 	public void executeComplete(T value);
+	
+	/**
+	 * 是否取消执行，取消并非实在意义上取消，而是在执行过程不再对此executor抛送事件
+	 * @return
+	 */
+	public boolean isExecuteCancel();
 }

@@ -3,7 +3,7 @@ package com.pj.core.services;
 
 import com.pj.core.BaseActivity;
 import com.pj.core.BaseApplication;
-import com.pj.core.MessageListener;
+import com.pj.core.utilities.ThreadUtility;
 
 import android.app.Service;
 import android.widget.Toast;
@@ -14,7 +14,7 @@ import android.widget.Toast;
  * 2012-12-3 下午4:32:10
  * email: pengju114@163.com
  */
-public abstract class BaseService extends Service implements MessageListener{
+public abstract class BaseService extends Service implements com.pj.core.utilities.ThreadUtility.MessageListener{
 	private static final int MSG_SHOWTIP=BaseActivity.nextUniqueInt();
 	
 	@Override
@@ -38,11 +38,11 @@ public abstract class BaseService extends Service implements MessageListener{
 	}
 	
 	public void postMessage(int msgId, Object data) {
-		BaseApplication.getInstance().postMessage(msgId, data, this);
+		ThreadUtility.postMessage(msgId, data, this);
 	}
 
 	public void postMessage(int msgId, Object data, long delayMillis) {
-		BaseApplication.getInstance().postMessage(msgId, data, delayMillis, this);
+		ThreadUtility.postMessage(msgId, data, delayMillis, this);
 	}
 	
 	public void showTip(Object msg) {

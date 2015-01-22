@@ -1,5 +1,6 @@
 package com.pj.core.datamodel;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -135,11 +136,11 @@ public class DataWrapper extends HashMap<String, Object> implements Cacheable{
 	@SuppressWarnings("unchecked")
 	public <T> T getObjectAndIgnoreList(String key){
 		Object object=get(key);
-		if (object instanceof List) {
-			List<Object> list=(List<Object>) object;
+		if (object instanceof Collection) {
+			Collection<Object> list=(Collection<Object>) object;
 			object=null;
 			if (list!=null && list.size()>0) {
-				object=list.get(0);
+				object=list.iterator().next();
 			}
 		}
 		

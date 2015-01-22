@@ -12,6 +12,8 @@ import com.pj.core.dialog.CacheableDialog;
 import com.pj.core.dialog.DialogListener;
 import com.pj.core.managers.LogManager;
 import com.pj.core.utilities.StringUtility;
+import com.pj.core.utilities.ThreadUtility;
+import com.pj.core.utilities.ThreadUtility.MessageListener;
 import com.pj.core.viewholders.ViewHolder;
 
 import android.os.Bundle;
@@ -39,17 +41,17 @@ public class BaseActivity extends Activity implements MessageListener{
 	
 	private static int      UNIQUE_INT								=100;
 	
-	public static final int NOTIFICATION_ACTIVITY_CREATE			=1;
-	public static final int NOTIFICATION_ACTIVITY_RESTORE_STATE		=2;
-	public static final int NOTIFICATION_ACTIVITY_START				=3;
-	public static final int NOTIFICATION_ACTIVITY_RESUME			=4;
-	public static final int NOTIFICATION_ACTIVITY_SAVE_STATE		=5;
-	public static final int NOTIFICATION_ACTIVITY_PAUSE				=6;
-	public static final int NOTIFICATION_ACTIVITY_STOP				=7;
-	public static final int NOTIFICATION_ACTIVITY_RESTART			=8;
-	public static final int NOTIFICATION_ACTIVITY_DESTROY			=9;
+	public static final int NOTIFICATION_ACTIVITY_CREATE			=0xFF0E00A1;
+	public static final int NOTIFICATION_ACTIVITY_RESTORE_STATE		=0xFF0E00A2;
+	public static final int NOTIFICATION_ACTIVITY_START				=0xFF0E00A3;
+	public static final int NOTIFICATION_ACTIVITY_RESUME			=0xFF0E00A4;
+	public static final int NOTIFICATION_ACTIVITY_SAVE_STATE		=0xFF0E00A5;
+	public static final int NOTIFICATION_ACTIVITY_PAUSE				=0xFF0E00A6;
+	public static final int NOTIFICATION_ACTIVITY_STOP				=0xFF0E00A7;
+	public static final int NOTIFICATION_ACTIVITY_RESTART			=0xFF0E00A8;
+	public static final int NOTIFICATION_ACTIVITY_DESTROY			=0xFF0E00A9;
 	
-	public static final int NOTIFICATION_ACTIVITY_RESULT			=10;
+	public static final int NOTIFICATION_ACTIVITY_RESULT			=0xFF0E00AA;
 	
 	/**
 	 * 网络状态变化通知，发送者将会是 {@link BaseApplication},附带的数据是网络类型(-1表示连接不可用)
@@ -179,7 +181,7 @@ public class BaseActivity extends Activity implements MessageListener{
 		bundle.putInt("requestCode", requestCode);
 		bundle.putInt("resultCode", resultCode);
 		bundle.putParcelable("data", data);
-		BaseApplication.getInstance().sendNotification(this, NOTIFICATION_ACTIVITY_RESULT, bundle);
+		NotificationCenter.getDefaultCenter().sendNotification(this, NOTIFICATION_ACTIVITY_RESULT, bundle);
 		
 		super.onActivityResult(requestCode, resultCode, data);
 	}
@@ -229,7 +231,7 @@ public class BaseActivity extends Activity implements MessageListener{
 	protected void activityStateChange(int state,Bundle bundle){
 		this.state = state;
 		
-		BaseApplication.getInstance().sendNotification(this, state, bundle);
+		NotificationCenter.getDefaultCenter().sendNotification(this, state, bundle);
 		
 		if (state==NOTIFICATION_ACTIVITY_CREATE) {
 			rootViewHolder.dispathAttached(rootViewHolder);
@@ -299,11 +301,11 @@ public class BaseActivity extends Activity implements MessageListener{
 	}
 	
 	public void postMessage(int msgId, Object data, long delayMillis,MessageListener listener) {
-		BaseApplication.getInstance().postMessage(msgId, data, delayMillis, listener);
+		ThreadUtility.postMessage(msgId, data, delayMillis, listener);
 	}
 
 	public void removeMessages(int msgId) {
-		BaseApplication.getInstance().removeMessages(msgId);
+		ThreadUtility.removeMessage(msgId);
 	}
 	
 	/**
@@ -353,8 +355,8 @@ public class BaseActivity extends Activity implements MessageListener{
 	 * @author PENGJU
 	 * @param executor
 	 */
-	public <T> void asyncExecute(AsyncExecutor<T> executor){
-		BaseApplication.getInstance().asyncExecute(executor);
+	public <T> void execute(AsyncExecutor<T> executor){
+		ThreadUtility.execute(executor);
 	}
 	/**
 	 * 延迟delay毫秒后执行异步任务
@@ -363,8 +365,8 @@ public class BaseActivity extends Activity implements MessageListener{
 	 * @param executor
 	 * @param delay
 	 */
-	public <T> void asyncExecute(AsyncExecutor<T> executor,long delay){
-		BaseApplication.getInstance().asyncExecute(executor, delay);
+	public <T> void execute(AsyncExecutor<T> executor,long delay){
+		ThreadUtility.execute(executor, delay);
 	}
 	
 	/**
@@ -372,8 +374,8 @@ public class BaseActivity extends Activity implements MessageListener{
 	 * PENGJU
 	 * @param executor
 	 */
-	public void cancelAsyncExecute(AsyncExecutor<?> executor){
-		BaseApplication.getInstance().cancelAsyncExecute(executor);
+	public void cancelExecute(AsyncExecutor<?> executor){
+		ThreadUtility.cancelExecute(executor);
 	}
 	
 	
@@ -400,7 +402,7 @@ public class BaseActivity extends Activity implements MessageListener{
 	 * @param arguments		参数值，null为无参数
 	 */
 	public void executeMethodInBackground(long delay,Object target,int methodId,Object... arguments) {
-		BaseApplication.getInstance().executeMethodInBackground(delay, target, methodId, arguments);
+		ThreadUtility.executeMethodInBackground(delay, target, methodId, arguments);
 	}
 	
 	/**
@@ -426,7 +428,7 @@ public class BaseActivity extends Activity implements MessageListener{
 	 * @param arguments		参数值，null为无参数
 	 */
 	public void executeMethodInMainThread(long delay,Object target,int methodId,Object... arguments) {
-		BaseApplication.getInstance().executeMethodInMainThread(delay, target, methodId, arguments);
+		ThreadUtility.executeMethodInMainThread(delay, target, methodId, arguments);
 	}
 	
 	/**********************线程执行结束******************/
