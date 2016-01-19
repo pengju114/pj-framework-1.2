@@ -131,8 +131,9 @@ public class BaseApplication extends Application {
 		return activeActivityCount>0;
 	}
 	
-	public static BaseApplication getInstance() {
-		return application;
+	@SuppressWarnings("unchecked")
+	public static <T extends BaseApplication> T getInstance() {
+		return (T) application;
 	}
 	
 	/**

@@ -1,9 +1,10 @@
 package com.pj.core.dialog;
 
-import com.pj.core.R;
 import com.pj.core.viewholders.ViewHolder;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 
@@ -35,7 +36,7 @@ public class HolderPopupWindow extends PopupWindow implements PopupWindow.OnDism
 		setSoftInputMode(PopupWindow.INPUT_METHOD_FROM_FOCUSABLE);
 		
 		
-		setBackgroundDrawable(contentView.getActivity().defaultResources().getDrawable(R.drawable.bg_transparent));
+		setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 		
 		setContentView(rootHolder.getView());
 		setWidth(width);

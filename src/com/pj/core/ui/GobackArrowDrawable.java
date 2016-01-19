@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -47,17 +48,16 @@ public class GobackArrowDrawable extends Drawable {
 	public void draw(Canvas canvas) {
 		// TODO Auto-generated method stub
 		Rect rect = getBounds();
-		
+		mPaint.setStyle(Paint.Style.STROKE);
 		if (contentHeight == 0) {
 			contentHeight = rect.height();
 		}
 		canvas.drawColor(Color.TRANSPARENT);
 		
-//		Path path = new Path();
 		float height = contentHeight - 4;
 		float halfHeight = height * 0.5f;
 		
-		float x = strokeWidth*0.5f;
+		float x = strokeWidth * 0.5f;
 		float y = (rect.height() - height) * 0.5f;
 		
 		float paddingX = x;
@@ -66,9 +66,14 @@ public class GobackArrowDrawable extends Drawable {
 		
 		mPaint.setStrokeWidth(strokeWidth);
 		mPaint.setColor(color);
+		mPaint.setStrokeCap(Paint.Cap.SQUARE);
 		
-		canvas.drawLine(x, y, paddingX, y + halfHeight + 0.7f, mPaint);
-		canvas.drawLine(paddingX, y + halfHeight - 0.7f, x, y + height, mPaint);
+		Path path = new Path();
+		
+		path.moveTo(x, y);
+		path.lineTo(paddingX, y + halfHeight);
+		path.lineTo(x, y + height);
+		canvas.drawPath(path, mPaint);
 	}
 
 	@Override

@@ -16,20 +16,16 @@ import org.apache.http.HttpException;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.conn.ConnectTimeoutException;
-import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.content.ContentBody;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.CoreConnectionPNames;
-import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
 import android.os.AsyncTask;
@@ -128,7 +124,7 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 	public void setDefaults(){
 		parameter.removeAll();
 		headers.removeAll();
-		charset=HTTP.UTF_8;
+		charset="UTF-8";
 		multipart=false;
 		method=METHOD_POST;
 		extraData=null;
@@ -493,13 +489,16 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 		HttpPost post = new HttpPost(path.toString());
 		nativeRequest=post;
 		//请求客户端
-		DefaultHttpClient client=new DefaultHttpClient();
+		CloseableHttpClient client = HttpClients.createDefault();
 		Integer connTimeout=AppConfig.getConfig(AppConfig.CONF_HTTP_CONN_TIMEOUT, AppConfig.VALUE_HTTP_CONN_TIMEOUT);
 		Integer socketTimeout=AppConfig.getConfig(AppConfig.CONF_HTTP_SO_TIMEOUT,  AppConfig.VALUE_HTTP_SO_TIMEOUT);
-		client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, connTimeout);
-		client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, socketTimeout);
+
+		RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(connTimeout).setSocketTimeout(socketTimeout).setConnectionRequestTimeout(connTimeout).build();
+		
+		post.setConfig(requestConfig);
+		
 		//请求结果
-		HttpResponse response=null;
+		CloseableHttpResponse response=null;
 		HttpEntity resultEntity=null;
 		//添加头
 		addRequestHeader(post);
@@ -519,7 +518,7 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 		} catch (Exception e) {
 			// TODO: handle exception
 			//Log.e(e.getMessage(), e.getStackTrace().toString());
-			if ((e instanceof ConnectTimeoutException) || (e instanceof SocketTimeoutException)) {
+			if ( (e instanceof InterruptedException) || (e instanceof SocketTimeoutException)) {
 				throw new HttpException(getString(R.string.c_msg_http_conn_timeout), e);
 			}else {
 				throw new HttpException(e.getMessage(), e);
@@ -552,11 +551,13 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 		HttpGet get = new HttpGet(path.toString());
 		nativeRequest =get;
 		//请求客户端
-		HttpClient client=new DefaultHttpClient();
+		CloseableHttpClient client=HttpClients.createDefault();
 		Integer connTimeout=AppConfig.getConfig(AppConfig.CONF_HTTP_CONN_TIMEOUT,  AppConfig.VALUE_HTTP_CONN_TIMEOUT);
 		Integer socketTimeout=AppConfig.getConfig(AppConfig.CONF_HTTP_SO_TIMEOUT,  AppConfig.VALUE_HTTP_SO_TIMEOUT);
-		client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, connTimeout);
-		client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, socketTimeout);
+
+		RequestConfig requestConfig = RequestConfig.custom().setConnectionRequestTimeout(connTimeout).setConnectTimeout(connTimeout).setSocketTimeout(socketTimeout).build();
+		
+		get.setConfig(requestConfig);
 		
 		//请求结果
 		HttpResponse response=null;
@@ -575,7 +576,7 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 			extractHeader(response,responseHeaderReceiver);
 		} catch (Exception e) {
 			// TODO: handle exception
-			if ((e instanceof ConnectTimeoutException) || (e instanceof SocketTimeoutException)) {
+			if ( (e instanceof InterruptedException) || (e instanceof SocketTimeoutException)) {
 				throw new HttpException(getString(R.string.c_msg_http_conn_timeout), e);
 			}else {
 				throw new HttpException(e.getMessage(), e);
@@ -608,21 +609,19 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 	}
 	
 	private HttpEntity wrapFileParam() throws HttpException{
-		MultipartEntity entity=new MultipartEntity();
+		MultipartEntityBuilder entityBuilder=MultipartEntityBuilder.create();
 		Charset encodeCharset=Charset.forName(charset);
-				
+		entityBuilder.setCharset(encodeCharset);
 		try {
 			//把所有参数以内容提的形式放到参数实体中
 			for (Map.Entry<String, LinkedList<? extends Object>> entry : parameter.getParameterEntrys()) {
 				for (Object value : entry.getValue()) {
-					ContentBody body=null;
 					if (value instanceof File) {
-						FileBody fileBody=new FileBody((File)value);
-						body=fileBody;
+						File file = (File) value;
+						entityBuilder.addBinaryBody(entry.getKey(), file);
 					} else {
-						body=new StringBody(String.valueOf(value), encodeCharset);
+						entityBuilder.addTextBody(entry.getKey(), String.valueOf(value));
 					}
-					entity.addPart(entry.getKey(), body);
 				}
 			}
 		}catch (Exception e) {
@@ -630,7 +629,7 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 			throw new HttpException(e.getMessage(), e);
 		}
 		
-		return entity;
+		return entityBuilder.build();
 	}
 	
 	public void cancelRequest(){

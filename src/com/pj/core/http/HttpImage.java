@@ -18,6 +18,7 @@ import java.util.concurrent.Executors;
 
 import com.pj.core.managers.LogManager;
 import com.pj.core.managers.SDCardFileManager;
+import com.pj.core.utilities.DimensionUtility;
 import com.pj.core.utilities.ImageUtility;
 import com.pj.core.utilities.SecurityUtility;
 import com.pj.core.utilities.StringUtility;
@@ -77,7 +78,9 @@ public class HttpImage {
 	}
 	
 	public void setImage(String url, ImageView imageView, int defaultImgRes,float radius) {
-		setImage(url, imageView, defaultImgRes,radius, 50);
+		int max = Math.max(imageView.getMeasuredHeight(), imageView.getMeasuredWidth());
+		max = Math.max(max, DimensionUtility.dp2px(120));
+		setImage(url, imageView, defaultImgRes,radius, max);
 	}
 	
 	public void setImage(String url, ImageView imageView, int defaultImgRes,float radius,int scaleMinSize) {

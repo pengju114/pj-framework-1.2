@@ -24,4 +24,24 @@ public class StringUtility {
 		}
 		return str1.equals(str2);
 	}
+	
+	public static String select(boolean skipEmpty, String... strings){
+	    
+	    
+	    if (strings == null || strings.length < 1) {
+			return EMPTY_STRING;
+		}
+	    
+	    String val = EMPTY_STRING;
+	    
+	    for (String string : strings) {
+			if ( string == null || (skipEmpty && isEmpty(string)) ) {
+				continue;
+			}
+			val = string;
+			break;
+	    }
+	    
+	    return val;
+	}
 }
