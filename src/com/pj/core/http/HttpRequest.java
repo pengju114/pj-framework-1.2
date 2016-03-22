@@ -4,37 +4,34 @@ import java.io.File;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import org.apache.http.Header;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpException;
-import org.apache.http.HttpHost;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
+import java.util.concurrent.TimeUnit;
 
 import android.os.AsyncTask;
+import okhttp3.Call;
+import okhttp3.FormBody;
+import okhttp3.Headers;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 import com.pj.core.BaseApplication;
 import com.pj.core.R;
 import com.pj.core.http.HttpResult;
 import com.pj.core.http.Parameter;
+import com.pj.core.managers.LogManager;
 import com.pj.core.res.AppConfig;
+import com.pj.core.utilities.AppUtility;
 import com.pj.core.utilities.HttpUtility;
 import com.pj.core.utilities.StringUtility;
 import com.pj.core.utilities.URLUtility;
@@ -104,20 +101,27 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 	 */
 	private int						responseDataFormat;
 	
-	private HttpRequestBase         nativeRequest;
+	private final OkHttpClient      client;
 	
 	private HttpRequestListener		httpRequestListener;
 	
 	
 	private boolean                 sessionPersistent;
 	
+	private Call                    currentCall;
+	
 	public HttpRequest(String url,int requestCode){
 		this.url=url;
 		this.requestCode=requestCode;
-		
 		parameter=new Parameter();
 		headers=new Parameter();
 		uniqueID=GLOBAL_ID++;
+		
+		Integer connTimeout=AppConfig.getConfig(AppConfig.CONF_HTTP_CONN_TIMEOUT, AppConfig.VALUE_HTTP_CONN_TIMEOUT);
+		Integer socketTimeout=AppConfig.getConfig(AppConfig.CONF_HTTP_SO_TIMEOUT,  AppConfig.VALUE_HTTP_SO_TIMEOUT);
+		
+		client = new OkHttpClient.Builder().connectTimeout(connTimeout, TimeUnit.MILLISECONDS).readTimeout(socketTimeout, TimeUnit.MILLISECONDS).writeTimeout(socketTimeout, TimeUnit.MILLISECONDS).build();
+				
 		setDefaults();
 	}
 	
@@ -131,6 +135,7 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 		expectedDataFormat=EXPECTED_DATAWRAPPER;
 		responseDataFormat=RESPONSE_JSON;
 		sessionPersistent = true;
+		
 	}
 	
 	public String getUrl() {
@@ -313,15 +318,15 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 		}
 	}
 	
-	private void addRequestHeader(org.apache.http.HttpRequest request) {
-		if (request!=null) {
+	private void addRequestHeader(Request.Builder builder) {
+		if (builder!=null) {
 			if (isSessionPersistent()) {
 				headers.removeParameter("Cookie");
 				headers.addParameter("Cookie", "JSESSIONID="+BaseApplication.getInstance().getSessionId());
 			}
 			for (Entry<String, LinkedList<? extends Object>> h : headers.getParameterEntrys()) {
 				for (Object v : h.getValue()) {
-					request.addHeader(h.getKey(), StringUtility.toString(v));
+					builder.addHeader(h.getKey(), StringUtility.toString(v));
 				}
 			}
 		}
@@ -376,38 +381,38 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 	 * @return 根据 ResponseDataType 返回对应的数据类型
 	 * @throws HttpException
 	 */
-	public HttpResult startSynchronousRequest() throws HttpException,IOException{
-		HttpEntity result=null;
+	public HttpResult startSynchronousRequest() throws IOException{
+		Response result=null;
 		Parameter  responseHeader=new Parameter();
 		if (isMultipart()) {
 			setMethod(METHOD_POST);
-			HttpEntity requestEntity=wrapFileParam();
-			result=sendPostRequest(requestEntity, responseHeader);
+			RequestBody requestBody=wrapFileParam();
+			result=sendPostRequest(requestBody, responseHeader);
 		}else {
 			if (METHOD_POST.equalsIgnoreCase(getMethod())) {
-				HttpEntity requestEntity=wrapStringParam();
-				result=sendPostRequest(requestEntity, responseHeader);
+				RequestBody requestBody=wrapStringParam();
+				result=sendPostRequest(requestBody, responseHeader);
 			}else {
 				result=sendGetRequest(responseHeader);
 			}
 		}
 		
-		if (result==null) {
-			throw new HttpException(getString(R.string.c_msg_http_request_error));
+		if (result == null || !result.isSuccessful()) {
+			throw new IOException(getString(R.string.c_msg_http_request_error));
 		}
 		
 		Object responseData=null;
 		if (getExpectedDataFormat()==EXPECTED_STRING) {
-			responseData=EntityUtils.toString(result, getCharset());
+			responseData=result.body().string();
 		}else if (getExpectedDataFormat()==EXPECTED_STREAM) {
-			responseData=result.getContent();
+			responseData=result.body().byteStream();
 		}else {
 			if (getResponseDataFormat()==RESPONSE_JSON) {
-				responseData=HttpUtility.parseJSON(EntityUtils.toString(result, getCharset()));
+				responseData=HttpUtility.parseJSON(result.body().string());
 			}else if (getResponseDataFormat()==RESPONSE_XML) {
-				responseData=HttpUtility.parseXML(result.getContent());
+				responseData=HttpUtility.parseXML(result.body().byteStream());
 			}else {
-				throw new HttpException(BaseApplication.getInstance().getResources().getString(R.string.c_msg_http_illegal_data_format, "DATA_DATAWRAPPER"));
+				throw new IOException(BaseApplication.getInstance().getResources().getString(R.string.c_msg_http_illegal_data_format, "DATA_DATAWRAPPER"));
 			}
 		}
 		
@@ -453,13 +458,19 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 	 * 提取请求返回的头部信息
 	 * @param response
 	 */
-	private void extractHeader(HttpResponse response,Parameter responseHeaderReceiver) {
+	private void extractHeader(Response response,Parameter responseHeaderReceiver) {
 		// TODO Auto-generated method stub
 		if (response!=null && responseHeaderReceiver!=null) {
-			Header[] hs=response.getAllHeaders();
+			Headers hs=response.headers();
 			if (hs!=null) {
-				for (Header header : hs) {
-					responseHeaderReceiver.addParameter(header.getName(), header.getValue());
+				for (int i = 0; i < hs.size(); i++) {
+					String h = hs.name(i);
+					List<String> vs = hs.values(h);
+					if (vs != null) {
+						for (String v : vs) {
+							responseHeaderReceiver.addParameter(h, v);
+						}
+					}
 				}
 			}
 		}
@@ -471,171 +482,116 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 	 * @return 请求结果体
 	 * @throws HttpException
 	 */
-	private HttpEntity sendPostRequest(HttpEntity postEntity,Parameter responseHeaderReceiver) throws HttpException{
+	private Response sendPostRequest(RequestBody requestBody,Parameter responseHeaderReceiver) throws IOException{
 		URL urlPath=null;
 		try {
 			urlPath=new URL(url);
 		} catch (Exception e) {
 			// TODO: handle exception
-			throw new HttpException(e.getMessage(), e);
+			throw new IOException( e.getMessage());
 		}
-		//创建要请求的目标服务器对象
-		HttpHost host = new HttpHost(urlPath.getHost(), urlPath.getPort(), urlPath.getProtocol());
-		//请求方法
-		StringBuilder path=new StringBuilder(urlPath.getPath());
-		if (urlPath.getQuery()!=null) {
-			path.append('?').append(urlPath.getQuery());
-		}
-		HttpPost post = new HttpPost(path.toString());
-		nativeRequest=post;
-		//请求客户端
-		CloseableHttpClient client = HttpClients.createDefault();
-		Integer connTimeout=AppConfig.getConfig(AppConfig.CONF_HTTP_CONN_TIMEOUT, AppConfig.VALUE_HTTP_CONN_TIMEOUT);
-		Integer socketTimeout=AppConfig.getConfig(AppConfig.CONF_HTTP_SO_TIMEOUT,  AppConfig.VALUE_HTTP_SO_TIMEOUT);
-
-		RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(connTimeout).setSocketTimeout(socketTimeout).setConnectionRequestTimeout(connTimeout).build();
 		
-		post.setConfig(requestConfig);
-		
-		//请求结果
-		CloseableHttpResponse response=null;
-		HttpEntity resultEntity=null;
+		Request.Builder builder = new Request.Builder();
 		//添加头
-		addRequestHeader(post);
-		post.setEntity(postEntity);
+		addRequestHeader(builder);
+		Request request = builder.url(urlPath).post(requestBody).build();
 		
-		try {
-			//发起请求
-			response=client.execute(host,post);
-			
-			if (response.getStatusLine().getStatusCode()!=200) {
-				throw new Exception(getString(R.string.c_msg_http_request_error)+":"+response.getStatusLine().getReasonPhrase());
-			}
-			
-			resultEntity=response.getEntity();
-			
-			extractHeader(response,responseHeaderReceiver);
-		} catch (Exception e) {
-			// TODO: handle exception
-			//Log.e(e.getMessage(), e.getStackTrace().toString());
-			if ( (e instanceof InterruptedException) || (e instanceof SocketTimeoutException)) {
-				throw new HttpException(getString(R.string.c_msg_http_conn_timeout), e);
-			}else {
-				throw new HttpException(e.getMessage(), e);
-			}
-		}
-		
-		post=null;
-		client=null;
-		response=null;
-		return resultEntity;
+		return sendRequest(request, responseHeaderReceiver);
 	}
 	
-	private HttpEntity sendGetRequest(Parameter responseHeaderReceiver) throws HttpException{
+	private Response sendGetRequest(Parameter responseHeaderReceiver) throws IOException{
 		//请求客户端
 		URL urlPath=null;
 		try {
 			urlPath=new URL(getRequestUrl());
 		} catch (Exception e) {
+			if (LogManager.isLogEnable()) {
+				e.printStackTrace();
+			}
 			// TODO: handle exception
-			throw new HttpException(e.getMessage(), e);
+			throw new IOException(e.getMessage());
 		}
-		//创建要请求的目标服务器对象
-		HttpHost host = new HttpHost(urlPath.getHost(), urlPath.getPort(), urlPath.getProtocol());
 		
-		//请求方法
-		StringBuilder path=new StringBuilder(urlPath.getPath());
-		if (urlPath.getQuery()!=null) {
-			path.append('?').append(urlPath.getQuery());
-		}
-		HttpGet get = new HttpGet(path.toString());
-		nativeRequest =get;
-		//请求客户端
-		CloseableHttpClient client=HttpClients.createDefault();
-		Integer connTimeout=AppConfig.getConfig(AppConfig.CONF_HTTP_CONN_TIMEOUT,  AppConfig.VALUE_HTTP_CONN_TIMEOUT);
-		Integer socketTimeout=AppConfig.getConfig(AppConfig.CONF_HTTP_SO_TIMEOUT,  AppConfig.VALUE_HTTP_SO_TIMEOUT);
+		Request.Builder builder = new Request.Builder();
+		addRequestHeader(builder);
+		Request request = builder.url(urlPath).get().build();
 
-		RequestConfig requestConfig = RequestConfig.custom().setConnectionRequestTimeout(connTimeout).setConnectTimeout(connTimeout).setSocketTimeout(socketTimeout).build();
+		return sendRequest(request, responseHeaderReceiver);
+	}
+	
+	private Response sendRequest(Request request, Parameter responseHeaderReceiver) throws IOException{
 		
-		get.setConfig(requestConfig);
-		
+		Call postCall = client.newCall(request);
+		currentCall = postCall;
+				
 		//请求结果
-		HttpResponse response=null;
-		HttpEntity resultEntity=null;
-		//添加头
-		addRequestHeader(get);
+		Response response = null;
+				
 		try {
 			//发起请求
-			response=client.execute(host,get);
+			response = postCall.execute();
 			
-			if (response.getStatusLine().getStatusCode()!=200) {
-				throw new Exception(getString(R.string.c_msg_http_request_error)+":"+response.getStatusLine().getReasonPhrase());
+			if (response == null || !response.isSuccessful()) {
+				String err = response == null?"":response.message();
+				throw new IOException(getString(R.string.c_msg_http_request_error)+":"+err);
 			}
 			
-			resultEntity=response.getEntity();
+			
 			extractHeader(response,responseHeaderReceiver);
 		} catch (Exception e) {
 			// TODO: handle exception
+			if (LogManager.isLogEnable()) {
+				e.printStackTrace();
+			}
+			//Log.e(e.getMessage(), e.getStackTrace().toString());
 			if ( (e instanceof InterruptedException) || (e instanceof SocketTimeoutException)) {
-				throw new HttpException(getString(R.string.c_msg_http_conn_timeout), e);
+				throw new IOException(getString(R.string.c_msg_http_conn_timeout));
 			}else {
-				throw new HttpException(e.getMessage(), e);
+				throw new IOException(e.getMessage());
 			}
 		}
 		
-		client=null;
-		response=null;
-		return resultEntity;
+		
+		return response;
 	}
 	
 		
-	private HttpEntity wrapStringParam() throws HttpException{
-		//要发送的参数列表,每个参数对用NameValuePair表示
-		LinkedList<NameValuePair> pairs=new LinkedList<NameValuePair>();
-		//把所有参数以NameValuePair对象放到参数列表中
+	private RequestBody wrapStringParam(){
+		FormBody.Builder builder = new FormBody.Builder();
 		for (Map.Entry<String, LinkedList<? extends Object>> entry : parameter.getParameterEntrys()) {
 			for (Object value : entry.getValue()) {
-				BasicNameValuePair pair=new BasicNameValuePair(entry.getKey(), String.valueOf(value));
-				pairs.add(pair);
+				builder.addEncoded(entry.getKey(), String.valueOf(value));
 			}
 		}
-		//将参数编码
-		try {
-			return new UrlEncodedFormEntity(pairs,charset);
-		} catch (Exception e) {
-			// TODO: handle exception
-			throw new HttpException(e.getMessage(), e);
-		}
+		return builder.build();
 	}
 	
-	private HttpEntity wrapFileParam() throws HttpException{
-		MultipartEntityBuilder entityBuilder=MultipartEntityBuilder.create();
-		Charset encodeCharset=Charset.forName(charset);
-		entityBuilder.setCharset(encodeCharset);
-		try {
-			//把所有参数以内容提的形式放到参数实体中
-			for (Map.Entry<String, LinkedList<? extends Object>> entry : parameter.getParameterEntrys()) {
-				for (Object value : entry.getValue()) {
-					if (value instanceof File) {
-						File file = (File) value;
-						entityBuilder.addBinaryBody(entry.getKey(), file);
-					} else {
-						entityBuilder.addTextBody(entry.getKey(), String.valueOf(value));
-					}
+	private RequestBody wrapFileParam() {
+		MultipartBody.Builder builder = new MultipartBody.Builder();
+		builder.setType(MultipartBody.FORM);
+		
+		//把所有参数以内容提的形式放到参数实体中
+		for (Map.Entry<String, LinkedList<? extends Object>> entry : parameter.getParameterEntrys()) {
+			for (Object value : entry.getValue()) {
+				if (value instanceof File) {
+					File file = (File) value;
+					String fmt = "%s; charset=%s";
+					MediaType mediaType = MediaType.parse(String.format(fmt, AppUtility.getFileMimeType(file),getCharset()));
+					builder.addFormDataPart(entry.getKey(), file.getName(), RequestBody.create(mediaType, file));
+				} else {
+					builder.addFormDataPart(entry.getKey(), String.valueOf(value));
 				}
 			}
-		}catch (Exception e) {
-			// TODO: handle exception
-			throw new HttpException(e.getMessage(), e);
 		}
 		
-		return entityBuilder.build();
+		return builder.build();
 	}
 	
 	public void cancelRequest(){
-		if (nativeRequest!=null) {
+		if (currentCall!=null) {
 			try {
-				nativeRequest.abort();
+				currentCall.cancel();
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -678,7 +634,7 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 	protected void onPreExecute () {
 		super.onPreExecute();
 		if (getHttpRequestListener()!=null) {
-			getHttpRequestListener().beforeHttpRequest(this);
+			getHttpRequestListener().onHttpRequestStart(this);
 		}
 	}
 	
@@ -705,7 +661,7 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 		/**
 		 * 在HTTP请求之前调用,属于UI线程
 		 */
-		public void beforeHttpRequest(HttpRequest request);
+		public void onHttpRequestStart(HttpRequest request);
 		/**
 		 * 当HTTP请求完成后调用,属于UI线程
 		 * @param result

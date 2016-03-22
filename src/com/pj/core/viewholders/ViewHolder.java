@@ -3,7 +3,9 @@ package com.pj.core.viewholders;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -102,7 +104,7 @@ public abstract class ViewHolder implements MessageListener{
 	};
 	
 	private boolean 								 duplicateParentState;
-	private HashSet<ViewHolderStateListener> 		 stateListeners;
+	private Set<ViewHolderStateListener> 		     stateListeners;
 	
 	private SparseArray<HolderViewAnimationListener> animatingArray;//只保留最新的一个动画
 	private int startedAnimationCount;
@@ -110,8 +112,8 @@ public abstract class ViewHolder implements MessageListener{
 	private int animationDuration;
 	
 	private BaseActivity           activity;
-	private HashSet<ViewHolder>    notifyHolders;
-	private ArrayList<ViewHolder>  childrenHolders;
+	private Set<ViewHolder>    notifyHolders;
+	private List<ViewHolder>   childrenHolders;
 	
 	/** 父holder,如果有的话 **/
 	private ViewHolder parent;
@@ -154,8 +156,8 @@ public abstract class ViewHolder implements MessageListener{
 	
 	private void privateInitialize(BaseActivity activity,View root){
 		this.activity			= activity;
-		notifyHolders			= new HashSet<ViewHolder>();
-		childrenHolders			= new ArrayList<ViewHolder>(6);
+		notifyHolders			= Collections.synchronizedSet(new HashSet<ViewHolder>());
+		childrenHolders			= Collections.synchronizedList(new ArrayList<ViewHolder>(6));
 		animatingArray			= new SparseArray<ViewHolder.HolderViewAnimationListener>();
 		startedAnimationCount	= 0;
 		finishedAnimationCount	= 0;
@@ -163,7 +165,7 @@ public abstract class ViewHolder implements MessageListener{
 		mode					= MODE_PLAIN_VIEW;
 		duplicateParentState	= true;
 		viewDidAppeared  		= false;
-		stateListeners  		= new HashSet<ViewHolder.ViewHolderStateListener>(3);
+		stateListeners  		= Collections.synchronizedSet(new HashSet<ViewHolder.ViewHolderStateListener>(3));
 		//在所有东西都设置好的时候才调用子类的初始化函数
 		initialize(activity,root);
 		setView(root);
@@ -836,8 +838,15 @@ public abstract class ViewHolder implements MessageListener{
 			}
 		}
 		
+		LinkedList<ViewHolder.ViewHolderStateAdapter> adapters = new LinkedList<ViewHolder.ViewHolderStateAdapter>();
 		for (ViewHolderStateListener listener : holder.stateListeners) {
 			listener.onHolderWillAppear(holder, anim);
+			if (listener instanceof ViewHolder.ViewHolderStateAdapter) {
+				adapters.add((ViewHolder.ViewHolderStateAdapter)listener);
+			}
+		}
+		for (ViewHolderStateAdapter adapter : adapters) {
+			adapter.onHolderIterateFinish(holder, ViewHolder.ViewHolderStateAdapter.HolderStateMethod.WillAppear);
 		}
 	}
 	public final void dispathWillDisappear(ViewHolder holder,boolean anim){
@@ -849,8 +858,16 @@ public abstract class ViewHolder implements MessageListener{
 				h.dispathWillDisappear(h, anim);
 			}
 		}
+		
+		LinkedList<ViewHolder.ViewHolderStateAdapter> adapters = new LinkedList<ViewHolder.ViewHolderStateAdapter>();
 		for (ViewHolderStateListener listener : holder.stateListeners) {
 			listener.onHolderWillDisappear(holder, anim);
+			if (listener instanceof ViewHolder.ViewHolderStateAdapter) {
+				adapters.add((ViewHolder.ViewHolderStateAdapter)listener);
+			}
+		}
+		for (ViewHolderStateAdapter adapter : adapters) {
+			adapter.onHolderIterateFinish(holder, ViewHolder.ViewHolderStateAdapter.HolderStateMethod.WillDisappear);
 		}
 	}
 	public final void dispathDidAppear(ViewHolder holder,boolean anim){
@@ -875,8 +892,15 @@ public abstract class ViewHolder implements MessageListener{
 			}
 		}
 		
+		LinkedList<ViewHolder.ViewHolderStateAdapter> adapters = new LinkedList<ViewHolder.ViewHolderStateAdapter>();
 		for (ViewHolderStateListener listener : holder.stateListeners) {
 			listener.onHolderDidAppear(holder, anim);
+			if (listener instanceof ViewHolder.ViewHolderStateAdapter) {
+				adapters.add((ViewHolder.ViewHolderStateAdapter)listener);
+			}
+		}
+		for (ViewHolderStateAdapter adapter : adapters) {
+			adapter.onHolderIterateFinish(holder, ViewHolder.ViewHolderStateAdapter.HolderStateMethod.DidAppear);
 		}
 	}
 	public final void dispathDidDisappear(ViewHolder holder,boolean anim){
@@ -888,8 +912,15 @@ public abstract class ViewHolder implements MessageListener{
 			}
 		}
 		
+		LinkedList<ViewHolder.ViewHolderStateAdapter> adapters = new LinkedList<ViewHolder.ViewHolderStateAdapter>();
 		for (ViewHolderStateListener listener : holder.stateListeners) {
 			listener.onHolderDidDisappear(holder, anim);
+			if (listener instanceof ViewHolder.ViewHolderStateAdapter) {
+				adapters.add((ViewHolder.ViewHolderStateAdapter)listener);
+			}
+		}
+		for (ViewHolderStateAdapter adapter : adapters) {
+			adapter.onHolderIterateFinish(holder, ViewHolder.ViewHolderStateAdapter.HolderStateMethod.DidDisappear);
 		}
 	}
 	public final void dispathAttached(ViewHolder holder){
@@ -902,8 +933,15 @@ public abstract class ViewHolder implements MessageListener{
 			}
 		}
 		
+		LinkedList<ViewHolder.ViewHolderStateAdapter> adapters = new LinkedList<ViewHolder.ViewHolderStateAdapter>();
 		for (ViewHolderStateListener listener : holder.stateListeners) {
 			listener.onHolderAttached(holder);
+			if (listener instanceof ViewHolder.ViewHolderStateAdapter) {
+				adapters.add((ViewHolder.ViewHolderStateAdapter)listener);
+			}
+		}
+		for (ViewHolderStateAdapter adapter : adapters) {
+			adapter.onHolderIterateFinish(holder, ViewHolder.ViewHolderStateAdapter.HolderStateMethod.Attached);
 		}
 	}
 	public final void dispathDettached(ViewHolder holder){
@@ -916,9 +954,15 @@ public abstract class ViewHolder implements MessageListener{
 			}
 		}
 		
-		
+		LinkedList<ViewHolder.ViewHolderStateAdapter> adapters = new LinkedList<ViewHolder.ViewHolderStateAdapter>();
 		for (ViewHolderStateListener listener : holder.stateListeners) {
 			listener.onHolderDetached(holder);
+			if (listener instanceof ViewHolder.ViewHolderStateAdapter) {
+				adapters.add((ViewHolder.ViewHolderStateAdapter)listener);
+			}
+		}
+		for (ViewHolderStateAdapter adapter : adapters) {
+			adapter.onHolderIterateFinish(holder, ViewHolder.ViewHolderStateAdapter.HolderStateMethod.Detached);
 		}
 	}
 	
@@ -1193,7 +1237,14 @@ public abstract class ViewHolder implements MessageListener{
 						c.dispathDidDisappear(c, animated);
 					}
 				}
-				holder.removeViewHolderStateListener(this);
+			}
+			@Override
+			public void onHolderIterateFinish(ViewHolder holder, HolderStateMethod method) {
+				// TODO Auto-generated method stub
+				super.onHolderIterateFinish(holder, method);
+				if (method == ViewHolderStateAdapter.HolderStateMethod.DidAppear) {
+					holder.removeViewHolderStateListener(this);
+				}
 			}
 		};
 		this.addViewHolderStateListener(adapter);
@@ -1231,7 +1282,15 @@ public abstract class ViewHolder implements MessageListener{
 							c.dispathDidAppear(c, shouldAnimated);
 						}
 					}
-					holder.removeViewHolderStateListener(this);
+				}
+				
+				@Override
+				public void onHolderIterateFinish(ViewHolder holder, HolderStateMethod method) {
+					// TODO Auto-generated method stub
+					super.onHolderIterateFinish(holder, method);
+					if (method == ViewHolderStateAdapter.HolderStateMethod.Detached) {
+						holder.removeViewHolderStateListener(this);
+					}
 				}
 			};
 			this.addViewHolderStateListener(adapter);
@@ -1766,6 +1825,9 @@ public abstract class ViewHolder implements MessageListener{
 	}
 	
 	public static class ViewHolderStateAdapter implements ViewHolderStateListener{
+		public static enum HolderStateMethod{
+			Attached,Detached,WillAppear,DidAppear,WillDisappear,DidDisappear
+		}
 
 		public void onHolderAttached(ViewHolder holder) {}
 
@@ -1779,8 +1841,11 @@ public abstract class ViewHolder implements MessageListener{
 
 		public void onHolderDidDisappear(ViewHolder holder, boolean animated) {}
 		
+		public void onHolderIterateFinish(ViewHolder holder, HolderStateMethod method){}
+		
 	}
 	
+	@SuppressWarnings("deprecation")
 	protected void enhanceAnimation(Animation animation,View target) {
 		if (target instanceof ViewGroup) {
 			ViewGroup group = (ViewGroup) target;

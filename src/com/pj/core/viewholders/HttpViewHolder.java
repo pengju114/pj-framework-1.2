@@ -124,7 +124,7 @@ public abstract class HttpViewHolder extends ViewHolder implements HttpRequestLi
 	}
 
 	@Override
-	public void beforeHttpRequest(HttpRequest request) {
+	public void onHttpRequestStart(HttpRequest request) {
 		// TODO Auto-generated method stub
 		requestStateChange(++requestCount);
 	}

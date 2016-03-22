@@ -2,8 +2,6 @@ package com.pj.core.utilities;
 
 import java.net.URLEncoder;
 
-import org.apache.http.protocol.HTTP;
-
 import com.pj.core.http.Parameter;
 
 /**
@@ -62,7 +60,7 @@ public class URLUtility {
 		if (values!=null) {
 			for (String string : values) {
 				try {
-					string=URLEncoder.encode(string, HTTP.UTF_8);
+					string=URLEncoder.encode(string, "UTF-8");
 				} catch (Exception e) {}
 				builder.append(name).append('=').append(string).append('&');
 			}
