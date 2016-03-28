@@ -11,12 +11,15 @@ import com.pj.core.dialog.ProgressDialog;
 import com.pj.core.dialog.CacheableDialog;
 import com.pj.core.dialog.DialogListener;
 import com.pj.core.managers.LogManager;
+import com.pj.core.ui.SystemBarTintManager;
 import com.pj.core.utilities.StringUtility;
 import com.pj.core.utilities.ThreadUtility;
 import com.pj.core.utilities.ThreadUtility.MessageListener;
 import com.pj.core.viewholders.ViewHolder;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -26,6 +29,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.ViewGroup.LayoutParams;
 import android.view.inputmethod.EditorInfo;
 import android.widget.FrameLayout;
@@ -86,6 +90,9 @@ public class BaseActivity extends Activity implements MessageListener{
 		super.onCreate(savedInstanceState);
 		//都是无标题活动
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		if (shouldEnableBarTint()) {
+			enableBarTint();
+		}
 		inflater = super.getLayoutInflater();
 		resources= super.getResources();
 		
@@ -113,6 +120,35 @@ public class BaseActivity extends Activity implements MessageListener{
 		
 		activityStateChange(NOTIFICATION_ACTIVITY_CREATE,savedInstanceState);
 	}
+	
+	/**
+	 * 是否允许浸入式状态栏和导航栏,默认开启。
+	 * @return
+	 */
+	protected boolean shouldEnableBarTint(){
+		return true;
+	}
+	
+	@SuppressLint("InlinedApi")
+	public void enableBarTint(){
+		if (Build.VERSION.SDK_INT >= 19) {
+			//透明状态栏  
+			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);  
+			//透明导航栏  
+			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+		}
+		SystemBarTintManager manager = new SystemBarTintManager(this);
+		manager.setStatusBarTintEnabled(true);
+		manager.setNavigationBarTintEnabled(true);
+	}
+	
+	public void setSystemBarTintColor(int color) {
+		SystemBarTintManager manager = new SystemBarTintManager(this);
+		manager.setTintColor(color);
+		manager.setStatusBarTintColor(color);
+		manager.setNavigationBarTintColor(color);
+	}
+	
 	protected void onRestoreInstanceState(Bundle savedInstanceState){
 		activityStateChange(NOTIFICATION_ACTIVITY_RESTORE_STATE,savedInstanceState);
 		super.onRestoreInstanceState(savedInstanceState);
@@ -770,9 +806,13 @@ public class BaseActivity extends Activity implements MessageListener{
 			super(activity,new FrameLayout(activity));
 			// TODO Auto-generated constructor stub
 		}
+		@SuppressLint("NewApi")
 		@SuppressWarnings("deprecation")
 		@Override
 		protected void onApplyView(View view) {
+			if (shouldEnableBarTint() && android.os.Build.VERSION.SDK_INT >= 19) {
+				view.setFitsSystemWindows(true);
+			}
 			// TODO Auto-generated method stub
 			view.setBackgroundColor(Color.TRANSPARENT);
 			view.setFocusable(true);

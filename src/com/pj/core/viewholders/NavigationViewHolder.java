@@ -1,7 +1,9 @@
 package com.pj.core.viewholders;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 
 import com.pj.core.BaseActivity;
 import com.pj.core.managers.LogManager;
@@ -39,7 +41,7 @@ public class NavigationViewHolder extends ViewHolder{
 	private FrameLayout    navigationContentLayout;
 	
 	private boolean animating;
-	private ArrayList<ViewHolder> pageHolders;
+	private List<ViewHolder> pageHolders;
 	private HashSet<View> dirtySet;
 
 	private Interpolator  alphaInInterpolator  = new AccelerateInterpolator(1.4f);
@@ -153,7 +155,7 @@ public class NavigationViewHolder extends ViewHolder{
 	protected void initialize(BaseActivity activity, View view) {
 		
 		animating=false;
-		pageHolders=new ArrayList<ViewHolder>(8);
+		pageHolders=Collections.synchronizedList(new ArrayList<ViewHolder>(8));
 		dirtySet=new HashSet<View>();
 		
 		super.initialize(activity, view);
@@ -189,14 +191,20 @@ public class NavigationViewHolder extends ViewHolder{
 		if (animating || pageHolders.contains(holder)) {
 			return false;
 		}
+		ViewHolder topViewHolder=getTop();
+		push(topViewHolder, holder, animate);
+		
+		return true;
+	}
+	
+	protected void push(ViewHolder topViewHolder,ViewHolder holder,boolean animate){
 		onTransitionStart();
 		
 		holder.navigationViewHolder=this;
+		pageHolders.add(holder);
 		
 		NavigationBar bar=holder.getNavigationBar();
 		View leftView=bar.getNavigationLeftView();
-		ViewHolder topViewHolder=getTop();
-		pageHolders.add(holder);
 		
 		if (leftView==null && topViewHolder!=null && !bar.isHideGobackButton()) {
 			Button back=bar.getDefaultGobackButton();
@@ -294,8 +302,6 @@ public class NavigationViewHolder extends ViewHolder{
 			addChild(navigationContentLayout,holder);
 			onTransitionEnd();
 		}
-		
-		return true;
 	}
 	
 	
@@ -323,14 +329,12 @@ public class NavigationViewHolder extends ViewHolder{
 	private Animation getCenterItemPushAnimation(View centerView) {
 		// TODO Auto-generated method stub
 		AlphaAnimation alphaAnimation=new AlphaAnimation(0, 1);
-//		alphaAnimation.setInterpolator(alphaInInterpolator);
 		
 		int Xtype=Animation.RELATIVE_TO_PARENT;
 		int Ytype=Animation.RELATIVE_TO_SELF;
 		float fromXValue=0.6f;
 		float toXValue=0f;
 		TranslateAnimation translateAnimation=new TranslateAnimation(Xtype, fromXValue, Xtype, toXValue, Ytype, 0, Ytype, 0);
-//		translateAnimation.setInterpolator(contentInterpolator);
 		
 		AnimationSet animationSet=new AnimationSet(true);
 		animationSet.addAnimation(alphaAnimation);
@@ -538,9 +542,19 @@ public class NavigationViewHolder extends ViewHolder{
 	}
 	
 	public boolean setHolder(ViewHolder holder,boolean animate){
-		holder.navigationViewHolder=this;
-		pageHolders.add(0, holder);
-		return popToIndex(0, animate);
+		if (animating || pageHolders.contains(holder)) {
+			 return false;
+		}
+		ViewHolder topViewHolder = getTop();
+		
+		for (ViewHolder h : pageHolders) {
+			h.navigationViewHolder = null;
+		}
+		pageHolders.clear();
+		
+		holder.getNavigationBar().setHideGobackButton(true);
+		push(topViewHolder, holder, animate);
+		return true;
 	}
 	
 	

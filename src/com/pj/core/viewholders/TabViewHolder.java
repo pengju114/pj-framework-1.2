@@ -91,12 +91,18 @@ public class TabViewHolder extends ViewHolder implements OnTabChangeListener, Ta
 		if (tabWidget.getChildCount()>0) {
 			int c=tabWidget.getChildCount();
 			if (c>1) {
+				tabWidget.setWeightSum(c);
 				c-=1;//最后一个不处理
 				for (int i = 0; i < c; i++) {
 					View tabView=tabWidget.getChildTabViewAt(i);
 					LinearLayout.LayoutParams params=(LinearLayout.LayoutParams) tabView.getLayoutParams();
+					params.weight = 1;
 					params.setMargins(params.leftMargin, params.topMargin, tabIndicatorGap, params.bottomMargin);
 				}
+				
+				View tabView=tabWidget.getChildTabViewAt(c);
+				LinearLayout.LayoutParams params=(LinearLayout.LayoutParams) tabView.getLayoutParams();
+				params.weight = 1;
 			}
 		}
 	}
