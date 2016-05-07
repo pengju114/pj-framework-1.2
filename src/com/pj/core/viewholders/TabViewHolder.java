@@ -2,20 +2,20 @@ package com.pj.core.viewholders;
 
 import java.util.LinkedHashMap;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-//import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
-//import android.widget.TextView;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabContentFactory;
 import android.widget.TabWidget;
 
 import com.pj.core.BaseActivity;
-//import com.pj.core.R;
+import com.pj.core.ui.TabItemBackroundDrawable;
 import com.pj.core.utilities.DimensionUtility;
 
 public class TabViewHolder extends ViewHolder implements OnTabChangeListener, TabContentFactory {
@@ -67,7 +67,14 @@ public class TabViewHolder extends ViewHolder implements OnTabChangeListener, Ta
 	
 	public void addTab(String tabId,String tabIndicatorText,ViewHolder tabViewHolder) {
 		// TODO Auto-generated method stub
-		addTab(tabId, tabIndicatorText, null, tabViewHolder);
+		StateListDrawable drawable = new StateListDrawable();
+		TabItemBackroundDrawable plain = new TabItemBackroundDrawable();
+		TabItemBackroundDrawable focus = new TabItemBackroundDrawable();
+		plain.setTintEndColor(Color.TRANSPARENT);
+		drawable.addState(new int[]{android.R.attr.state_pressed}, focus);
+		drawable.addState(new int[]{android.R.attr.state_selected}, focus);
+		drawable.addState(new int[]{}, plain);
+		addTab(tabId, tabIndicatorText, drawable, tabViewHolder);
 	}
 	
 	public void addTab(String tabId,String tabIndicatorText,Drawable indicatorIcon,ViewHolder tabViewHolder) {
@@ -133,6 +140,15 @@ public class TabViewHolder extends ViewHolder implements OnTabChangeListener, Ta
 	}
 	
 	@Override
+	public void onViewWillAppear(boolean animated) {
+		// TODO Auto-generated method stub
+		super.onViewWillAppear(animated);
+		for (ViewHolder v : tabPages.values()) {
+			v.navigationViewHolder = navigationViewHolder;
+		}
+	}
+	
+	@Override
 	public void onTabChanged(String tabId) {
 		// TODO Auto-generated method stub
 		ViewHolder oldHolder=tabPages.get(currentTabId);
@@ -143,11 +159,26 @@ public class TabViewHolder extends ViewHolder implements OnTabChangeListener, Ta
 			oldHolder.onDeselected();
 		}
 		if (currentHolder!=null) {
+			currentHolder.navigationViewHolder = getNavigationViewHolder();
 			currentHolder.onSelected();
 		}
 		if (onTabChangeListener!=null) {
 			onTabChangeListener.onTabChanged(tabId);
 		}
+		
+		changeTitle(currentHolder);
+		changeNavigationBarItems(currentHolder);
+	}
+	
+	protected void changeTitle(ViewHolder viewHolder){
+		if (viewHolder != null) {
+			getNavigationBar().setTitle(viewHolder.getNavigationBar().getTitle());
+		}else {
+			getNavigationBar().setTitle("");
+		}
+	}
+	
+	protected void changeNavigationBarItems(ViewHolder viewHolder){
 	}
 
 	@Override

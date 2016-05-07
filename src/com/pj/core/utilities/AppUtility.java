@@ -3,6 +3,7 @@ package com.pj.core.utilities;
 import java.io.File;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -12,11 +13,13 @@ import com.pj.core.BaseApplication;
 import com.pj.core.annotation.MethodIdentifier;
 import com.pj.core.managers.LogManager;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Rect;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -523,5 +526,33 @@ public class AppUtility {
 		
 		
 		return val;
+	}
+	
+	public static int getStatusBarPixelHeight(Activity activity){
+		Rect frame = new Rect();  
+		activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);  
+		int statusBarHeight = frame.top;
+		
+		if (statusBarHeight < 1) {
+			Class<?> c = null;
+	        Object obj = null;
+	        Field field = null;
+	        int x = 0, sbar = 38;//默认为38，貌似大部分是这样的
+
+	        try {
+	            c = Class.forName("com.android.internal.R$dimen");
+	            obj = c.newInstance();
+	            field = c.getField("status_bar_height");
+	            x = Integer.parseInt(field.get(obj).toString());
+	            sbar = activity.getResources().getDimensionPixelSize(x);
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        
+	        statusBarHeight = sbar;
+		}
+		
+		return statusBarHeight;
 	}
 }

@@ -12,6 +12,7 @@ import com.pj.core.dialog.CacheableDialog;
 import com.pj.core.dialog.DialogListener;
 import com.pj.core.managers.LogManager;
 import com.pj.core.ui.SystemBarTintManager;
+import com.pj.core.utilities.AppUtility;
 import com.pj.core.utilities.StringUtility;
 import com.pj.core.utilities.ThreadUtility;
 import com.pj.core.utilities.ThreadUtility.MessageListener;
@@ -147,6 +148,7 @@ public class BaseActivity extends Activity implements MessageListener{
 		manager.setTintColor(color);
 		manager.setStatusBarTintColor(color);
 		manager.setNavigationBarTintColor(color);
+		getRootViewHolder().getView().setBackgroundColor(color);
 	}
 	
 	protected void onRestoreInstanceState(Bundle savedInstanceState){
@@ -810,9 +812,6 @@ public class BaseActivity extends Activity implements MessageListener{
 		@SuppressWarnings("deprecation")
 		@Override
 		protected void onApplyView(View view) {
-			if (shouldEnableBarTint() && android.os.Build.VERSION.SDK_INT >= 19) {
-				view.setFitsSystemWindows(true);
-			}
 			// TODO Auto-generated method stub
 			view.setBackgroundColor(Color.TRANSPARENT);
 			view.setFocusable(true);
@@ -820,6 +819,10 @@ public class BaseActivity extends Activity implements MessageListener{
 			view.setDrawingCacheBackgroundColor(Color.TRANSPARENT);
 			FrameLayout.LayoutParams p=new FrameLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, FrameLayout.LayoutParams.FILL_PARENT, Gravity.LEFT|Gravity.TOP);
 			view.setLayoutParams(p);
+			if (shouldEnableBarTint() && android.os.Build.VERSION.SDK_INT >= 19) {
+				view.setFitsSystemWindows(false);
+				view.setPadding(0, AppUtility.getStatusBarPixelHeight(getActivity()), 0, 0);
+			}
 		}
 	}
 	

@@ -2,18 +2,14 @@ package com.pj.core.ui;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PixelFormat;
 import android.graphics.RadialGradient;
 import android.graphics.Rect;
 import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
 
-public class TabItemBackroundDrawable extends Drawable {
+public class TabItemBackroundDrawable extends BaseDrawable {
 	
-	private final Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 	
 	private int backgroundColor = Color.TRANSPARENT;
 	private int tintStartColor = Color.TRANSPARENT;
@@ -32,7 +28,6 @@ public class TabItemBackroundDrawable extends Drawable {
 		path.moveTo(rect.right, rect.bottom);
 		path.lineTo(rect.left, rect.bottom);
 		
-		System.out.println(rect);
 		
 		//计算曲线
 		float h = rect.height();
@@ -85,23 +80,4 @@ public class TabItemBackroundDrawable extends Drawable {
 	public void setPaddingTopPercent(float paddingTopPercent) {
 		this.paddingTopPercent = paddingTopPercent;
 	}
-
-	@Override
-	public void setAlpha(int alpha) {
-		// TODO Auto-generated method stub
-		mPaint.setAlpha(alpha);
-	}
-
-	@Override
-	public void setColorFilter(ColorFilter cf) {
-		// TODO Auto-generated method stub
-		mPaint.setColorFilter(cf);
-	}
-
-	@Override
-	public int getOpacity() {
-		// TODO Auto-generated method stub
-		return PixelFormat.OPAQUE;
-	}
-
 }
