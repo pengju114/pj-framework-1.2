@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,7 +22,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 import com.pj.core.BaseApplication;
 import com.pj.core.R;
@@ -495,7 +493,6 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 		//添加头
 		addRequestHeader(builder);
 		Request request = builder.url(urlPath).post(requestBody).build();
-		
 		return sendRequest(request, responseHeaderReceiver);
 	}
 	
@@ -526,7 +523,6 @@ public class HttpRequest extends AsyncTask<Void,Float,HttpResult>{
 				
 		//请求结果
 		Response response = null;
-				
 		try {
 			//发起请求
 			response = postCall.execute();
