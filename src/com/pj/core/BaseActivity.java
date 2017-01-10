@@ -29,6 +29,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.ViewGroup.LayoutParams;
@@ -84,6 +85,8 @@ public class BaseActivity extends Activity implements MessageListener{
 	private   ViewHolder 	  rootViewHolder;
 	private   int             state;
 	
+	private SystemBarTintManager systemBarTintManager;
+	
 
 	/***********************活动生命周期**********************/
 	@Override
@@ -91,12 +94,9 @@ public class BaseActivity extends Activity implements MessageListener{
 		super.onCreate(savedInstanceState);
 		//都是无标题活动
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		if (shouldEnableBarTint()) {
-			enableBarTint();
-		}
+		
 		inflater = super.getLayoutInflater();
 		resources= super.getResources();
-		
 		//入栈
 		BaseApplication.getInstance().addActivity(this);
 		
@@ -120,35 +120,47 @@ public class BaseActivity extends Activity implements MessageListener{
 		}
 		
 		activityStateChange(NOTIFICATION_ACTIVITY_CREATE,savedInstanceState);
+		
+		systemBarTintManager = new SystemBarTintManager(this);
+		
+		if (isEnableBarTint()) {
+			enableBarTint();
+		}
 	}
 	
 	/**
 	 * 是否允许浸入式状态栏和导航栏,默认开启。
 	 * @return
 	 */
-	protected boolean shouldEnableBarTint(){
+	protected boolean isEnableBarTint(){
 		return true;
+	}
+	
+	public SystemBarTintManager getSystemBarTintManager() {
+		return systemBarTintManager;
 	}
 	
 	@SuppressLint("InlinedApi")
 	public void enableBarTint(){
-		if (Build.VERSION.SDK_INT >= 19) {
-			//透明状态栏  
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            // 设置透明状态栏,这样才能让 ContentView 向上
+        	//透明状态栏  
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);  
 			//透明导航栏  
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-		}
-		SystemBarTintManager manager = new SystemBarTintManager(this);
-		manager.setStatusBarTintEnabled(true);
-		manager.setNavigationBarTintEnabled(true);
+ 
+        }
+		
+		systemBarTintManager.setStatusBarTintEnabled(true);
+		systemBarTintManager.setNavigationBarTintEnabled(true);
 	}
 	
 	public void setSystemBarTintColor(int color) {
-		SystemBarTintManager manager = new SystemBarTintManager(this);
-		manager.setTintColor(color);
-		manager.setStatusBarTintColor(color);
-		manager.setNavigationBarTintColor(color);
+		systemBarTintManager.setTintColor(color);
+		systemBarTintManager.setStatusBarTintColor(color);
+		systemBarTintManager.setNavigationBarTintColor(color);
 		getRootViewHolder().getView().setBackgroundColor(color);
+		getWindow().getDecorView().setBackgroundColor(color);
 	}
 	
 	protected void onRestoreInstanceState(Bundle savedInstanceState){
@@ -819,9 +831,14 @@ public class BaseActivity extends Activity implements MessageListener{
 			view.setDrawingCacheBackgroundColor(Color.TRANSPARENT);
 			FrameLayout.LayoutParams p=new FrameLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, FrameLayout.LayoutParams.FILL_PARENT, Gravity.LEFT|Gravity.TOP);
 			view.setLayoutParams(p);
-			if (shouldEnableBarTint() && android.os.Build.VERSION.SDK_INT >= 19) {
+			if (isEnableBarTint() && android.os.Build.VERSION.SDK_INT >= 19) {
 				view.setFitsSystemWindows(false);
 				view.setPadding(0, AppUtility.getStatusBarPixelHeight(getActivity()), 0, 0);
+			}
+
+			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH && isEnableBarTint()) {
+				view.setFitsSystemWindows(true);
+				((ViewGroup)view).setClipToPadding(true);
 			}
 		}
 	}

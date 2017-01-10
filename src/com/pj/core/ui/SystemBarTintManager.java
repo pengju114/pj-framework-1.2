@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.DisplayMetrics;
@@ -64,7 +65,7 @@ public class SystemBarTintManager {
     /**
      * The default system bar tint color value.
      */
-    public static final int DEFAULT_TINT_COLOR = 0x00000000;
+    public static final int DEFAULT_TINT_COLOR = Color.TRANSPARENT;
 
     private static String sNavBarOverride;
 
@@ -85,11 +86,12 @@ public class SystemBarTintManager {
      */
     @TargetApi(19)
     public SystemBarTintManager(Activity activity) {
-
+    	
         Window win = activity.getWindow();
         ViewGroup decorViewGroup = (ViewGroup) win.getDecorView();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        	
             // check theme attrs
             int[] attrs = {android.R.attr.windowTranslucentStatus,
                     android.R.attr.windowTranslucentNavigation};
